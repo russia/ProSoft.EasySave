@@ -20,7 +20,7 @@ public class Program
         await Startup(args, sampleService).ConfigureAwait(false);
     }
 
-    public static async Task Startup(string[] args, ISampleService sampleService) // StartUp ?
+    public static async Task Startup(string[] args, ISampleService sampleService)
     {
         await sampleService.TestMethod();
         System.Console.Read();

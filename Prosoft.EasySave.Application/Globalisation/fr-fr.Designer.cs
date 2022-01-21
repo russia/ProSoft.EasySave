@@ -22,14 +22,14 @@ namespace ProSoft.EasySave.Application.Globalisation {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Lang_fr {
+    internal class fr_fr {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Lang_fr() {
+        internal fr_fr() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProSoft.EasySave.Application.Globalisation {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProSoft.EasySave.Application.Globalisation.Lang-fr", typeof(Lang_fr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProSoft.EasySave.Application.Globalisation.fr-fr", typeof(fr_fr).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
