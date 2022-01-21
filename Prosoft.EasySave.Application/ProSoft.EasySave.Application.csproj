@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<RuntimeIdentifiers>win-x64;linux-x64;osx-x64</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,26 +12,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Globalisation\Lang-en.Designer.cs">
+    <Compile Update="Globalisation\en-us.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Lang-en.resx</DependentUpon>
+      <DependentUpon>en-us.resx</DependentUpon>
     </Compile>
-    <Compile Update="Globalisation\Lang-fr.Designer.cs">
+    <Compile Update="Globalisation\fr-fr.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Lang-fr.resx</DependentUpon>
+      <DependentUpon>fr-fr.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Globalisation\Lang-en.resx">
+    <EmbeddedResource Update="Globalisation\en-us.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang-en.Designer.cs</LastGenOutput>
+      <LastGenOutput>en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Globalisation\Lang-fr.resx">
+    <EmbeddedResource Update="Globalisation\fr-fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Lang-fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>fr-fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
