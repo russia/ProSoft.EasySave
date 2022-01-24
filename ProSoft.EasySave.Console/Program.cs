@@ -2,7 +2,8 @@
 using Microsoft.Extensions.Logging;
 using ProSoft.EasySave.Application.Interfaces.Services;
 using ProSoft.EasySave.Application.Services;
-using System;
+using ProSoft.EasySave.Console.Interfaces;
+using ProSoft.EasySave.Console.Managers;
 
 namespace ProSoft.EasySave.Console;
 
@@ -10,19 +11,21 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        var serviceCollection = new ServiceCollection()
+        var serviceProvider = new ServiceCollection()
             .AddLogging(cfg => cfg.AddConsole())
             .AddSingleton<ISampleService, SampleService>()
-            .AddSingleton<IFooService, FooService>();
-        var serviceProvider = serviceCollection.BuildServiceProvider();
+            .AddSingleton<IGlobalizationService, GlobalizationService>()
+            .AddSingleton<IConsoleService, ConsoleService>()
+            .AddSingleton<IFooService, FooService>()
+            .BuildServiceProvider();
 
-        var sampleService = serviceProvider.GetService<ISampleService>();
-        await Startup(args, sampleService).ConfigureAwait(false);
-    }
+        var globalisationService = serviceProvider.GetService<IGlobalizationService>();
 
-    public static async Task Startup(string[] args, ISampleService sampleService)
-    {
-        await sampleService.TestMethod();
-        System.Console.Read();
+        System.Console.WriteLine(globalisationService.GetString("WELCOME_MESSAGE"));
+        // TODO : read user inputs.
+
+        var consoleService = serviceProvider.GetService<IConsoleService>();
+
+        var result = await consoleService.StartJobAsync(null);
     }
 }
