@@ -9,29 +9,30 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Globalisation\en-us.Designer.cs">
+    <Compile Update="Globalisation\strings.en-us.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>en-us.resx</DependentUpon>
+      <DependentUpon>strings.en-us.resx</DependentUpon>
     </Compile>
-    <Compile Update="Globalisation\fr-fr.Designer.cs">
+    <Compile Update="Globalisation\strings.fr-fr.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>fr-fr.resx</DependentUpon>
+      <DependentUpon>strings.fr-fr.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Globalisation\en-us.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>en-us.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Globalisation\Lang.en-us.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.en-us.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Globalisation\fr-fr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>fr-fr.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Globalisation\Lang.fr-fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.fr-fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
