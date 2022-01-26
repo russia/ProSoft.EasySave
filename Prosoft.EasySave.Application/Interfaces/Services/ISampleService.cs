@@ -2,5 +2,5 @@
 
 public interface ISampleService
 {
-    Task TestMethod();
+    void TestMethod();
 }
