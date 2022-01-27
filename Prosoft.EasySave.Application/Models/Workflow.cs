@@ -20,7 +20,7 @@ public static class Workflow
         return executionType switch
         {
             ExecutionType.SEQUENTIAL => await tasks.StartSequentialJobsAsync(cancellationToken) as T,
-            ExecutionType.CONCURRENT => await tasks.StartParallelJobsAsync(4, cancellationToken) as T,
+            ExecutionType.CONCURRENT => await tasks.StartParallelJobsAsync(cancellationToken: cancellationToken) as T,
             ExecutionType.SINGLE => await tasks.StartSingleJobAsync(cancellationToken) as T,
             _ => throw new NotImplementedException(),
         };
