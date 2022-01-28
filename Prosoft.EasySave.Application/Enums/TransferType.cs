@@ -3,12 +3,12 @@
 public enum TransferType
 {
     /// <summary>
-    /// Copy and replace the files if they exist
+    ///     Copy and replace the files if they exist
     /// </summary>
-    FULL,
+    FULL = 0,
 
     /// <summary>
-    /// Copies only files that do not exist in the destination folder
+    ///     Copies only files that do not exist in the destination folder
     /// </summary>
-    DIFFERENTIAL
+    DIFFERENTIAL = 1
 }
