@@ -1,25 +1,21 @@
-﻿using Newtonsoft.Json;
-using ProSoft.EasySave.Application.Models.Contexts;
+﻿using Microsoft.Extensions.Options;
 using ProSoft.EasySave.Application.Enums;
 using ProSoft.EasySave.Application.Interfaces.Services;
-using Microsoft.Extensions.Logging;
 using ProSoft.EasySave.Application.Models;
-using Microsoft.Extensions.Options;
+using ProSoft.EasySave.Application.Models.Contexts;
 
 namespace ProSoft.EasySave.Application.Services;
 
 public class JobFactoryService : IJobFactoryService
 {
-    private readonly List<JobContext> _jobContexts;
-    private readonly ILogger<JobFactoryService> _logger;
-    private readonly IFileService _fileService;
     private readonly IOptions<Configuration> _configuration;
+    private readonly IFileService _fileService;
+    private readonly List<JobContext> _jobContexts;
     private ExecutionType _executionType;
 
-    public JobFactoryService(ILogger<JobFactoryService> logger, IFileService fileService, IOptions<Configuration> configuration)
+    public JobFactoryService(IFileService fileService, IOptions<Configuration> configuration)
     {
         _jobContexts = new List<JobContext>();
-        _logger = logger;
         _fileService = fileService;
         _configuration = configuration;
     }
@@ -28,11 +24,11 @@ public class JobFactoryService : IJobFactoryService
     {
         if (_jobContexts.Count > 5)
         {
-            _logger.LogInformation("The job contexts limit is reached.");
+            Console.Error.WriteLine("The job contexts limit is reached.");
             return;
         }
 
-        _jobContexts.Add(new JobContext()
+        _jobContexts.Add(new JobContext
         {
             Name = name,
             TransferType = transferType,
@@ -40,27 +36,30 @@ public class JobFactoryService : IJobFactoryService
             DestinationPath = destinationPath
         });
 
-        _logger.LogDebug("New job context added in the job context list.");
+        Console.WriteLine("New job context added in the job context list.");
     }
 
     public async Task<IReadOnlyCollection<JobResult>> StartJobsAsync(ExecutionType? executionType = null)
     {
         var cancellationToken = new CancellationTokenSource();
-        var taskList = _jobContexts.Select(jobContext => new Task<JobResult>(() => _fileService.CopyFiles(jobContext, cancellationToken.Token).Result));
+        var taskList = _jobContexts.Select(jobContext =>
+            new Task<JobResult>(() => _fileService.CopyFiles(jobContext, cancellationToken.Token).Result));
         return await taskList.StartAsync<List<JobResult>>(executionType ?? _executionType, cancellationToken.Token);
     }
 
     public void LoadConfiguration()
     {
-        _logger.LogInformation("Loading configuration..");
+        Console.WriteLine("Loading configuration..");
         if (_configuration.Value.JobContexts.Count > 5)
         {
-            _logger.LogCritical("Job contexts limit reached!");
+            Console.Error.WriteLine("Job contexts limit reached!");
             throw new NotImplementedException();
         }
+
         _executionType = _configuration.Value.ExecutionType;
         _jobContexts.AddRange(_configuration.Value.JobContexts);
-        _logger.LogInformation($"Successfully loaded {_configuration.Value.JobContexts.Count} job context(s):");
-        _logger.LogInformation(String.Join(Environment.NewLine, _configuration.Value.JobContexts.Select(jobContext => jobContext.Name)));
+        Console.WriteLine($"Successfully loaded {_configuration.Value.JobContexts.Count} job context(s):");
+        Console.WriteLine(string.Join(Environment.NewLine,
+            _configuration.Value.JobContexts.Select(jobContext => jobContext.Name)));
     }
 }

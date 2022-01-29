@@ -1,7 +1,7 @@
-﻿using ProSoft.EasySave.Application.Interfaces.Services;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Reflection;
 using System.Resources;
+using ProSoft.EasySave.Application.Interfaces.Services;
 
 namespace ProSoft.EasySave.Application.Services;
 
@@ -11,7 +11,8 @@ public class GlobalizationService : IGlobalizationService
 
     public GlobalizationService()
     {
-        _manager = new ResourceManager("ProSoft.EasySave.Application.Globalisation.Lang", Assembly.GetExecutingAssembly());
+        _manager = new ResourceManager("ProSoft.EasySave.Application.Globalisation.Lang",
+            Assembly.GetExecutingAssembly());
     }
 
     public string GetString(string key)
