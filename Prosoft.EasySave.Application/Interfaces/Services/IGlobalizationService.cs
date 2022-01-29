@@ -1,11 +1,10 @@
 ﻿using System.Globalization;
 
-namespace ProSoft.EasySave.Application.Interfaces.Services
-{
-    public interface IGlobalizationService
-    {
-        string GetString(string key);
+namespace ProSoft.EasySave.Application.Interfaces.Services;
 
-        string GetString(string key, CultureInfo cultureInfo);
-    }
+public interface IGlobalizationService
+{
+    string GetString(string key);
+
+    string GetString(string key, CultureInfo cultureInfo);
 }
