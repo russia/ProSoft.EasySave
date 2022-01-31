@@ -20,6 +20,7 @@ public class JobFactoryService : IJobFactoryService
         _configuration = configuration;
     }
 
+    /// <inheritdoc />
     public void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath)
     {
         if (_jobContexts.Count > 5)
@@ -39,6 +40,7 @@ public class JobFactoryService : IJobFactoryService
         Console.WriteLine("New job context added in the job context list.");
     }
 
+    /// <inheritdoc />
     public async Task<IReadOnlyCollection<JobResult>> StartJobsAsync(ExecutionType? executionType = null)
     {
         var cancellationToken = new CancellationTokenSource();
@@ -47,6 +49,7 @@ public class JobFactoryService : IJobFactoryService
         return await taskList.StartAsync<List<JobResult>>(executionType ?? _executionType, cancellationToken.Token);
     }
 
+    /// <inheritdoc />
     public void LoadConfiguration()
     {
         Console.WriteLine("Loading configuration..");

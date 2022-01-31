@@ -2,6 +2,9 @@
 
 namespace ProSoft.EasySave.Application.Models.Contexts;
 
+/// <summary>
+/// Class representing save work with linked values Name, SourcePath, DestinationPath, TransferType, StateType.
+/// </summary>
 public class JobContext
 {
     public string Name { get; set; } // TODO : make these properties private?

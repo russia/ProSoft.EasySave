@@ -21,11 +21,13 @@ public class ConsoleService : IConsoleService
         _factoryService.LoadConfiguration();
     }
 
+    /// <inheritdoc />
     public void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath)
     {
         _factoryService.AddJob(name, transferType, sourcePath, destinationPath);
     }
 
+    /// <inheritdoc />
     public async Task<IReadOnlyCollection<JobResult>> Start(ExecutionType? executionType = null)
     {
         var jobResults = await _factoryService.StartJobsAsync(executionType);
@@ -35,6 +37,7 @@ public class ConsoleService : IConsoleService
         return jobResults;
     }
 
+    /// <inheritdoc />
     public async Task DisplayConsoleInterface()
     {
         System.Console.WriteLine(

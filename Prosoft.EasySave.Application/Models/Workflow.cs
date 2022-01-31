@@ -17,8 +17,16 @@ public static class Workflow
         };
     }
 
-    public static async Task<T> StartAsync<T>(this IEnumerable<Task<JobResult>> tasks, ExecutionType executionType,
-        CancellationToken cancellationToken = default) where T : class
+    /// <summary>
+    /// Method allowing to call the method to launch save works according to their execution type.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="tasks">The tasks list.</param>
+    /// <param name="executionType">The execution type.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the T result.</returns>
+    /// <exception cref="NotImplementedException">This exception is throw if the execution type is not supported.</exception>
+    public static async Task<T> StartAsync<T>(this IEnumerable<Task<JobResult>> tasks, ExecutionType executionType, CancellationToken cancellationToken = default) where T : class
     {
         return executionType switch
         {
@@ -29,8 +37,14 @@ public static class Workflow
         };
     }
 
-    private static async Task<IReadOnlyCollection<JobResult>> StartParallelJobsAsync(
-        this IEnumerable<Task<JobResult>> tasks, uint maxTasks = 5, CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Method to launch the save works in parallel.
+    /// </summary>
+    /// <param name="tasks">The tasks list.</param>
+    /// <param name="maxTasks">The concurrency tasks limit.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the T result.</returns>
+    private static async Task<IReadOnlyCollection<JobResult>> StartParallelJobsAsync(this IEnumerable<Task<JobResult>> tasks, uint maxTasks = 5, CancellationToken cancellationToken = default)
     {
         var jobsResults = new List<JobResult>();
         await Parallel.ForEachAsync(tasks,
@@ -46,8 +60,13 @@ public static class Workflow
         return jobsResults;
     }
 
-    private static async Task<IReadOnlyCollection<JobResult>> StartSequentialJobsAsync(
-        this IEnumerable<Task<JobResult>> jobContexts, CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Method allowing to launch the save works sequentially one by one until 5 save works were launched.
+    /// </summary>
+    /// <param name="jobContexts">The task list.</param>
+    /// <param name="cancellationToken">The cancellation token</param>
+    /// <returns>A task containing the job results list.</returns>
+    private static async Task<IReadOnlyCollection<JobResult>> StartSequentialJobsAsync(this IEnumerable<Task<JobResult>> jobContexts, CancellationToken cancellationToken = default)
     {
         List<JobResult> results = new();
         foreach (var jobContext in jobContexts.Where(x => !x.IsCompleted))
@@ -59,16 +78,26 @@ public static class Workflow
         return results;
     }
 
-    private static async Task<JobResult> StartSingleJobAsync(this IEnumerable<Task<JobResult>> tasks,
-        CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Method allowing to launch one save work. 
+    /// </summary>
+    /// <param name="tasks">The task.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the job result.</returns>
+    private static async Task<JobResult> StartSingleJobAsync(this IEnumerable<Task<JobResult>> tasks, CancellationToken cancellationToken = default)
     {
         var task = tasks.First(x => !x.IsCompleted);
         task.Start();
         return await task.WaitAsync(cancellationToken);
     }
 
-    private static async Task<JobResult> StartSingleJobAsync(this Task<JobResult> task,
-        CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Same method as the one above.
+    /// </summary>
+    /// <param name="task">The task.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the job result.</returns>
+    private static async Task<JobResult> StartSingleJobAsync(this Task<JobResult> task, CancellationToken cancellationToken = default)
     {
         task.Start();
         return await task.WaitAsync(cancellationToken);

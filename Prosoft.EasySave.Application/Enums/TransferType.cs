@@ -1,5 +1,8 @@
 ﻿namespace ProSoft.EasySave.Application.Enums;
 
+/// <summary>
+/// Allows to create custom enums for the transfer type of the save work.
+/// </summary>
 public enum TransferType
 {
     /// <summary>

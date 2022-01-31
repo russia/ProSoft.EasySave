@@ -4,6 +4,11 @@ namespace ProSoft.EasySave.Application.Extensions;
 
 public static class FileInfoExtensions
 {
+    /// <summary>
+    /// Method allowing to hash content of file.
+    /// </summary>
+    /// <param name="fileInfo">The input file info.</param>
+    /// <returns>The hashed string.</returns>
     public static string GetSha256Hash(this FileInfo fileInfo)
     {
         using var stream = new BufferedStream(File.OpenRead(fileInfo.FullName), 4096);
@@ -12,6 +17,11 @@ public static class FileInfoExtensions
         return BitConverter.ToString(checksum).Replace("-", String.Empty).ToLower();
     }
 
+    /// <summary>
+    /// Method allowing to hash content of file.
+    /// </summary>
+    /// <param name="fileInfo">The input file info</param>
+    /// <returns>The hashed string.</returns>
     public static string GetMd5Hash(this FileInfo fileInfo)
     {
         using var md5 = MD5.Create();
@@ -22,6 +32,12 @@ public static class FileInfoExtensions
             .ToLowerInvariant();
     }
 
+    /// <summary>
+    /// Method allowing to compare two files.
+    /// </summary>
+    /// <param name="fileInfo1">The first file we are comparing.</param>
+    /// <param name="fileInfo2">The second file we are comparing.</param>
+    /// <returns>True if both files are equal; otherwise false.</returns>
     public static bool Compare(this FileInfo fileInfo1, FileInfo fileInfo2)
     {
         var fileInfo1Path = fileInfo1.FullName;

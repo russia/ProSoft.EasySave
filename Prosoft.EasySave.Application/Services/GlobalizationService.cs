@@ -15,11 +15,13 @@ public class GlobalizationService : IGlobalizationService
             Assembly.GetExecutingAssembly());
     }
 
+    /// <inheritdoc />
     public string GetString(string key)
     {
         return GetString(key, Thread.CurrentThread.CurrentCulture);
     }
 
+    /// <inheritdoc />
     public string GetString(string key, CultureInfo cultureInfo)
     {
         var value = _manager.GetString(key, cultureInfo);

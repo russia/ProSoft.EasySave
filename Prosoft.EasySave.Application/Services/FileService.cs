@@ -17,7 +17,7 @@ public class FileService : IFileService
     {
         _logger = logger.ForContext<FileService>();
     }
-
+    /// <inheritdoc />
     public async Task<JobResult> CopyFiles(JobContext jobContext, CancellationToken cancellationToken = default)
     {
         var stopWatch = new Stopwatch();
@@ -46,9 +46,11 @@ public class FileService : IFileService
             cancellationToken.ThrowIfCancellationRequested(); // TODO : handle cancellation tokens.
             var destinationPath = Path.Combine(jobContext.DestinationPath, sourceFile.Name);
             var stopwatchFile = new Stopwatch();
+            
             stopwatchFile.Start();
             sourceFile.CopyTo(destinationPath, true);
             stopwatchFile.Stop();
+            
             Console.WriteLine($"[{jobContext.Name}] File {sourceFile.Name} copied to {destinationPath}.");
             var jsonLog = new LogEntry
             {
@@ -59,7 +61,6 @@ public class FileService : IFileService
                 FileTransferTime = stopwatchFile.ElapsedMilliseconds,
                 Time = DateTime.UtcNow
             };
-
             _logger.Information(JsonConvert.SerializeObject(jsonLog, Formatting.Indented));
         }
 

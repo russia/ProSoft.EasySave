@@ -1,5 +1,9 @@
 ﻿namespace ProSoft.EasySave.Application.Enums;
 
+
+/// <summary>
+/// Allows to create custom enum types for the execution type.
+/// </summary>
 public enum ExecutionType
 {
     /// <summary>
