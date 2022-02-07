@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 
-namespace EasySave.Presentation.Views;
+namespace ProSoft.EasySave.Presentation.Views;
+
 
 /// <summary>
 ///     Interaction logic for MainWindow.xaml

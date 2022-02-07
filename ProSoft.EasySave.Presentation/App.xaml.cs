@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EasySave.Presentation;
+namespace ProSoft.EasySave.Presentation;
 
 /// <summary>
 ///     Interaction logic for App.xaml
