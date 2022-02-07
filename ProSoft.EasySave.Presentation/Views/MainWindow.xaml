@@ -14,7 +14,7 @@
                                             Header="This is Header Text" 
                                             PaneDisplayMode="Auto" 
                                             IsTabStop="False" 
-                                            SelectionChanged="NavigationView_SelectionChanged5" >
+                                            SelectionChanged="NavigationView_SelectionChanged5">
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItem Content="Menu Item2" Tag="SamplePage2" Icon="Save" />
             </ui:NavigationView.MenuItems>
