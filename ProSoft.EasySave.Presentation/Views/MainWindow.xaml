@@ -4,6 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
         Title="MainWindow" Height="450" Width="800">
-    <Grid />
+    <Grid>
+        <ui:NavigationView x:Name="nvSample5" 
+                                            Grid.Row="1" 
+                                            Height="460"
+                                            Header="This is Header Text" 
+                                            PaneDisplayMode="Auto" 
+                                            IsTabStop="False" 
+                                            SelectionChanged="NavigationView_SelectionChanged5" >
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItem Content="Menu Item2" Tag="SamplePage2" Icon="Save" />
+            </ui:NavigationView.MenuItems>
+            <ui:Frame Margin="0,0,0,0" x:Name="contentFrame5" />
+        </ui:NavigationView>
+    </Grid>
 </Window>

@@ -1,5 +1,6 @@
-﻿namespace ProSoft.EasySave.Presentation.ViewModels;
-
+﻿namespace ProSoft.EasySave.Presentation.ViewModels
+{ 
 public class MainWindowViewModel
 {
+}
 }
