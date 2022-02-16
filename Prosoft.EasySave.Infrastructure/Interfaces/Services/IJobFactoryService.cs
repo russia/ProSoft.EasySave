@@ -3,14 +3,15 @@ using ProSoft.EasySave.Infrastructure.Models.Contexts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProSoft.EasySave.Console.Interfaces
+namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
 {
-    internal interface IConsoleService
+
+    public interface IJobFactoryService
     {
-        Task DisplayConsoleInterface();
+        void LoadConfiguration();
 
         void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath);
 
-        Task<IReadOnlyCollection<JobResult>> Start(ExecutionType? executionType = null);
+        Task<IReadOnlyCollection<JobResult>> StartJobsAsync(ExecutionType? executionType = null);
     }
 }

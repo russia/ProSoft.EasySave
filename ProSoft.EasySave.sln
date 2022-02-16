@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32113.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProSoft.EasySave.Console", "ProSoft.EasySave.Console\ProSoft.EasySave.Console.csproj", "{EA89B081-A8BD-4B99-817D-F7C2E5AE42C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProSoft.EasySave.Wpf", "ProSoft.EasySave.Wpf\ProSoft.EasySave.Wpf.csproj", "{22C0D054-6DC9-4FB2-B4FF-43D6F5CCE184}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProSoft.EasySave.Presentation", "ProSoft.EasySave.Presentation\ProSoft.EasySave.Presentation.csproj", "{22C0D054-6DC9-4FB2-B4FF-43D6F5CCE184}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProSoft.EasySave.Application", "Prosoft.EasySave.Application\ProSoft.EasySave.Application.csproj", "{128116F6-5B8E-4350-8CB6-654BC306D083}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProSoft.EasySave.Infrastructure", "Prosoft.EasySave.Infrastructure\ProSoft.EasySave.Infrastructure.csproj", "{128116F6-5B8E-4350-8CB6-654BC306D083}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E20967E6-4B1F-4EE8-AD6B-85BC6F1BAC8F}"
 	ProjectSection(SolutionItems) = preProject
