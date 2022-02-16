@@ -1,16 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProSoft.EasySave.Application.Interfaces.Services;
-using ProSoft.EasySave.Application.Models;
-using ProSoft.EasySave.Application.Services;
 using ProSoft.EasySave.Console.Interfaces;
 using ProSoft.EasySave.Console.Services;
+using ProSoft.EasySave.Infrastructure.Interfaces.Services;
+using ProSoft.EasySave.Infrastructure.Models;
+using ProSoft.EasySave.Infrastructure.Services;
 using Serilog;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using Serilog.Events;
 
-namespace ProSoft.EasySave.Console;
+namespace ProSoft.EasySave.Console
+{
 
-public static class Program
+    public static class Program
 {
     public static async Task Main()
     {
@@ -56,4 +60,5 @@ public static class Program
 
         System.Console.ReadKey();
     }
+}
 }

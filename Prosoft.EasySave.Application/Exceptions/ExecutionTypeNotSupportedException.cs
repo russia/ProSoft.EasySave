@@ -1,18 +1,22 @@
-﻿namespace ProSoft.EasySave.Application.Exceptions;
+﻿using System;
 
-public class ExecutionTypeNotSupportedException : Exception
+namespace ProSoft.EasySave.Infrastructure.Exceptions
 {
-    public ExecutionTypeNotSupportedException()
-    {
-    }
 
-    public ExecutionTypeNotSupportedException(string message)
-        : base(message)
+    public class ExecutionTypeNotSupportedException : Exception
     {
-    }
+        public ExecutionTypeNotSupportedException()
+        {
+        }
 
-    public ExecutionTypeNotSupportedException(string message, Exception inner)
-        : base(message, inner)
-    {
+        public ExecutionTypeNotSupportedException(string message)
+            : base(message)
+        {
+        }
+
+        public ExecutionTypeNotSupportedException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
     }
 }
