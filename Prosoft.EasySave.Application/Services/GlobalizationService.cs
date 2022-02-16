@@ -1,32 +1,36 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Reflection;
 using System.Resources;
-using ProSoft.EasySave.Application.Interfaces.Services;
+using System.Threading;
+using ProSoft.EasySave.Infrastructure.Interfaces.Services;
 
-namespace ProSoft.EasySave.Application.Services;
-
-public class GlobalizationService : IGlobalizationService
+namespace ProSoft.EasySave.Infrastructure.Services
 {
-    private readonly ResourceManager _manager;
 
-    public GlobalizationService()
+    public class GlobalizationService : IGlobalizationService
     {
-        _manager = new ResourceManager("ProSoft.EasySave.Application.Globalisation.Lang",
-            Assembly.GetExecutingAssembly());
-    }
+        private readonly ResourceManager _manager;
 
-    public string GetString(string key)
-    {
-        return GetString(key, Thread.CurrentThread.CurrentCulture);
-    }
+        public GlobalizationService()
+        {
+            _manager = new ResourceManager("ProSoft.EasySave.Application.Globalisation.Lang",
+                Assembly.GetExecutingAssembly());
+        }
 
-    public string GetString(string key, CultureInfo cultureInfo)
-    {
-        var value = _manager.GetString(key, cultureInfo);
+        public string GetString(string key)
+        {
+            return GetString(key, Thread.CurrentThread.CurrentCulture);
+        }
 
-        if (value is not null)
-            return value;
+        public string GetString(string key, CultureInfo cultureInfo)
+        {
+            var value = _manager.GetString(key, cultureInfo);
 
-        throw new NotImplementedException();
+            if (value is not null)
+                return value;
+
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,8 +1,12 @@
-﻿using ProSoft.EasySave.Application.Models.Contexts;
+﻿using ProSoft.EasySave.Infrastructure.Models.Contexts;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace ProSoft.EasySave.Application.Interfaces.Services;
-
-public interface IFileService
+namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
 {
-    Task<JobResult> CopyFiles(JobContext jobContext, CancellationToken cancellationToken = default);
+
+    public interface IFileService
+    {
+        Task<JobResult> CopyFiles(JobContext jobContext, CancellationToken cancellationToken = default);
+    }
 }
