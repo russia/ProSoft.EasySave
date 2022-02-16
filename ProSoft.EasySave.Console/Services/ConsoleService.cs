@@ -6,7 +6,7 @@ using ProSoft.EasySave.Application.Interfaces.Services;
 using ProSoft.EasySave.Application.Models.Contexts;
 using ProSoft.EasySave.Console.Interfaces;
 
-namespace ProSoft.EasySave.Console.Managers;
+namespace ProSoft.EasySave.Console.Services;
 
 public class ConsoleService : IConsoleService
 {
