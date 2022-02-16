@@ -4,8 +4,9 @@ using ProSoft.EasySave.Application.Interfaces.Services;
 using ProSoft.EasySave.Application.Models;
 using ProSoft.EasySave.Application.Services;
 using ProSoft.EasySave.Console.Interfaces;
-using ProSoft.EasySave.Console.Managers;
+using ProSoft.EasySave.Console.Services;
 using Serilog;
+using Serilog.Events;
 
 namespace ProSoft.EasySave.Console;
 
@@ -21,12 +22,24 @@ public static class Program
         var configuration = builder.Build();
 
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.File(
-                @"logs.json",
-                outputTemplate:
-                "{Message:lj}{NewLine}",
-                rollingInterval: RollingInterval.Day,
-                shared: true)
+            .WriteTo.Logger(
+                // Hack to allow us to write to two different files and choose which one.
+                x => x.Filter.ByIncludingOnly(y => y.Level is LogEventLevel.Information)
+                    .WriteTo.File(
+                       @"logs.json",
+                       outputTemplate:
+                       "{Message:lj}{NewLine}",
+                       rollingInterval: RollingInterval.Day,
+                       shared: true))
+            .WriteTo.Logger(
+                // Hack to allow us to write to two different files and choose which one.
+                x => x.Filter.ByIncludingOnly(y => y.Level is LogEventLevel.Warning)
+                    .WriteTo.File(
+                        @"logs.xml",
+                        outputTemplate:
+                        "{Message:lj}{NewLine}",
+                        rollingInterval: RollingInterval.Day,
+                        shared: true))
             .CreateLogger();
 
         var serviceProvider = new ServiceCollection()
@@ -39,7 +52,7 @@ public static class Program
             .BuildServiceProvider();
 
         var consoleService = serviceProvider.GetService<IConsoleService>();
-        consoleService.DisplayConsoleInterface();
+        await consoleService.DisplayConsoleInterface();
 
         System.Console.ReadKey();
     }

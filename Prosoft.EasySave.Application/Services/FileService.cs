@@ -37,7 +37,7 @@ public class FileService : IFileService
             .ToList();
 
         if (jobContext.TransferType is TransferType.DIFFERENTIAL)
-            sourceFiles.RemoveAll(srcFile => 
+            sourceFiles.RemoveAll(srcFile =>
                 destinationFiles.Any(destFile => srcFile.Length == destFile.Length && Task.Run(() =>
                                                            destFile.Compare(srcFile), cancellationToken).Result));
 
@@ -50,7 +50,7 @@ public class FileService : IFileService
             sourceFile.CopyTo(destinationPath, true);
             stopwatchFile.Stop();
             Console.WriteLine($"[{jobContext.Name}] File {sourceFile.Name} copied to {destinationPath}.");
-            var jsonLog = new LogEntry
+            var logEntry = new LogEntry
             {
                 Name = jobContext.Name,
                 FileSource = sourceFile.FullName,
@@ -60,7 +60,8 @@ public class FileService : IFileService
                 Time = DateTime.UtcNow
             };
 
-            _logger.Information(JsonConvert.SerializeObject(jsonLog, Formatting.Indented));
+            _logger.Information(logEntry.AsJson());
+            _logger.Warning(logEntry.AsXML());
         }
 
         jobContext.StateType = StateType.COMPLETED;
