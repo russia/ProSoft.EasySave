@@ -18,8 +18,7 @@ namespace ProSoft.EasySave.Console
         public static async Task Main()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Path.GetFullPath(Path.Combine(Environment.CurrentDirectory,
-                    @"..\..\..\..\Prosoft.EasySave.Infrastructure\")))
+                .SetBasePath(Environment.CurrentDirectory)
                 .AddJsonFile("AppSettings.json", true, true);
 
             var configuration = builder.Build();
@@ -29,7 +28,7 @@ namespace ProSoft.EasySave.Console
                     // Hack to allow us to write to two different files and choose which one.
                     x => x.Filter.ByIncludingOnly(y => y.Level is LogEventLevel.Information)
                         .WriteTo.File(
-                           @"logs.json",
+                           @"./logs/logs.json",
                            outputTemplate:
                            "{Message:lj}{NewLine}",
                            rollingInterval: RollingInterval.Day,
@@ -38,7 +37,7 @@ namespace ProSoft.EasySave.Console
                     // Hack to allow us to write to two different files and choose which one.
                     x => x.Filter.ByIncludingOnly(y => y.Level is LogEventLevel.Warning)
                         .WriteTo.File(
-                            @"logs.xml",
+                            @"./logs/logs.xml",
                             outputTemplate:
                             "{Message:lj}{NewLine}",
                             rollingInterval: RollingInterval.Day,
