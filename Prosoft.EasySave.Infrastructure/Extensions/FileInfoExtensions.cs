@@ -4,7 +4,6 @@ using System.Security.Cryptography;
 
 namespace ProSoft.EasySave.Infrastructure.Extensions
 {
-
     public static class FileInfoExtensions
     {
         public static string GetSha256Hash(this FileInfo fileInfo)
@@ -13,6 +12,11 @@ namespace ProSoft.EasySave.Infrastructure.Extensions
             SHA256Managed sha = new SHA256Managed();
             byte[] checksum = sha.ComputeHash(stream);
             return BitConverter.ToString(checksum).Replace("-", string.Empty).ToLower();
+        }
+
+        public static string ComputeEncryptedName(this FileInfo fileInfo)
+        {
+            return Path.GetFileNameWithoutExtension(fileInfo.Name) + "_encrypted.es";
         }
 
         public static string GetMd5Hash(this FileInfo fileInfo)

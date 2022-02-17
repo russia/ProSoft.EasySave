@@ -11,6 +11,7 @@ namespace ProSoft.EasySave.Application.Models.Logging
         public string FileTarget { get; set; }
         public long FileSize { get; set; }
         public float FileTransferTime { get; set; }
+        public float EncryptionTime { get; set; }
         public DateTime Time { get; set; }
 
         public string AsXML()

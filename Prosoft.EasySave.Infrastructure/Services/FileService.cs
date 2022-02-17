@@ -6,11 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using ProSoft.EasySave.Application.Models.Logging;
 using ProSoft.EasySave.Infrastructure.Enums;
 using ProSoft.EasySave.Infrastructure.Extensions;
+using ProSoft.EasySave.Infrastructure.Helpers;
 using ProSoft.EasySave.Infrastructure.Interfaces.Services;
+using ProSoft.EasySave.Infrastructure.Models;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
 using Serilog;
 
@@ -18,10 +21,12 @@ namespace ProSoft.EasySave.Infrastructure.Services
 {
     public class FileService : IFileService
     {
+        private readonly IOptions<Configuration> _configuration;
         private readonly ILogger _logger;
 
-        public FileService(ILogger logger)
+        public FileService(ILogger logger, IOptions<Configuration> configuration)
         {
+            _configuration = configuration;
             _logger = logger.ForContext<FileService>();
         }
 
@@ -51,10 +56,16 @@ namespace ProSoft.EasySave.Infrastructure.Services
             foreach (var sourceFile in sourceFiles)
             {
                 cancellationToken.ThrowIfCancellationRequested(); // TODO : handle cancellation tokens.
-                var destinationPath = Path.Combine(jobContext.DestinationPath, sourceFile.Name);
+                var destinationPath = Path.Combine(jobContext.DestinationPath, sourceFile.ComputeEncryptedName());// TODO : create an extension.
                 var stopwatchFile = new Stopwatch();
                 stopwatchFile.Start();
-                sourceFile.CopyTo(destinationPath, true);
+
+                var encryptedFileSourcePath = Path.Combine(sourceFile.Directory.FullName, sourceFile.ComputeEncryptedName());
+                var encryptionTime = ProcessHelpers.UseProcess(@"C:\Users\user\source\repos\ProSoft.EasySave\ProSoft.CryptoSoft\bin\Debug\net5.0\ProSoft.CryptoSoft.exe", $"{_configuration.Value.XorKey} {StringsHelpers.Base64Encode(sourceFile.FullName)} {StringsHelpers.Base64Encode(encryptedFileSourcePath)}");
+                var encryptedFile = new FileInfo(encryptedFileSourcePath);
+                encryptedFile.CopyTo(destinationPath, true);
+                encryptedFile.Delete();
+
                 stopwatchFile.Stop();
                 Console.WriteLine($"[{jobContext.Name}] File {sourceFile.Name} copied to {destinationPath}.");
 
@@ -65,6 +76,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
                     FileTarget = destinationPath,
                     FileSize = sourceFile.Length,
                     FileTransferTime = stopwatchFile.ElapsedMilliseconds,
+                    EncryptionTime = (float)encryptionTime.TotalMilliseconds,
                     Time = DateTime.UtcNow
                 };
 
