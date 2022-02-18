@@ -13,6 +13,27 @@
         MaxHeight="1080" MaxWidth="1920" MinHeight="800" MinWidth="600"
         WindowState="Maximized"  ResizeMode="CanResizeWithGrip">
     <Grid x:Name="sizeGrid">
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+       
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+        <muxc:NavigationView x:Name="nvSample"
+                               Height="{Binding screenHeight}"
+                               PaneDisplayMode="LeftMinimal"
+                               IsTabStop="False"
+                               SelectionChanged="NavigationView_SelectionChanged5"
+                               Grid.Column="0"
+                               Width="250"
+                               >
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Content="Home" Tag="_HomeView" Icon="Home" />
+                <muxc:NavigationViewItem Content="Save in Progress" Tag="_SaveView" Icon="Save" />
+                <muxc:NavigationViewItem Content="Save selection" Tag="_ActiView" Icon="Find" />
+                <muxc:NavigationViewItem Content="Configuration" Tag="_ConfigView" Icon="Find" />
+            </muxc:NavigationView.MenuItems>
+        </muxc:NavigationView>
     </Grid>
 </Window>

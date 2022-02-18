@@ -24,10 +24,14 @@ namespace ProSoft.EasySave.Presentation
 
             var regionManager = Container.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(_HomeView));
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(_ConfigView));
-            regionManager.RegisterViewWithRegion("ContentRegion", typeof(_SaveView));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(_AppConfigView));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(_ListSaveView));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(_SaveConfigView));
 
             containerRegistry.RegisterForNavigation<_HomeView, _HomeViewModel>(nameof(_HomeView));
+            containerRegistry.RegisterForNavigation<_AppConfigView, _AppConfigViewModel>(nameof(_AppConfigView));
+            containerRegistry.RegisterForNavigation<_ListSaveView, ViewModels._ListSaveViewModel>(nameof(_ListSaveView));
+            containerRegistry.RegisterForNavigation<_SaveConfigView, _SaveConfigViewModel>(nameof(_SaveConfigView));
         }
     }
 }

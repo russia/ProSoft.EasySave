@@ -12,24 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Prism.Regions;
-using ProSoft.EasySave.Presentation.ViewModels;
-using ProSoft.EasySave.Presentation.Views;
+using ProSoft.EasySave.Infrastructure.Models.Contexts;
 
 namespace ProSoft.EasySave.Presentation.Views.PartialViews
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for ConfigView.xaml
     /// </summary>
-    public partial class _HomeView : UserControl
+    /// 
+    
+    public partial class _AppConfigView : UserControl
     {
-        private readonly IRegionManager _regionManager;
+        private IRegionManager _regionManager;
 
-        public _HomeView(IRegionManager regionManager)
+        public _AppConfigView(IRegionManager regionManager)
         {
             _regionManager = regionManager;
             InitializeComponent();
         }
-
-        
     }
 }
