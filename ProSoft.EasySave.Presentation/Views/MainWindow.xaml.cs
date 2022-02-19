@@ -1,7 +1,8 @@
-﻿using System.Windows;
+using System.Windows;
 using ModernWpf.Controls;
 using Prism.Regions;
 using ProSoft.EasySave.Presentation.Views.PartialViews;
+
 
 namespace ProSoft.EasySave.Presentation.Views
 {

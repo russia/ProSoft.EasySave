@@ -2,6 +2,11 @@
 using System.Windows.Controls;
 using Prism.Regions;
 using ProSoft.EasySave.Presentation.Views.PartialViews;
+using System.Collections;
+using ProSoft.EasySave.Infrastructure.Services;
+using System.Windows;
+using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
@@ -10,6 +15,7 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         private readonly IRegionManager _regionManager;
 
         public jobJson jodJson;
+        public int screenHeight { get; set; }
 
         public MainWindowViewModel(IRegionManager regionManager)
         {
@@ -23,15 +29,14 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             jodJson.FileSize = 1651.ToString();
         }
 
-        public int screenHeight { get; set; }
-
         public class jobJson
-        {
-            public string name { get; set; }
-            public string FileSource { get; set; }
-            public string FileTarget { get; set; }
-            public string FileSize { get; set; }
-            public StackPanel button { get; set; }
+        { 
+        public string name { get; set; }
+        public string FileSource { get; set; }
+        public string FileTarget { get; set; }
+        public string FileSize { get; set; }
+        public StackPanel button { get; set; }
         }
     }
+
 }

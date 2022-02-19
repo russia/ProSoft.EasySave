@@ -143,6 +143,8 @@ namespace ProSoft.EasySave.Presentation
 
                 return registryValue > 0 ? WindowsTheme.Light : WindowsTheme.Dark;
             }
+            containerRegistry.RegisterForNavigation<_ListSaveView, ViewModels._ListSaveViewModel>(nameof(_ListSaveView));
+            containerRegistry.RegisterForNavigation<_SaveConfigView, _SaveConfigViewModel>(nameof(_SaveConfigView));
         }
     }
 }

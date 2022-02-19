@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+using System.Windows.Controls;
 using Prism.Regions;
 
 namespace ProSoft.EasySave.Presentation.Views.PartialViews

@@ -1,4 +1,4 @@
-﻿using Prism.Regions;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,10 +12,13 @@ using Microsoft.Extensions.DependencyInjection;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
 using Prism.Mvvm;
 using ProSoft.EasySave.Infrastructure.Interfaces.Services;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
-
     internal class _ListSaveViewModel : BindableBase
     {
         private List<JobContext> _jobContexts;
