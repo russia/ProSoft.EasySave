@@ -1,4 +1,4 @@
-﻿using Prism.Regions;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
 
     internal class _AppConfigViewModel
     {
-
         private readonly IRegionManager _regionManager;
         public double screenHeight { get; set; }
 
@@ -20,8 +19,5 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             _regionManager = regionManager;
             screenHeight = SystemParameters.FullPrimaryScreenHeight;
         }
-
     }
-
-
 }

@@ -1,7 +1,8 @@
-﻿using Prism.Regions;
-using ProSoft.EasySave.Presentation.Views.PartialViews;
-using System;
 using System.Windows;
+using ModernWpf.Controls;
+using Prism.Regions;
+using ProSoft.EasySave.Presentation.Views.PartialViews;
+
 
 namespace ProSoft.EasySave.Presentation.Views
 {
@@ -18,10 +19,9 @@ namespace ProSoft.EasySave.Presentation.Views
             _regionManager = regionManager;
         }
 
-        private void NavigationView_SelectionChanged5(ModernWpf.Controls.NavigationView sender,
-            ModernWpf.Controls.NavigationViewSelectionChangedEventArgs args)
+        private void NavigationView_SelectionChanged5(NavigationView sender,
+            NavigationViewSelectionChangedEventArgs args)
         {
-
             var selectItemTag = args.SelectedItemContainer.Content;
 
             switch (selectItemTag)

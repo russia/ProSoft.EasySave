@@ -11,5 +11,6 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
         public TransferType TransferType { get; set; }
         public StateType StateType { get; set; } = StateType.WAITING;
         public bool IsCompleted => StateType.Equals(StateType.COMPLETED);
+        
     }
 }

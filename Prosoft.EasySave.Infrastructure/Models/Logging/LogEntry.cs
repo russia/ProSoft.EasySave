@@ -13,6 +13,13 @@ namespace ProSoft.EasySave.Application.Models.Logging
         public float FileTransferTime { get; set; }
         public float EncryptionTime { get; set; }
         public DateTime Time { get; set; }
+        public string Details
+        {
+            get
+            {
+                return String.Format("Crypt time : {0}ms \nFile transfert Time : {1}ms \nDate : {2}", this.FileTransferTime, this.FileTransferTime, this.Time.ToString());
+            }
+        }
 
         public string AsXML()
         {
@@ -28,5 +35,6 @@ namespace ProSoft.EasySave.Application.Models.Logging
         {
             return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+
     }
 }

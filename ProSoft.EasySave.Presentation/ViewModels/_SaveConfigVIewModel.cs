@@ -1,6 +1,5 @@
-﻿using Prism.Regions;
+using Prism.Regions;
 using System.Windows;
-
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
     internal class _SaveConfigViewModel
@@ -13,8 +12,7 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         {
             _regionManager = regionManager;
             screenHeight = SystemParameters.FullPrimaryScreenHeight;
-
         }
-
     }
 }
+

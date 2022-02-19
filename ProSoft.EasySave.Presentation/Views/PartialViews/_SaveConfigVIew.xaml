@@ -1,20 +1,18 @@
-﻿<UserControl x:Class="ProSoft.EasySave.Presentation.Views.PartialViews._SaveConfigView"
+<UserControl x:Class="ProSoft.EasySave.Presentation.Views.PartialViews._SaveConfigView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ProSoft.EasySave.Presentation.Views.PartialViews" xmlns:ui="http://schemas.modernwpf.com/2019"
-             mc:Ignorable="d" 
-             xmlns:muxc="http://schemas.modernwpf.com/2019"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="7*"></ColumnDefinition>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="7*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="1">
             <TextBlock FontSize="30" HorizontalAlignment="Left" Margin="5,0,0,0">Activity View</TextBlock>
@@ -22,115 +20,115 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Margin="5,5,5,5">
                     <Button Width="150">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel>
-                                <TextBlock Text="Tache 1" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Tache 1" HorizontalAlignment="Center" />
                             </StackPanel>
                             <StackPanel VerticalAlignment="Center">
-                                <Button Content="Play" Background="DarkOliveGreen"></Button>
-                                <Button Content="Resume/Pause" Background="DarkOrange"></Button>
-                                <Button Content="Stop" Background="DarkRed"></Button>
+                                <Button Content="Play" Background="DarkOliveGreen" />
+                                <Button Content="Resume/Pause" Background="DarkOrange" />
+                                <Button Content="Stop" Background="DarkRed" />
                             </StackPanel>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="0"  Grid.Column="2" Margin="5,5,5,5">
-                    <Button Width="150" >
-                        <StackPanel HorizontalAlignment="Center">
-                            <StackPanel>
-                                <TextBlock Text="Tache 2" HorizontalAlignment="Center"></TextBlock>
-                            </StackPanel>
-                            <StackPanel VerticalAlignment="Center">
-                                <Button Content="Play" Background="DarkOliveGreen"></Button>
-                                <Button Content="Resume/Pause" Background="DarkOrange"></Button>
-                                <Button Content="Stop" Background="DarkRed"></Button>
-                            </StackPanel>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
-                <StackPanel Grid.Row="1"  Grid.Column="0" Margin="5,5,5,5">
+
+                <StackPanel Grid.Row="0" Grid.Column="2" Margin="5,5,5,5">
                     <Button Width="150">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel>
-                                <TextBlock Text="Tache 3" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Tache 2" HorizontalAlignment="Center" />
                             </StackPanel>
                             <StackPanel VerticalAlignment="Center">
-                                <Button Content="Play" Background="DarkOliveGreen"></Button>
-                                <Button Content="Resume/Pause" Background="DarkOrange"></Button>
-                                <Button Content="Stop" Background="DarkRed"></Button>
+                                <Button Content="Play" Background="DarkOliveGreen" />
+                                <Button Content="Resume/Pause" Background="DarkOrange" />
+                                <Button Content="Stop" Background="DarkRed" />
                             </StackPanel>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="2" Margin="5,5,5,5">
+                <StackPanel Grid.Row="1" Grid.Column="0" Margin="5,5,5,5">
                     <Button Width="150">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel>
-                                <TextBlock Text="Tache 4" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Tache 3" HorizontalAlignment="Center" />
                             </StackPanel>
                             <StackPanel VerticalAlignment="Center">
-                                <Button Content="Play" Background="DarkOliveGreen"></Button>
-                                <Button Content="Resume/Pause" Background="DarkOrange"></Button>
-                                <Button Content="Stop" Background="DarkRed"></Button>
+                                <Button Content="Play" Background="DarkOliveGreen" />
+                                <Button Content="Resume/Pause" Background="DarkOrange" />
+                                <Button Content="Stop" Background="DarkRed" />
                             </StackPanel>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="2"  Grid.Column="0" Margin="5,5,5,5">
+                <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,5,5,5">
                     <Button Width="150">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel>
-                                <TextBlock Text="Tache 5" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Tache 4" HorizontalAlignment="Center" />
                             </StackPanel>
                             <StackPanel VerticalAlignment="Center">
-                                <Button Content="Play" Background="DarkOliveGreen"></Button>
-                                <Button Content="Resume/Pause" Background="DarkOrange"></Button>
-                                <Button Content="Stop" Background="DarkRed"></Button>
+                                <Button Content="Play" Background="DarkOliveGreen" />
+                                <Button Content="Resume/Pause" Background="DarkOrange" />
+                                <Button Content="Stop" Background="DarkRed" />
                             </StackPanel>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="2"  Grid.Column="1" Margin="5,5,5,5">
+                <StackPanel Grid.Row="2" Grid.Column="0" Margin="5,5,5,5">
                     <Button Width="150">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel>
-                                <TextBlock Text="Tache 6" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Tache 5" HorizontalAlignment="Center" />
                             </StackPanel>
                             <StackPanel VerticalAlignment="Center">
-                                <Button Content="Play" Background="DarkOliveGreen"></Button>
-                                <Button Content="Resume/Pause" Background="DarkOrange"></Button>
-                                <Button Content="Stop" Background="DarkRed"></Button>
+                                <Button Content="Play" Background="DarkOliveGreen" />
+                                <Button Content="Resume/Pause" Background="DarkOrange" />
+                                <Button Content="Stop" Background="DarkRed" />
                             </StackPanel>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Row="2"  Grid.Column="2" Margin="5,5,5,5">
+                <StackPanel Grid.Row="2" Grid.Column="1" Margin="5,5,5,5">
                     <Button Width="150">
                         <StackPanel HorizontalAlignment="Center">
                             <StackPanel>
-                                <TextBlock Text="Tache 7" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="Tache 6" HorizontalAlignment="Center" />
                             </StackPanel>
                             <StackPanel VerticalAlignment="Center">
-                                <Button Content="Play" Background="DarkOliveGreen"></Button>
-                                <Button Content="Resume/Pause" Background="DarkOrange"></Button>
-                                <Button Content="Stop" Background="DarkRed"></Button>
+                                <Button Content="Play" Background="DarkOliveGreen" />
+                                <Button Content="Resume/Pause" Background="DarkOrange" />
+                                <Button Content="Stop" Background="DarkRed" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Button>
+              </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="2" Margin="5,5,5,5">
+                    <Button Width="150">
+                        <StackPanel HorizontalAlignment="Center">
+                            <StackPanel>
+                                <TextBlock Text="Tache 7" HorizontalAlignment="Center" />
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center">
+                                <Button Content="Play" Background="DarkOliveGreen" />
+                                <Button Content="Resume/Pause" Background="DarkOrange" />
+                                <Button Content="Stop" Background="DarkRed" />
                             </StackPanel>
                         </StackPanel>
                     </Button>
                 </StackPanel>
             </Grid>
         </StackPanel>
-       
     </Grid>
 </UserControl>

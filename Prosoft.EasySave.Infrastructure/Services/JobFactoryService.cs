@@ -25,6 +25,11 @@ namespace ProSoft.EasySave.Infrastructure.Services
             _configuration = configuration;
         }
 
+        public IReadOnlyCollection<JobContext> GetJobs()
+        {
+            return _jobContexts;
+        }
+
         public void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath)
         {
             if (_jobContexts.Count > 5)

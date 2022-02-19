@@ -1,24 +1,18 @@
-﻿using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProSoft.EasySave.Presentation.Views;
-using ProSoft.EasySave.Presentation.Views.PartialViews;
-using System.Windows;
+﻿using System.Windows;
+using Prism.Regions;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
     public class _HomeViewModel
     {
         private readonly IRegionManager _regionManager;
-        public int screenHeight { get; set; }
 
         public _HomeViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            screenHeight = (int)SystemParameters.FullPrimaryScreenHeight;
+            screenHeight = (int) SystemParameters.FullPrimaryScreenHeight;
         }
+
+        public int screenHeight { get; set; }
     }
 }
