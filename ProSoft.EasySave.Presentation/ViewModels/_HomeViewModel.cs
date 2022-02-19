@@ -6,13 +6,13 @@ namespace ProSoft.EasySave.Presentation.ViewModels
     public class _HomeViewModel
     {
         private readonly IRegionManager _regionManager;
+        public int screenHeight { get; set; }
 
         public _HomeViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            screenHeight = (int) SystemParameters.FullPrimaryScreenHeight;
+            screenHeight = 1980;
         }
 
-        public int screenHeight { get; set; }
     }
 }

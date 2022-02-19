@@ -47,11 +47,11 @@ namespace ProSoft.EasySave.Presentation.ViewModels
 
         protected void SetParameter()
         {
-            screenHeight = SystemParameters.FullPrimaryScreenHeight;
+            screenHeight = 1020;
             GridHeight = screenHeight / 1.5;
-            buttonWidth = SystemParameters.FullPrimaryScreenWidth / 10;
+            buttonWidth = 1980 / 10;
             buttonHeight = screenHeight / 12;
-            GridWidth = SystemParameters.FullPrimaryScreenWidth - (SystemParameters.FullPrimaryScreenWidth * 0.1);
+            GridWidth = 1920 - (1920 * 0.1);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         public _SaveConfigViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            screenHeight = SystemParameters.FullPrimaryScreenHeight;
+            screenHeight = 1020;
         }
     }
 }
