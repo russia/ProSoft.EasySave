@@ -11,8 +11,39 @@
         xmlns:muxc="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         MaxHeight="1080" MaxWidth="1920" MinHeight="800" MinWidth="600"
-        WindowState="Maximized"  ResizeMode="CanResizeWithGrip">
-    <Grid x:Name="sizeGrid">
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
+        WindowState="Maximized" ResizeMode="CanResizeWithGrip"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        >
+    <Grid x:Name="sizeGrid" Background="{StaticResource BackgroundPage}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="7*" />
+        </Grid.ColumnDefinitions>
+
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" Grid.Column="0" Grid.ColumnSpan="2" />
+
+        <muxc:NavigationView x:Name="nvSample"
+                             Height="{Binding screenHeight}"
+                             PaneDisplayMode="LeftCompact"
+                             IsTabStop="False"
+                             SelectionChanged="NavigationView_SelectionChanged5"
+                             Grid.Column="0"
+                             Width="Auto"
+                             >
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Content="Home" Tag="_HomeView" Icon="Home" />
+                <muxc:NavigationViewItem Content="Save in Progress" Tag="_SaveView" Icon="Save" />
+                <muxc:NavigationViewItem Content="Save selection" Tag="_ActiView" >
+                    <muxc:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xF0E3;" />
+                    </muxc:NavigationViewItem.Icon>
+                </muxc:NavigationViewItem>
+                <muxc:NavigationViewItem Content="Configuration" Tag="_ConfigView">
+                        <muxc:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xE713;" />
+                        </muxc:NavigationViewItem.Icon>
+                </muxc:NavigationViewItem>
+            </muxc:NavigationView.MenuItems>
+        </muxc:NavigationView>
     </Grid>
 </Window>

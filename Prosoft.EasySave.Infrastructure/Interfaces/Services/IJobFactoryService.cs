@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
 {
-
     public interface IJobFactoryService
     {
         void LoadConfiguration();
+
+        IReadOnlyCollection<JobContext> GetJobs();
 
         void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath);
 

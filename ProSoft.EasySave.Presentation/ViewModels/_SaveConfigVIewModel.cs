@@ -3,16 +3,17 @@ using Prism.Regions;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
-    public class _HomeViewModel
+    internal class _SaveConfigViewModel
     {
         private readonly IRegionManager _regionManager;
 
-        public _HomeViewModel(IRegionManager regionManager)
+
+        public _SaveConfigViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
-            screenHeight = (int) SystemParameters.FullPrimaryScreenHeight;
+            screenHeight = SystemParameters.FullPrimaryScreenHeight;
         }
 
-        public int screenHeight { get; set; }
+        public double screenHeight { get; set; }
     }
 }
