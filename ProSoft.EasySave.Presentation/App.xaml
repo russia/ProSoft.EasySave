@@ -9,8 +9,7 @@
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
 
-                <ResourceDictionary
-                    >
+                <ResourceDictionary>
                     <SolidColorBrush x:Key="BackgroundPage" Color="#FFFF"/>
                     <SolidColorBrush x:Key="BackGroundGray" Color="#808080"/>
                     <SolidColorBrush x:Key="FontColor" Color="#FFFF"/>

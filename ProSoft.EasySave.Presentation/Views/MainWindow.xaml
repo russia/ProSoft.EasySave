@@ -29,6 +29,7 @@
                              SelectionChanged="NavigationView_SelectionChanged5"
                              Grid.Column="0"
                              Width="Auto"
+                             IsSettingsVisible="False"
                              >
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Content="Home" Tag="_HomeView" Icon="Home" />
