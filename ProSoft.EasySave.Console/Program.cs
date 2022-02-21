@@ -8,7 +8,10 @@ using ProSoft.EasySave.Infrastructure.Services;
 using Serilog;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
+using ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher;
+using ProSoft.EasySave.Infrastructure.Models.Network.Frames;
 using Serilog.Events;
 
 namespace ProSoft.EasySave.Console
@@ -44,6 +47,16 @@ namespace ProSoft.EasySave.Console
                             shared: true))
                 .CreateLogger();
 
+            var assembly = Assembly.GetAssembly(typeof(ClientFrame));
+
+            if (assembly is null)
+            {
+                throw new ArgumentNullException("Assembly cannot be null.");
+            }
+
+            var packetReceiver = new PacketReceiver(assembly);
+            var remoteService = new RemoteService(packetReceiver);
+
             var serviceProvider = new ServiceCollection()
                 .Configure<Configuration>(configuration.GetSection("Configuration"))
                 .AddScoped<IGlobalizationService, GlobalizationService>()
@@ -51,12 +64,17 @@ namespace ProSoft.EasySave.Console
                 .AddSingleton<IConsoleService, ConsoleService>()
                 .AddSingleton<IJobFactoryService, JobFactoryService>()
                 .AddSingleton(Log.Logger)
+                .AddSingleton(packetReceiver)
+                .AddSingleton(remoteService)
                 .BuildServiceProvider();
+
+            var jobFactoryService = serviceProvider.GetService<IJobFactoryService>();
+            remoteService.SetJobFactoryService(jobFactoryService); // TODO : find a wordaround for this..
 
             var consoleService = serviceProvider.GetService<IConsoleService>();
             await consoleService.DisplayConsoleInterface();
 
-            System.Console.ReadKey();
+            for (; ; ) await Task.Delay(50);
         }
     }
 }
