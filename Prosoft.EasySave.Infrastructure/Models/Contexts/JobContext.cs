@@ -5,7 +5,7 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
 
     public class JobContext
     {
-        public string Name { get; set; } // TODO : make these properties private?
+        public string Name { get; set; } 
         public string SourcePath { get; set; }
         public string DestinationPath { get; set; }
         public TransferType TransferType { get; set; }

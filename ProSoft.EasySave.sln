@@ -18,6 +18,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProSoft.CryptoSoft", "ProSo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "@dependencies", "@dependencies", "{11771C54-6425-41E6-9482-071F66E8F489}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "@remote", "@remote", "{75A2A27A-2FC1-4B04-B897-B4B141FA865C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProSoft.EasySave.Remote", "ProSoft.EasySave.Remote\ProSoft.EasySave.Remote.csproj", "{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
