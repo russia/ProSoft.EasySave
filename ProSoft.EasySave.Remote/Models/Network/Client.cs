@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
-using System.Threading;
 using ProSoft.EasySave.Infrastructure.Interfaces.Network.Dispatcher;
 using ProSoft.EasySave.Infrastructure.Models.Network.Messages;
 using ProSoft.EasySave.Remote.Events;
@@ -13,6 +13,7 @@ namespace ProSoft.EasySave.Remote.Models.Network
     public class Client : TcpClient
     {
         public delegate void PacketReceived(object sender, MessageReceivedEventArgs e);
+
         public delegate void PacketSent(object sender, MessageSentEventArgs e);
 
         private readonly IPacketReceiver _packetReceiver;
@@ -59,10 +60,16 @@ namespace ProSoft.EasySave.Remote.Models.Network
 
         protected override async void OnReceived(byte[] buffer, long offset, long size)
         {
-            var msg = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
-            var deserializedMessage = JsonSerializer.Deserialize<Message>(msg);
-            OnPacketReceived?.Invoke(this, new MessageReceivedEventArgs(deserializedMessage));
-            await _packetReceiver.ReceiveAsync(this, deserializedMessage);
+            var raw = Encoding.UTF8.GetString(buffer, (int)offset, (int)size);
+
+            foreach (var packet in raw.Replace("\x0A", string.Empty)
+                         .Split('\x0D')
+                         .Where(x => x != ""))
+            {
+                var deserializedMessage = JsonSerializer.Deserialize<Message>(packet);
+                OnPacketReceived?.Invoke(this, new MessageReceivedEventArgs(deserializedMessage));
+                await _packetReceiver.ReceiveAsync(this, deserializedMessage);
+            }
         }
 
         protected override void OnError(SocketError error)

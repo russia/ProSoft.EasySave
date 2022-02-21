@@ -1,8 +1,7 @@
-﻿using ProSoft.EasySave.Infrastructure.Enums;
-using ProSoft.EasySave.Infrastructure.Models.Contexts;
-using ProSoft.EasySave.Infrastructure.Models.Network.Events;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ProSoft.EasySave.Infrastructure.Enums;
+using ProSoft.EasySave.Infrastructure.Models.Contexts;
 using static ProSoft.EasySave.Infrastructure.Services.JobFactoryService;
 
 namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
@@ -10,11 +9,32 @@ namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
     public interface IJobFactoryService
     {
         event JobListUpdated OnJobListUpdated;
+
         event JobStarted OnJobStarted;
+
         event JobCompleted OnJobCompleted;
+
+        event JobPaused OnJobPaused;
+
+        event JobResumed OnJobResumed;
+
+        event JobCancelled OnJobCancelled;
+
         void LoadConfiguration();
 
         IReadOnlyCollection<JobContext> GetJobs();
+
+        void PauseAllJobsAsync();
+
+        void ResumeAllJobsAsync();
+
+        void CancelAllJobsAsync();
+
+        void PauseJob(JobContext jobContext);
+
+        void ResumeJob(JobContext jobContext);
+
+        void CancelJob(JobContext jobContext);
 
         void RemoveJob(JobContext jobContext);
 

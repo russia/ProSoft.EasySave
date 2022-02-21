@@ -2,12 +2,10 @@
 
 namespace ProSoft.EasySave.Infrastructure.Models.Contexts
 {
-
-    public class JobResult 
+    public class JobResult
     {
         public JobResult()
         {
-
         }
 
         public JobResult(bool success, string error)
@@ -17,7 +15,7 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
         }
 
         public bool Success { get; set; } = true;
-        public string Error { get; set; } = null;
+        public string Error { get; set; }
 
         public string Name { get; set; }
         public int FilesNumber { get; set; }

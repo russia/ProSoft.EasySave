@@ -1,34 +1,34 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using ProSoft.EasySave.Infrastructure.Enums;
 using ProSoft.EasySave.Infrastructure.Interfaces.Services;
 using ProSoft.EasySave.Infrastructure.Models;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
 using ProSoft.EasySave.Infrastructure.Models.Network.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ProSoft.EasySave.Infrastructure.Services
 {
     public class JobFactoryService : IJobFactoryService
     {
+        public delegate void JobCancelled(object sender, JobCancelledEventArgs e);
+
+        public delegate void JobCompleted(object sender, JobCompletedEventArgs e);
+
+        public delegate void JobListUpdated(object sender, JobListUpdatedEventArgs e);
+
+        public delegate void JobPaused(object sender, JobPausedEventArgs e);
+
+        public delegate void JobResumed(object sender, JobResumedEventArgs e);
+
+        public delegate void JobStarted(object sender, JobStartedEventArgs e);
+
         private readonly IOptions<Configuration> _configuration;
         private readonly IFileService _fileService;
         private readonly List<JobContext> _jobContexts;
         private ExecutionType _executionType;
-
-        public delegate void JobListUpdated(object sender, JobListUpdatedEventArgs e);
-        public event JobListUpdated OnJobListUpdated;
-        public delegate void JobStarted(object sender, JobStartedEventArgs e);
-        public event JobStarted OnJobStarted;
-        public delegate void JobCompleted(object sender, JobCompletedEventArgs e);
-        public event JobCompleted OnJobCompleted;
-        public delegate void JobPaused(object sender, JobPausedEventArgs e);
-        public event JobPaused OnJobPaused;
-        public delegate void JobResumed(object sender, JobResumedEventArgs e);
-        public event JobResumed OnJobResumed;
 
         public JobFactoryService(IFileService fileService, IOptions<Configuration> configuration)
         {
@@ -38,9 +38,86 @@ namespace ProSoft.EasySave.Infrastructure.Services
             LoadConfiguration();
         }
 
+        public event JobListUpdated OnJobListUpdated;
+
+        public event JobStarted OnJobStarted;
+
+        public event JobCompleted OnJobCompleted;
+
+        public event JobPaused OnJobPaused;
+
+        public event JobResumed OnJobResumed;
+
+        public event JobCancelled OnJobCancelled;
+
         public IReadOnlyCollection<JobContext> GetJobs()
         {
             return _jobContexts;
+        }
+
+        public void PauseAllJobsAsync()
+        {
+            _jobContexts.ForEach(j =>
+            {
+                j.PauseRaised = true;
+                OnJobPaused?.Invoke(this, new JobPausedEventArgs(j));
+            });
+        }
+
+        public void ResumeAllJobsAsync()
+        {
+            _jobContexts.ForEach(j =>
+            {
+                j.PauseRaised = false;
+                OnJobResumed?.Invoke(this, new JobResumedEventArgs(j));
+            });
+        }
+
+        public void CancelAllJobsAsync()
+        {
+            _jobContexts.Where(j => !j.IsCompleted)
+                .ToList()
+                .ForEach(j =>
+                {
+                    j.CancellationRaised = true;
+                    OnJobCancelled?.Invoke(this, new JobCancelledEventArgs(j));
+                });
+        }
+
+        public void PauseJob(JobContext jobContext)
+        {
+            // TODO : We can compare the object or create the comparison method.
+            var jobTask = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
+
+            if (jobTask is null)
+                return;
+
+            jobTask.PauseRaised = true;
+            OnJobPaused?.Invoke(this, new JobPausedEventArgs(jobTask));
+        }
+
+        public void ResumeJob(JobContext jobContext)
+        {
+            // TODO : We can compare the object or create the comparison method.
+            var jobTask = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
+
+            if (jobTask is null)
+                return;
+
+            jobTask.PauseRaised = false;
+            OnJobResumed?.Invoke(this, new JobResumedEventArgs(jobTask));
+        }
+
+        public void CancelJob(JobContext jobContext)
+        {
+            // TODO : We can compare the object or create the comparison method.
+            var jobTask = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
+
+            if (jobTask is null)
+                return;
+
+            jobTask.CancellationRaised = true;
+            OnJobCancelled?.Invoke(this, new JobCancelledEventArgs(jobTask));
         }
 
         public void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath)
@@ -66,7 +143,6 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public async Task<IReadOnlyCollection<JobResult>> StartAllJobsAsync(ExecutionType? executionType = null)
         {
-            var cancellationToken = new CancellationTokenSource();
             List<Func<Task<JobResult>>> taskList = new();
             // TODO : use select instead.
             foreach (var jobContext in _jobContexts)
@@ -74,14 +150,14 @@ namespace ProSoft.EasySave.Infrastructure.Services
                 Func<Task<JobResult>> task = async () =>
                 {
                     OnJobStarted?.Invoke(this, new JobStartedEventArgs(jobContext));
-                    var result = await _fileService.CopyFiles(jobContext, cancellationToken.Token);
+                    var result = await _fileService.CopyFiles(jobContext);
                     OnJobCompleted?.Invoke(this, new JobCompletedEventArgs(jobContext));
                     return result;
                 };
                 taskList.Add(task);
             }
 
-            var jobResults = await taskList.StartAsync<IReadOnlyCollection<JobResult>>(executionType ?? _executionType, cancellationToken.Token);
+            var jobResults = await taskList.StartAsync<IReadOnlyCollection<JobResult>>(executionType ?? _executionType);
             _jobContexts.Clear();
             OnJobListUpdated?.Invoke(this, new JobListUpdatedEventArgs(_jobContexts));
             return jobResults;
@@ -89,21 +165,21 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public async Task<JobResult> StartJobAsync(JobContext jobCxt, ExecutionType? executionType = null)
         {
+            // TODO : We can compare the object or create the comparison method.
             var jobContext = _jobContexts.FirstOrDefault(j => j.Name == jobCxt.Name);
             if (jobContext is null)
                 // TODO : handle this situation..
                 return null;
 
-            var cancellationToken = new CancellationTokenSource();
             Func<Task<JobResult>> task = async () =>
             {
-               OnJobStarted?.Invoke(this, new JobStartedEventArgs(jobContext));
-               var result = await _fileService.CopyFiles(jobContext, cancellationToken.Token);
-               OnJobCompleted?.Invoke(this, new JobCompletedEventArgs(jobContext));
+                OnJobStarted?.Invoke(this, new JobStartedEventArgs(jobContext));
+                var result = await _fileService.CopyFiles(jobContext);
+                OnJobCompleted?.Invoke(this, new JobCompletedEventArgs(jobContext));
                 return result;
             };
 
-            var jobResults = await task.StartAsync<JobResult>(executionType ?? _executionType, cancellationToken.Token);
+            var jobResults = await task.StartAsync<JobResult>(executionType ?? _executionType);
             return jobResults;
         }
 
@@ -125,6 +201,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public void RemoveJob(JobContext jobContext)
         {
+            // TODO : We can compare the object or create the comparison method.
             var item = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
 
             if (item is null)

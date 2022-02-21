@@ -1,6 +1,6 @@
-﻿using ProSoft.EasySave.Infrastructure.Enums;
+﻿using System.Collections.Generic;
+using ProSoft.EasySave.Infrastructure.Enums;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
-using System.Collections.Generic;
 
 namespace ProSoft.EasySave.Infrastructure.Models
 {

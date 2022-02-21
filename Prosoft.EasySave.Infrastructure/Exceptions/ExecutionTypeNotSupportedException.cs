@@ -2,7 +2,6 @@
 
 namespace ProSoft.EasySave.Infrastructure.Exceptions
 {
-
     public class ExecutionTypeNotSupportedException : Exception
     {
         public ExecutionTypeNotSupportedException()
