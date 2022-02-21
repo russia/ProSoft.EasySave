@@ -2,7 +2,6 @@
 
 namespace ProSoft.EasySave.Infrastructure.Helpers
 {
-
     public static class BytesHelpers
     {
         public static string FormatBytesSize(ulong bytes)
@@ -12,7 +11,7 @@ namespace ProSoft.EasySave.Infrastructure.Helpers
             if (bytes < unit)
                 return $"{bytes} Bytes";
 
-            var exp = (int)(Math.Log(longValue) / Math.Log(unit));
+            var exp = (int) (Math.Log(longValue) / Math.Log(unit));
             return $"{bytes / Math.Pow(unit, exp):F2} {"KMGTPE"[exp - 1]}B";
         }
     }

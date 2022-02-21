@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualBasic;
 
 namespace ProSoft.EasySave.Infrastructure.Helpers
 {
     public static class ProcessHelpers
     {
         /// <summary>
-        /// Starts the specified process with arguments and returns the time the process took to run.
+        ///     Starts the specified process with arguments and returns the time the process took to run.
         /// </summary>
         /// <param name="processPath">The process path.</param>
         /// <param name="args">The arguments.</param>

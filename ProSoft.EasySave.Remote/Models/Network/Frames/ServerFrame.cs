@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
 using ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher;
 using ProSoft.EasySave.Infrastructure.Models.Network.Messages.Client;
@@ -9,26 +10,28 @@ namespace ProSoft.EasySave.Remote.Models.Network.Frames
     // Ce que le serveur envoie
     public class ServerFrame
     {
-        [PacketId(typeof(ServerHello))]
+        [PacketType(typeof(ServerHello))]
         public static void ServerHello(Client client, ServerHello packet)
-            =>  client.SendPacketAsync(new ClientHandshake(System.Environment.MachineName));
-        
-
-        [PacketId(typeof(InitializeState))]
-        public static void InitializeState(Client client, InitializeState packet)
-        =>client.EasySaveContext.JobContexts = new ObservableCollection<JobContext>(packet.JobContexts);
-        
-
-        [PacketId(typeof(JobStarted))]
-        public static void JobStarted(Client client, JobStarted packet)
         {
-            
+            client.SendPacketAsync(new ClientHandshake(Environment.MachineName));
         }
 
-        [PacketId(typeof(JobCompleted))]
+
+        [PacketType(typeof(InitializeState))]
+        public static void InitializeState(Client client, InitializeState packet)
+        {
+            client.EasySaveContext.JobContexts = new ObservableCollection<JobContext>(packet.JobContexts);
+        }
+
+
+        [PacketType(typeof(JobStarted))]
+        public static void JobStarted(Client client, JobStarted packet)
+        {
+        }
+
+        [PacketType(typeof(JobCompleted))]
         public static void JobCompleted(Client client, JobCompleted packet)
         {
-
         }
     }
 }

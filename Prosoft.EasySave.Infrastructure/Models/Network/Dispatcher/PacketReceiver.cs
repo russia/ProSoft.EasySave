@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProSoft.EasySave.Infrastructure.Interfaces.Network.Dispatcher;
-using ProSoft.EasySave.Infrastructure.Interfaces.Services;
 using ProSoft.EasySave.Infrastructure.Models.Network.Messages;
 
 namespace ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher
@@ -18,23 +16,6 @@ namespace ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher
         public PacketReceiver(Assembly assembly)
         {
             _methods = Initialize(assembly);
-        }
-
-        private List<PacketData> Initialize(Assembly assembly)
-        {
-            var methods = new List<PacketData>();
-            var types = assembly.GetTypes().SelectMany(x => x.GetMethods())
-                .Where(m => m.GetCustomAttributes(typeof(PacketIdAttribute), false).Length > 0);
-            foreach (var type in types)
-            {
-                var attr = (PacketIdAttribute)type.GetCustomAttributes(typeof(PacketIdAttribute), true)[0];
-
-                var instance = Activator.CreateInstance(type.DeclaringType);
-
-                methods.Add(new PacketData(instance, attr.Value, type));
-            }
-            Console.WriteLine($"{methods.Count} packets registered!");
-            return methods;
         }
 
         public async Task ReceiveAsync(object receiver, Message message)
@@ -52,7 +33,7 @@ namespace ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher
 
                 //dynamic castedObject = Activator.CreateInstance(packetType, message.Content);
 
-                var task = (Task)method.Method.Invoke(method.Instance, new[] { receiver, castedObject });
+                var task = (Task) method.Method.Invoke(method.Instance, new[] {receiver, castedObject});
                 if (task is not null)
                 {
                     await task;
@@ -64,6 +45,24 @@ namespace ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private List<PacketData> Initialize(Assembly assembly)
+        {
+            var methods = new List<PacketData>();
+            var types = assembly.GetTypes().SelectMany(x => x.GetMethods())
+                .Where(m => m.GetCustomAttributes(typeof(PacketType), false).Length > 0);
+            foreach (var type in types)
+            {
+                var attr = (PacketType) type.GetCustomAttributes(typeof(PacketType), true)[0];
+
+                var instance = Activator.CreateInstance(type.DeclaringType);
+
+                methods.Add(new PacketData(instance, attr.Value, type));
+            }
+
+            Console.WriteLine($"{methods.Count} packets registered!");
+            return methods;
         }
     }
 }
