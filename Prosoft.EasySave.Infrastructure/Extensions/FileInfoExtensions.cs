@@ -9,8 +9,8 @@ namespace ProSoft.EasySave.Infrastructure.Extensions
         public static string GetSha256Hash(this FileInfo fileInfo)
         {
             using var stream = new BufferedStream(File.OpenRead(fileInfo.FullName), 4096);
-            SHA256Managed sha = new SHA256Managed();
-            byte[] checksum = sha.ComputeHash(stream);
+            var sha = new SHA256Managed();
+            var checksum = sha.ComputeHash(stream);
             return BitConverter.ToString(checksum).Replace("-", string.Empty).ToLower();
         }
 

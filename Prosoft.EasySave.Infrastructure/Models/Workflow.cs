@@ -1,11 +1,11 @@
-﻿using ProSoft.EasySave.Infrastructure.Enums;
-using ProSoft.EasySave.Infrastructure.Exceptions;
-using ProSoft.EasySave.Infrastructure.Models.Contexts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ProSoft.EasySave.Infrastructure.Enums;
+using ProSoft.EasySave.Infrastructure.Exceptions;
+using ProSoft.EasySave.Infrastructure.Models.Contexts;
 
 namespace ProSoft.EasySave.Infrastructure.Models
 {
@@ -17,7 +17,8 @@ namespace ProSoft.EasySave.Infrastructure.Models
             return executionType switch
             {
                 ExecutionType.SINGLE => await task.StartSingleJobAsync(cancellationToken) as T,
-                _ => throw new ExecutionTypeNotSupportedException("It is only possible to copy files sequentially when there is only one task to perform.")
+                _ => throw new ExecutionTypeNotSupportedException(
+                    "It is only possible to copy files sequentially when there is only one task to perform.")
             };
         }
 
@@ -27,7 +28,8 @@ namespace ProSoft.EasySave.Infrastructure.Models
             return executionType switch
             {
                 ExecutionType.SEQUENTIAL => await tasks.StartSequentialJobsAsync(cancellationToken) as T,
-                ExecutionType.CONCURRENT => await tasks.StartParallelJobsAsync(cancellationToken: cancellationToken) as T,
+                ExecutionType.CONCURRENT =>
+                    await tasks.StartParallelJobsAsync(cancellationToken: cancellationToken) as T,
                 ExecutionType.SINGLE => await tasks.StartSingleJobAsync(cancellationToken) as T,
                 _ => throw new NotImplementedException()
             };
@@ -58,24 +60,23 @@ namespace ProSoft.EasySave.Infrastructure.Models
         {
             List<JobResult> results = new();
             foreach (var jobContext in jobContexts) // .Where(x => !x.IsCompleted)
-            {
                 results.Add(await jobContext());
-            }
 
             return results;
         }
 
-        private static async Task<IReadOnlyCollection<JobResult>> StartSingleJobAsync(this IList<Func<Task<JobResult>>> tasks,
+        private static async Task<IReadOnlyCollection<JobResult>> StartSingleJobAsync(
+            this IList<Func<Task<JobResult>>> tasks,
             CancellationToken cancellationToken = default)
         {
             var task = tasks.First(); // x => !x.IsCompleted
-            return new List<JobResult>() { await task() };
+            return new List<JobResult> {await task()};
         }
 
         private static async Task<IReadOnlyCollection<JobResult>> StartSingleJobAsync(this Func<Task<JobResult>> task,
             CancellationToken cancellationToken = default)
         {
-            return new List<JobResult>() { await task() };
+            return new List<JobResult> {await task()};
         }
     }
 }

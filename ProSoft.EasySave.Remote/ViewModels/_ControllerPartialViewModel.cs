@@ -16,10 +16,13 @@ namespace ProSoft.EasySave.Remote.ViewModels
             DeleteJobContextCommand =
                 new DelegateCommand<JobContext>(o => EasySaveContext.Client.SendPacketAsync(new DeleteSave(o)));
             StartAllCommand =
-              new DelegateCommand<JobContext>(o => EasySaveContext.Client.SendPacketAsync(new StartAll()));
+                new DelegateCommand<JobContext>(o => EasySaveContext.Client.SendPacketAsync(new StartAll()));
             PauseAllCommand =
-              new DelegateCommand<JobContext>(o => EasySaveContext.Client.SendPacketAsync(new PauseAll()));
-
+                new DelegateCommand<JobContext>(o => EasySaveContext.Client.SendPacketAsync(new PauseAll()));
+            ResumeAllCommand =
+                new DelegateCommand<JobContext>(o => EasySaveContext.Client.SendPacketAsync(new ResumeAll()));
+            CancelAllCommand =
+                new DelegateCommand<JobContext>(o => EasySaveContext.Client.SendPacketAsync(new CancelAll()));
         }
 
         public EasySaveContext EasySaveContext { get; set; }
@@ -28,5 +31,7 @@ namespace ProSoft.EasySave.Remote.ViewModels
         public DelegateCommand<JobContext> DeleteJobContextCommand { get; set; }
         public DelegateCommand<JobContext> StartAllCommand { get; set; }
         public DelegateCommand<JobContext> PauseAllCommand { get; set; }
+        public DelegateCommand<JobContext> ResumeAllCommand { get; set; }
+        public DelegateCommand<JobContext> CancelAllCommand { get; set; }
     }
 }

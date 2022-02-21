@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher
 {
@@ -15,9 +11,9 @@ namespace ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher
 
         public PacketData(object instance, Type key, MethodInfo method)
         {
-            this.Instance = instance;
-            this.Key = key;
-            this.Method = method;
+            Instance = instance;
+            Key = key;
+            Method = method;
         }
     }
 }

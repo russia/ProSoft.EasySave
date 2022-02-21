@@ -1,6 +1,5 @@
 ﻿namespace ProSoft.EasySave.Infrastructure.Enums
 {
-
     public enum TransferType
     {
         /// <summary>

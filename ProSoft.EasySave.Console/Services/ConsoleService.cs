@@ -33,6 +33,11 @@ namespace ProSoft.EasySave.Console.Services
         public async Task<IReadOnlyCollection<JobResult>> Start(ExecutionType? executionType = null)
         {
             var jobResults = await _factoryService.StartAllJobsAsync(executionType);
+
+            jobResults = jobResults
+                .Where(j => j.Success)
+                .ToList();
+
             System.Console.WriteLine(
                 $"Work done, took {jobResults.Sum(r => r.Duration.TotalSeconds)} s to move {jobResults.Sum(r => r.FilesNumber)} files, " +
                 $"with a total size of {BytesHelpers.FormatBytesSize((ulong)jobResults.Sum(r => (long)r.TotalFilesWeight))}.");

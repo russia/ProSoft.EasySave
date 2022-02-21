@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "@dependencies", "@dependenc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "@remote", "@remote", "{75A2A27A-2FC1-4B04-B897-B4B141FA865C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProSoft.EasySave.Remote", "ProSoft.EasySave.Remote\ProSoft.EasySave.Remote.csproj", "{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProSoft.EasySave.Remote", "ProSoft.EasySave.Remote\ProSoft.EasySave.Remote.csproj", "{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,12 +44,17 @@ Global
 		{BC3C20D6-2B2E-418A-BAAD-EA5BA88C0A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC3C20D6-2B2E-418A-BAAD-EA5BA88C0A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC3C20D6-2B2E-418A-BAAD-EA5BA88C0A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BC3C20D6-2B2E-418A-BAAD-EA5BA88C0A97} = {11771C54-6425-41E6-9482-071F66E8F489}
+		{2ABAD095-BE22-4B08-B650-2DAAFBE1CEAE} = {75A2A27A-2FC1-4B04-B897-B4B141FA865C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44DEF7B6-AE6C-43EE-8A20-773BE5EB7C00}
