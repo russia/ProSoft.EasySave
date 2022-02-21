@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
@@ -16,9 +17,9 @@ namespace ProSoft.EasySave.Application.Models.Logging
 
         public string AsXML()
         {
-            using (var stringwriter = new System.IO.StringWriter())
+            using (var stringwriter = new StringWriter())
             {
-                var serializer = new XmlSerializer(this.GetType());
+                var serializer = new XmlSerializer(GetType());
                 serializer.Serialize(stringwriter, this);
                 return stringwriter.ToString();
             }
@@ -26,7 +27,7 @@ namespace ProSoft.EasySave.Application.Models.Logging
 
         public string AsJson()
         {
-            return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
     }
 }
