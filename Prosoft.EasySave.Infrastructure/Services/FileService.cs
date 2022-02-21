@@ -15,6 +15,7 @@ using ProSoft.EasySave.Infrastructure.Helpers;
 using ProSoft.EasySave.Infrastructure.Interfaces.Services;
 using ProSoft.EasySave.Infrastructure.Models;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
+using ProSoft.EasySave.Infrastructure.Models.Network.Events;
 using Serilog;
 
 namespace ProSoft.EasySave.Infrastructure.Services
@@ -53,9 +54,23 @@ namespace ProSoft.EasySave.Infrastructure.Services
                     destinationFiles.Any(destFile => srcFile.Length == destFile.Length && Task.Run(() =>
                                                                destFile.Compare(srcFile), cancellationToken).Result));
 
+            var totalWeight = sourceFiles.Sum(sourceFile => sourceFile.Length);
+
+            if (totalWeight > 9999999999) {
+                Console.WriteLine($"Skipping save job, as total files weight is to large ({totalWeight} bytes).");
+                return new JobResult(false, "Files total weight is too large.");
+            }
+
+            sourceFiles = sourceFiles.OrderBy(s => s.Extension == ".exe" || s.Extension == ".pdf").ToList();
+
             foreach (var sourceFile in sourceFiles)
             {
                 cancellationToken.ThrowIfCancellationRequested(); // TODO : handle cancellation tokens.
+                if (sourceFile.Length > 9555599995) {
+                    Console.WriteLine($"Skipping file {sourceFile.Name} as it's to large.");
+                    continue;
+                }
+
                 var destinationPath = Path.Combine(jobContext.DestinationPath, sourceFile.ComputeEncryptedName());// TODO : create an extension.
                 var stopwatchFile = new Stopwatch();
                 stopwatchFile.Start();

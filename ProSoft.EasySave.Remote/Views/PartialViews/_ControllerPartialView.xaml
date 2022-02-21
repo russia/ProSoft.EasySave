@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="ProSoft.EasySave.Remote.Views.PartialViews._ControllerPartialView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             x:Name="window"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
+            <Button Background="Wheat" Margin="10" Command="{Binding StartAllCommand}">
+                <TextBlock>
+                    <Run Text="&#xEDB5;"
+                         FontFamily="Segoe MDL2 Assets" />
+                    <Run Text="Run all" />
+                </TextBlock>
+            </Button>
+            <Button Background="Wheat"  Margin="10"  Command="{Binding PauseAllCommand}">
+                <TextBlock>
+                    <Run Text="&#xEDB4;"
+                         FontFamily="Segoe MDL2 Assets" />
+                    <Run Text="Pause all" />
+                </TextBlock>
+            </Button>
+        </StackPanel>
+        
+        <DataGrid Grid.Row="1" x:Name="data" Background="Black"
+                  ItemsSource="{Binding EasySaveContext.JobContexts, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="SourcePath" Binding="{Binding SourcePath}" />
+                <DataGridTextColumn Header="DestinationPath" Binding="{Binding DestinationPath}" />
+                <DataGridTextColumn Header="TransferType" Binding="{Binding TransferType}" />
+                <DataGridTemplateColumn Header="Start">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding ElementName=window, Path=DataContext.StartJobContextCommand}"
+                                    CommandParameter="{Binding ElementName=data, Path=SelectedItem}" Content="Start" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding ElementName=window, Path=DataContext.DeleteJobContextCommand}"
+                                    CommandParameter="{Binding ElementName=data, Path=SelectedItem}" Content="Delete" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+              
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
