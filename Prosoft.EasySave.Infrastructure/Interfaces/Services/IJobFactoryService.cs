@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using ProSoft.EasySave.Infrastructure.Enums;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
@@ -39,6 +40,8 @@ namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
         void RemoveJob(JobContext jobContext);
 
         void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath);
+
+        IEnumerable<Process> GetProcessInstances(string[] processes);
 
         Task<IReadOnlyCollection<JobResult>> StartAllJobsAsync(ExecutionType? executionType = null);
 
