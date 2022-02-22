@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
@@ -29,6 +30,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
         private readonly IFileService _fileService;
         private readonly List<JobContext> _jobContexts;
         private ExecutionType _executionType;
+        private readonly string[] _processes = new string[] { "notepad", "calc"};
 
         public JobFactoryService(IFileService fileService, IOptions<Configuration> configuration)
         {
@@ -143,12 +145,18 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public async Task<IReadOnlyCollection<JobResult>> StartAllJobsAsync(ExecutionType? executionType = null)
         {
+            var processes = GetProcessInstances(_processes);
+            if (processes.Any()) 
+                return new List<JobResult>() { new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}" )};
+
             List<Func<Task<JobResult>>> taskList = new();
             // TODO : use select instead.
             foreach (var jobContext in _jobContexts)
             {
                 Func<Task<JobResult>> task = async () =>
                 {
+                    while (GetProcessInstances(_processes).Any())
+                        await Task.Delay(50);
                     OnJobStarted?.Invoke(this, new JobStartedEventArgs(jobContext));
                     var result = await _fileService.CopyFiles(jobContext);
                     OnJobCompleted?.Invoke(this, new JobCompletedEventArgs(jobContext));
@@ -165,6 +173,10 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public async Task<JobResult> StartJobAsync(JobContext jobCxt, ExecutionType? executionType = null)
         {
+            var processes = GetProcessInstances(_processes);
+            if (processes.Any())
+                return new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}");
+            
             // TODO : We can compare the object or create the comparison method.
             var jobContext = _jobContexts.FirstOrDefault(j => j.Name == jobCxt.Name);
             if (jobContext is null)
@@ -210,5 +222,11 @@ namespace ProSoft.EasySave.Infrastructure.Services
             _jobContexts.Remove(item);
             OnJobListUpdated?.Invoke(this, new JobListUpdatedEventArgs(_jobContexts));
         }
+
+        public IEnumerable<Process> GetProcessInstances(string[] processes)
+        {
+            var results = processes.Select(p => new { Name = p, Process = Process.GetProcessesByName(p)});
+            return results.Where(r => r.Process is not null && r.Process.Any()).Select(p => p.Process.First());
+        } 
     }
 }
