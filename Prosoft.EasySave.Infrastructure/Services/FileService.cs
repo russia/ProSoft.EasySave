@@ -33,6 +33,12 @@ namespace ProSoft.EasySave.Infrastructure.Services
             jobContext.StateType = StateType.PROCESSING;
             Console.WriteLine($"[{jobContext.Name}] is processing.");
 
+            if (!Directory.Exists(jobContext.SourcePath) || !Directory.Exists(jobContext.DestinationPath))
+            {
+                Console.WriteLine($"[{jobContext.Name}] has been cancelled because a directory doesn't exist.");
+                return new JobResult(false, "One of the directory doesn't exist.");
+            }
+                
             var sourceDir = new DirectoryInfo(jobContext.SourcePath);
             var destinationDir = new DirectoryInfo(jobContext.DestinationPath);
 
@@ -53,7 +59,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
             if (totalWeight > 9999999999)
             {
-                Console.WriteLine($"Skipping save job, as total files weight is to large ({totalWeight} bytes).");
+                Console.WriteLine($"[{jobContext.Name}] Skipping save job, as total files weight is to large ({totalWeight} bytes).");
                 return new JobResult(false, "Files total weight is too large.");
             }
 
