@@ -5,12 +5,17 @@
              xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="en"
+             lex:ResxLocalizationProvider.DefaultAssembly="ProSoft.EasySave.Presentation"
+             lex:ResxLocalizationProvider.DefaultDictionary="Lang"
              mc:Ignorable="d"
              d:DesignHeight="550" d:DesignWidth="350">
 
     <Grid Width="420" Height="450" Background="{StaticResource BackGroundGray}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>

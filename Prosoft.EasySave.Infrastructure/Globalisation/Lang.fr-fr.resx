@@ -129,9 +129,6 @@
   <data name="EXECUTION_TYPE" xml:space="preserve">
     <value>Indiquez le type d'éxécution:</value>
   </data>
-  <data name="SKIP_USER_INPUT" xml:space="preserve">
-    <value>Voulez-vous passer l'étape de configuration manuelle des sauvegardes?</value>
-  </data>
   <data name="SOURCE" xml:space="preserve">
     <value>Entrez le chemin du dossier source:</value>
   </data>
@@ -140,5 +137,104 @@
   </data>
   <data name="WELCOME_MESSAGE" xml:space="preserve">
     <value>Bienvenue</value>
+  </data>
+  <data name="SAVE_CONFIG" xml:space="preserve">
+    <value>Configuration de la sauvegarde</value>
+  </data>
+  <data name="SAVE_DEST_PATH" xml:space="preserve">
+    <value>Chemin de la destination</value>
+  </data>
+  <data name="SAVE_NAME" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="SAVE_SOURCE_PATH" xml:space="preserve">
+    <value>Chemin de la source</value>
+  </data>
+  <data name="SAVE_TYPE" xml:space="preserve">
+    <value>Type de sauvegarde</value>
+  </data>
+  <data name="SAVE_USER_INPUT" xml:space="preserve">
+    <value>Sélectionnez un type de sauvegarde</value>
+  </data>
+  <data name="SKIP_USER_INPUT" xml:space="preserve">
+    <value>Voulez-vous passer l'étape de configuration manuelle des sauvegardes?</value>
+  </data>
+  <data name="APP_CONFIG_FILE_WEIGHT" xml:space="preserve">
+    <value>Poids maximum d'un fichier</value>
+  </data>
+  <data name="APP_CONFIG_FILE_WEIGHT_TEXT" xml:space="preserve">
+    <value>Si 2 fichiers dépasse cette taille (en kiloOctets), ils seront sauvegardés l'un après l'autre et non pas simultanément.</value>
+  </data>
+  <data name="APP_CONFIG_LOG" xml:space="preserve">
+    <value>Dossier de logs</value>
+  </data>
+  <data name="APP_CONFIG_LOG_TXT" xml:space="preserve">
+    <value>Ce bouton ouvre un explorateur de fichiers vers le dossier qui contient les logs.</value>
+  </data>
+  <data name="APP_CONFIG_PRIO" xml:space="preserve">
+    <value>Séléction de la priorité des fichiers</value>
+  </data>
+  <data name="APP_CONFIG_PRIO_TXT1" xml:space="preserve">
+    <value>Rentrez ci dessous les extensions des fichiers que vous voulez priorisés, séparées par des points virgules</value>
+  </data>
+  <data name="APP_CONFIG_PRIO_TXT2" xml:space="preserve">
+    <value>Extensions possibles: pdf, doc, docx, txt, xls, xlsx, json, iso, jpeg, png</value>
+  </data>
+  <data name="APP_CONFIG_PRIO_TXT3" xml:space="preserve">
+    <value>Exemple: pdf;docx;txt</value>
+  </data>
+  <data name="APP_CONFIG_SOFT" xml:space="preserve">
+    <value>Détection de logiciel métier</value>
+  </data>
+  <data name="APP_CONFIG_SOFT_BTN" xml:space="preserve">
+    <value>Cliquez içi pour sélectionner un fichier</value>
+  </data>
+  <data name="APP_CONFIG_SOFT_TEXT" xml:space="preserve">
+    <value>Sélectionner l'éxécutable du logiciel métier. Lorsqu'il est détécté, toutes les sauvegardes seront stoppées.</value>
+  </data>
+  <data name="APP_CONFIG_TITLE" xml:space="preserve">
+    <value>Paramètres de l'application</value>
+  </data>
+  <data name="SAVE_COMPLETE" xml:space="preserve">
+    <value>Complète</value>
+  </data>
+  <data name="SAVE_DIFF" xml:space="preserve">
+    <value>Différentielle</value>
+  </data>
+  <data name="SAVE_SELECT_DEST" xml:space="preserve">
+    <value>Fichier destination</value>
+  </data>
+  <data name="SAVE_SELECT_NAME" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="SAVE_SELECT_SOURCE" xml:space="preserve">
+    <value>Fichier source</value>
+  </data>
+  <data name="SAVE_SELECT_TYPE" xml:space="preserve">
+    <value>Type de transfert</value>
+  </data>
+  <data name="SAVIEWS_CRYPT_TIME" xml:space="preserve">
+    <value>Temps de chiffrement moyen</value>
+  </data>
+  <data name="SAVIEWS_NBR_LOG" xml:space="preserve">
+    <value>Nombre total de logs</value>
+  </data>
+  <data name="SAVIEWS_NBR_SAVES" xml:space="preserve">
+    <value>Nombre total de sauvegardes</value>
+  </data>
+  <data name="SAVIEWS_NBR_SAVES_IP" xml:space="preserve">
+    <value>Nombre total de sauvegardes en cours</value>
+  </data>
+  <data name="SAVIEWS_REPO" xml:space="preserve">
+    <value>Répertoire le plus utilisé</value>
+  </data>
+  <data name="SAVIEWS_SAVE_DAY" xml:space="preserve">
+    <value>Nombre moyen de sauvegarde journalière </value>
+  </data>
+  <data name="SAVIEWS_TRANS_TIME" xml:space="preserve">
+    <value>Temps de transfert moyen</value>
+  </data>
+  <data name="SAVE_IN_PROG" xml:space="preserve">
+    <value>Sauvegare en cours</value>
   </data>
 </root>

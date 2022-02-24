@@ -18,7 +18,6 @@ using System.Reflection;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
-
     internal class _AppConfigViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
@@ -66,7 +65,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         public DelegateCommand StopAppFileDialogCommand { get; }
         public DelegateCommand OpenExplorerToLogsCommand { get; }
         public DelegateCommand SaveSettingsCommand { get; }
-
 
         public _AppConfigViewModel(IRegionManager regionManager)
         {
@@ -134,8 +132,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             Process explorer = new Process();
             explorer.StartInfo.UseShellExecute = true;
 
-
-
             //TODO : Open explorer to exact logs location
             var enviroment = System.Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
@@ -163,6 +159,5 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             System.Configuration.AppSettingsSection appSettings = (System.Configuration.AppSettingsSection)configuration.GetSection("appSettings");
             return appSettings.Settings[key].Value;
         }
-
     }
 }

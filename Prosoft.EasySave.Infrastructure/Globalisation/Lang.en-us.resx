@@ -120,6 +120,42 @@
   <data name="ADD_NEW_JOB_CONTEXT" xml:space="preserve">
     <value>Do you want to add a new backup task?</value>
   </data>
+  <data name="APP_CONFIG_FILE_WEIGHT" xml:space="preserve">
+    <value>Max allowed file weight</value>
+  </data>
+  <data name="APP_CONFIG_FILE_WEIGHT_TXT" xml:space="preserve">
+    <value>If two files exceed this weight (in kiloBytes), they will be saved one after the other and not simultaneously</value>
+  </data>
+  <data name="APP_CONFIG_LOG" xml:space="preserve">
+    <value>Log folder</value>
+  </data>
+  <data name="APP_CONFIG_PRIO" xml:space="preserve">
+    <value>File priority selection</value>
+  </data>
+  <data name="APP_CONFIG_PRIO_TXT1" xml:space="preserve">
+    <value>Type below the extensions of files that should be prioritized, separated by semicolons</value>
+  </data>
+  <data name="APP_CONFIG_PRIO_TXT2" xml:space="preserve">
+    <value>Possible extensions: pdf, doc, docx, txt, xls, xlsx, json, iso, jpeg, png</value>
+  </data>
+  <data name="APP_CONFIG_PRIO_TXT3" xml:space="preserve">
+    <value>Example: pdf;docx;txt</value>
+  </data>
+  <data name="APP_CONFIG_SOFT" xml:space="preserve">
+    <value>Business software detection</value>
+  </data>
+  <data name="APP_CONFIG_SOFT_BTN" xml:space="preserve">
+    <value>Click here to select a file</value>
+  </data>
+  <data name="APP_CONFIG_SOFT_TXT" xml:space="preserve">
+    <value>Select a business software executable. When its use is detected, all ongoing saves will be stopped</value>
+  </data>
+  <data name="APP_CONFIG_TITLE" xml:space="preserve">
+    <value>Application settings</value>
+  </data>
+  <data name="APP_CONFIG_TXT" xml:space="preserve">
+    <value>This button opens an explorer to the folder containing the logs</value>
+  </data>
   <data name="BACKUP_NAME" xml:space="preserve">
     <value>Give a name to your backup:</value>
   </data>
@@ -128,6 +164,66 @@
   </data>
   <data name="EXECUTION_TYPE" xml:space="preserve">
     <value>Give the execution type that you want:</value>
+  </data>
+  <data name="SAVE_COMPLETE" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="SAVE_CONFIG" xml:space="preserve">
+    <value>Save configuration</value>
+  </data>
+  <data name="SAVE_DEST_PATH" xml:space="preserve">
+    <value>Destination path</value>
+  </data>
+  <data name="SAVE_DIFF" xml:space="preserve">
+    <value>Differential</value>
+  </data>
+  <data name="SAVE_IN_PROG" xml:space="preserve">
+    <value>Save/Backup in progress</value>
+  </data>
+  <data name="SAVE_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SAVE_SELECT_DEST" xml:space="preserve">
+    <value>Target file</value>
+  </data>
+  <data name="SAVE_SELECT_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SAVE_SELECT_SOURCE" xml:space="preserve">
+    <value>Source file</value>
+  </data>
+  <data name="SAVE_SELECT_TYPE" xml:space="preserve">
+    <value>Transfert type</value>
+  </data>
+  <data name="SAVE_SOURCE_PATH" xml:space="preserve">
+    <value>Source path</value>
+  </data>
+  <data name="SAVE_TYPE" xml:space="preserve">
+    <value>Save type</value>
+  </data>
+  <data name="SAVE_TYPE_INPUT" xml:space="preserve">
+    <value>Pick a save type</value>
+  </data>
+  <data name="SAVIEWS_CRYPT_TIME" xml:space="preserve">
+    <value>Average crypting time</value>
+  </data>
+  <data name="SAVIEWS_NBR_LOG" xml:space="preserve">
+    <value>Total number of log</value>
+  </data>
+  <data name="SAVIEWS_NBR_SAVES" xml:space="preserve">
+    <value>Total number of saves</value>
+  </data>
+  <data name="SAVIEWS_NBR_SAVES_IP" xml:space="preserve">
+    <value>Total saves in progress</value>
+  </data>
+  <data name="SAVIEWS_REPO" xml:space="preserve">
+    <value>Most used repository</value>
+  </data>
+  <data name="SAVIEWS_SAVE_DAY" xml:space="preserve">
+    <value>Average save/day</value>
+  </data>
+  <data name="SAVIEWS_TRANS_TIME" xml:space="preserve">
+    <value>Average transtering time</value>
   </data>
   <data name="SKIP_USER_INPUT" xml:space="preserve">
     <value>Do you want to skip the user input step?</value>

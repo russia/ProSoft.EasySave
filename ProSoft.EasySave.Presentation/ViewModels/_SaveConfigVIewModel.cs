@@ -1,6 +1,7 @@
 using System;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -24,13 +25,18 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         private string _tranferType;
         private TransferType transferType;
 
+        private DelegateCommand<string> _closeDialogCommand;
+
+        public DelegateCommand<string> CloseDialogCommand =>
+            _closeDialogCommand ?? (_closeDialogCommand = new DelegateCommand<string>((e) => CloseDialog()));
+
         private string _message;
+
         public string Message
         {
             get { return _message; }
             set { SetProperty(ref _message, value); }
         }
-
 
         public event Action<IDialogResult> RequestClose;
 
@@ -63,7 +69,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             {
                 if (Enum.TryParse(StrTransferType, out transferType)) ;
 
-
                 var jobContext = new JobContext
                 {
                     Name = Name,
@@ -74,12 +79,11 @@ namespace ProSoft.EasySave.Presentation.ViewModels
 
                 System.Windows.MessageBox.Show("Job created !");
 
-
                 _jobFactoryService.AddJob(jobContext.Name, jobContext.TransferType, jobContext.SourcePath, jobContext.DestinationPath);
                 CloseDialog();
             },
             () =>
-            !string.IsNullOrEmpty(Name) && SourcePath!=DestinationPath && Directory.Exists(SourcePath) && Directory.Exists(DestinationPath))
+            !string.IsNullOrEmpty(Name) && SourcePath != DestinationPath && Directory.Exists(SourcePath) && Directory.Exists(DestinationPath))
                 .ObservesProperty(() => Name)
                 .ObservesProperty(() => SourcePath)
                 .ObservesProperty(() => DestinationPath);
@@ -110,6 +114,7 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         }
 
         public string _title = "SaveConfigView";
+
         public string Title
         {
             get { return _title; }
@@ -130,7 +135,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
 
         public void OnDialogClosed()
         {
-            
         }
 
         public void OnDialogOpened(IDialogParameters parameters)

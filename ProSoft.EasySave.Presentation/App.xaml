@@ -10,32 +10,27 @@
                 <ui:XamlControlsResources />
 
                 <ResourceDictionary>
-                    <SolidColorBrush x:Key="BackgroundPage" Color="#FFFF"/>
-                    <SolidColorBrush x:Key="BackGroundGray" Color="CornflowerBlue"/>
-                    <SolidColorBrush x:Key="BackGroundDimGray" Color="DimGray"/>
-                    <SolidColorBrush x:Key="FontColor" Color="#FFFF"/>
-                    <SolidColorBrush x:Key="NavColor" Color="#2a9df4"/>
-                    <SolidColorBrush x:Key="BtnBlue" Color="#8EC0F5"/>
-                    <SolidColorBrush x:Key="BtnGreen" Color="#5EDF62"/>
-                    <SolidColorBrush x:Key="BtnRed" Color="IndianRed"/>
-                    <SolidColorBrush x:Key="BtnYellow" Color="SandyBrown"/>
-                    
+                    <SolidColorBrush x:Key="BackgroundPage" Color="#FFFF" />
+                    <SolidColorBrush x:Key="BackGroundGray" Color="CornflowerBlue" />
+                    <SolidColorBrush x:Key="BackGroundDimGray" Color="DimGray" />
+                    <SolidColorBrush x:Key="FontColor" Color="#FFFF" />
+                    <SolidColorBrush x:Key="NavColor" Color="#2a9df4" />
+                    <SolidColorBrush x:Key="BtnBlue" Color="#8EC0F5" />
+                    <SolidColorBrush x:Key="BtnGreen" Color="#5EDF62" />
+                    <SolidColorBrush x:Key="BtnRed" Color="IndianRed" />
+                    <SolidColorBrush x:Key="BtnYellow" Color="SandyBrown" />
 
                     <Style TargetType="Border" x:Key="BorderStyle">
-                        <Setter Property="CornerRadius" Value="15"/>
-                        <Setter Property="Margin" Value="30,30,30,30"/>
+                        <Setter Property="CornerRadius" Value="15" />
+                        <Setter Property="Margin" Value="30,30,30,30" />
                         <Setter Property="Effect">
                             <Setter.Value>
-                                <DropShadowEffect ShadowDepth="7" BlurRadius="4" Direction="320" Opacity="0.25"/>
+                                <DropShadowEffect ShadowDepth="7" BlurRadius="4" Direction="320" Opacity="0.25" />
                             </Setter.Value>
                         </Setter>
                     </Style>
-                    
-                    
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            
-           
         </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>

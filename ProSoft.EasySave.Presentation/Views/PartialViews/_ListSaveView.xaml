@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="ProSoft.EasySave.Presentation.Views.PartialViews._ListSaveView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:muxc="http://schemas.modernwpf.com/2019"
              MaxHeight="1080" MaxWidth="1920" MinHeight="800" MinWidth="600"
@@ -45,7 +45,7 @@
 
                     <Button
                         Width="100" Height="45"
-                        Command="{Binding OpenDialogCommand}">
+                    Command="{Binding OpenDialogCommand}">
                         <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xE738;" FontSize="30" />
                     </Button>
                 </Border>
@@ -73,6 +73,7 @@
                             AutoGenerateColumns="False"
                             ItemsSource="{Binding JobContexts}"
                             HorizontalScrollBarVisibility="Auto"
+                            Background="{StaticResource BackGroundGray}"
                             HeadersVisibility="Column"
                             GridLinesVisibility="Horizontal">
                         <DataGrid.ColumnHeaderStyle>
@@ -153,10 +154,11 @@
                 </Border>
 
                 <Border Style="{StaticResource BorderStyle}" Background="{StaticResource BtnRed}" Grid.Column="2">
-                    <Button IsTabStop="True"
+                    <Button Grid.Column="2"
                             Command="{Binding StopSaves}" CommandParameter="{Binding ElementName=JobContextList, Path=SelectedItems}"
-                        Width="{Binding buttonWidth}" Height="{Binding buttonHeight}">
-
+                        Width="{Binding buttonWidth}" Height="{Binding buttonHeight}" Margin="30,30,30,30"
+                        BorderBrush="SaddleBrown" BorderThickness="1"
+                        Background="IndianRed">
                         <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" FontSize="30" />
                     </Button>
                 </Border>

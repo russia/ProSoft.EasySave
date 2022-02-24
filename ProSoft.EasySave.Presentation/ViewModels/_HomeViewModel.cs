@@ -27,6 +27,5 @@ namespace ProSoft.EasySave.Presentation.ViewModels
                 _regionManager.RequestNavigate("ContentRegion", nameof(_ListSaveView));
             });
         }
-
     }
 }
