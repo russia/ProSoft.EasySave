@@ -72,9 +72,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
                     TransferType = transferType
                 };
 
-                System.Windows.MessageBox.Show("Job created !");
-
-
                 _jobFactoryService.AddJob(jobContext.Name, jobContext.TransferType, jobContext.SourcePath, jobContext.DestinationPath);
                 CloseDialog();
             },
