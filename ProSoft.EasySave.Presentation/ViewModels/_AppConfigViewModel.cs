@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Prism.Mvvm;
 using ProSoft.EasySave.Infrastructure.Helpers;
+using System.Configuration;
+using System.Reflection;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
@@ -142,6 +144,24 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             //explorer.StartInfo.FileName = AppContext.BaseDirectory;
             explorer.StartInfo.FileName = projectDirectory;
             explorer.Start();
+        }
+
+        private static void UpdateSetting(string key, string value)
+        {
+            string configPath = Path.Combine(System.Environment.CurrentDirectory, "Prosoft.EasySave.Presentation.exe");
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            configuration.AppSettings.Settings[key].Value = value;
+            configuration.Save();
+
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
+        public static string ReadSetting(string key)
+        {
+            string configPath = Path.Combine(System.Environment.CurrentDirectory, "Prosoft.EasySave.Presentation.exe");
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            System.Configuration.AppSettingsSection appSettings = (System.Configuration.AppSettingsSection)configuration.GetSection("appSettings");
+            return appSettings.Settings[key].Value;
         }
 
     }

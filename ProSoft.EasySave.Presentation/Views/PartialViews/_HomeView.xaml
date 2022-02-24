@@ -24,7 +24,7 @@
 
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}">
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel>
+                <StackPanel >
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock Text="Start all saves" FontSize="45"></TextBlock>
                     </StackPanel>
@@ -34,7 +34,7 @@
 
         <Border Grid.Column="2" Grid.Row="1" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnRed}">
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <StackPanel>
+                <StackPanel >
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock Text="Pause all saves" FontSize="45"></TextBlock>
                     </StackPanel>
@@ -47,10 +47,10 @@
                 <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="45" />
             </Button>
         </Border>
-
+        
         <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnBlue}">
             <StackPanel>
-                <TextBlock HorizontalAlignment="Center" FontSize="45"><Run Language="en-us" Text="Statistics" />
+                <TextBlock HorizontalAlignment="Center" FontSize="45"><Run Language="en-us" Text="Statistics"/>
                 </TextBlock>
                 <Line StrokeThickness="4" Stretch="Fill" Stroke="#FFFF" X2="1" />
                 <Grid>
@@ -58,34 +58,35 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder" />
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder"/>
                     </TextBlock>
-                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234" />
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234"/>
                     </TextBlock>
                 </Grid>
-                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250" />
+                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder" />
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder"/>
                     </TextBlock>
-                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234" />
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234"/>
                     </TextBlock>
                 </Grid>
-                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250" />
+                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder" />
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder"/>
                     </TextBlock>
-                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234" />
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234"/>
                     </TextBlock>
                 </Grid>
-                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250" />
+                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250"/>
+
 
                 <Button Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="30" />
@@ -95,7 +96,7 @@
 
         <Border Grid.Column="2" Grid.Row="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnYellow}">
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=GoToSettingsCommand}">
-                <StackPanel>
+                <StackPanel >
                     <StackPanel HorizontalAlignment="Center" Margin="20">
                         <TextBlock Text="Go to ConfigScreen" FontSize="45"></TextBlock>
                     </StackPanel>
@@ -108,7 +109,7 @@
 
         <Border Grid.Column="3" Grid.Row="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnBlue}">
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=GoToSaveList}">
-                <StackPanel>
+                <StackPanel >
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock Text="5 saves in progress" FontSize="45"></TextBlock>
                     </StackPanel>
@@ -120,23 +121,23 @@
 
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel>
-
+                    
                     <StackPanel HorizontalAlignment="Center" Grid.Column="0" Margin="5">
                         <TextBlock Text="PlaceholderTitle" FontSize="45"></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="1" HorizontalAlignment="Right"  Margin="5">
                         <TextBlock VerticalAlignment="Stretch" Height="150" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Aenean quis enim nec sem dapibus ullamcorper eu sed ligula. Nam ultricies lorem eu libero dapibus,
-                            aliquam mattis ante faucibus. Maecenas ipsum urna, condimentum id erat at, consectetur varius ipsum. Duis cursus lectus nisi,
-                            ut ultrices ex scelerisque eu. Quisque eros tellus, viverra nec luctus at, fermentum vitae metus. Vestibulum congue lobortis vulputate.
-                            In hac habitasse platea dictumst. Integer molestie libero ornare, placerat arcu sit amet, ultrices diam. Suspendisse potenti.
+                            Aenean quis enim nec sem dapibus ullamcorper eu sed ligula. Nam ultricies lorem eu libero dapibus, 
+                            aliquam mattis ante faucibus. Maecenas ipsum urna, condimentum id erat at, consectetur varius ipsum. Duis cursus lectus nisi, 
+                            ut ultrices ex scelerisque eu. Quisque eros tellus, viverra nec luctus at, fermentum vitae metus. Vestibulum congue lobortis vulputate. 
+                            In hac habitasse platea dictumst. Integer molestie libero ornare, placerat arcu sit amet, ultrices diam. Suspendisse potenti. 
                             Sed maximus quis nisi id suscipit. Curabitur blandit ante sit amet quam mattis semper vel eget eros. Nam nec ex nec leo posuere laoreet.
-                            Praesent iaculis tempor nulla, in bibendum justo mattis sed. Nunc ante tellus, congue ac nulla at, commodo imperdiet massa. Vestibulum ac urna dapibus,
+                            Praesent iaculis tempor nulla, in bibendum justo mattis sed. Nunc ante tellus, congue ac nulla at, commodo imperdiet massa. Vestibulum ac urna dapibus, 
                             placerat nibh quis, tristique tortor. Nunc efficitur volutpat lorem, nec aliquet tellus pretium ac.
                         </TextBlock>
                     </StackPanel>
                 </StackPanel>
-            </Button>
+            </Button>         
         </Border>
     </Grid>
 </UserControl>

@@ -24,7 +24,7 @@
                 </TextBlock>
             </ui:SimpleStackPanel>
         </Border>
-        
+
         <StackPanel Grid.Row="1">
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -32,18 +32,17 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
+
                 <Border Grid.Column="0"  Width="175" Height="100" BorderBrush="{StaticResource NavColor}" BorderThickness="1" HorizontalAlignment="Left">
                     <ui:SimpleStackPanel  x:Name="Name" Background="{StaticResource NavColor}">
                         <TextBlock FontSize="15" Foreground="{StaticResource FontColor}" Margin="5" ><Run Language="en-gb" Text="Name" /></TextBlock>
-                    
+
                         <Border>
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="7" BlurRadius="4" Direction="320" Opacity="0.25"/>
+                                <DropShadowEffect ShadowDepth="7" BlurRadius="4" Direction="320" Opacity="0.25" />
                             </Border.Effect>
-                            <TextBox Width="160" Foreground="{StaticResource FontColor}" Text="{Binding Name}" x:Name="NameBox" Grid.Column="0"  />
+                            <TextBox Width="160" Foreground="{StaticResource FontColor}" Text="{Binding Name}" x:Name="NameBox" Grid.Column="0" />
                         </Border>
-                    
                     </ui:SimpleStackPanel>
                 </Border>
                 <Border Grid.Column="1"  Width="175" Height="100" BorderBrush="{StaticResource BackGroundGray}" Style="{StaticResource BorderStyle}"  HorizontalAlignment="Right">
@@ -68,22 +67,21 @@
         <Border Grid.Row="2" BorderBrush="{StaticResource BackGroundGray}"  Width="350" BorderThickness="1">
             <ui:SimpleStackPanel  x:Name="Source" Background="{StaticResource NavColor}">
                 <TextBlock FontSize="15" Foreground="{StaticResource FontColor}" Margin="5" HorizontalAlignment="Left"><Run Language="en-gb" Text="Source path" /></TextBlock>
-                
+
                 <DockPanel>
-                    <TextBox Text="{Binding SourcePath}" Foreground="{StaticResource FontColor}" x:Name="SourcePathBox" Grid.Column="0" Margin="5" Width="263" HorizontalAlignment="Left"/>
-                    <StackPanel >
-                        <Button x:Name="SourceDialogButton" HorizontalAlignment="Right" Command="{Binding Path=SourceDialogCommand}" >
-                            <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xe838;" FontSize="30" Margin="0,0,5,0"/>
+                    <TextBox Text="{Binding SourcePath}" Foreground="{StaticResource FontColor}" x:Name="SourcePathBox" Grid.Column="0" Margin="5" Width="263" HorizontalAlignment="Left" />
+                    <StackPanel>
+                        <Button x:Name="SourceDialogButton" HorizontalAlignment="Right" Command="{Binding Path=SourceDialogCommand}">
+                            <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xe838;" FontSize="30" Margin="0,0,5,0" />
                         </Button>
                     </StackPanel>
                 </DockPanel>
-                
             </ui:SimpleStackPanel>
         </Border>
-        <Border Grid.Row="3" BorderBrush="{StaticResource BackGroundGray}" BorderThickness="1" Width="350" >
+        <Border Grid.Row="3" BorderBrush="{StaticResource BackGroundGray}" BorderThickness="1" Width="350">
             <ui:SimpleStackPanel x:Name="Destination" Background="{StaticResource NavColor}">
                 <TextBlock FontSize="15" Margin="5" Foreground="{StaticResource FontColor}" HorizontalAlignment="Left" ><Run Language="en-gb" Text="Destination path" /></TextBlock>
-                
+
                 <DockPanel>
                     <StackPanel>
                         <TextBox Text="{Binding DestinationPath}" Foreground="{StaticResource FontColor}" x:Name="DestPathBox" Grid.Column="0" Width="263" Margin="5" HorizontalAlignment="Left" />
@@ -92,10 +90,9 @@
                         <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xe838;" FontSize="30" />
                     </Button>
                 </DockPanel>
-                
             </ui:SimpleStackPanel>
         </Border>
-       
+
         <Border Grid.Row="5" VerticalAlignment="Center">
             <ui:SimpleStackPanel  Background="{StaticResource NavColor}">
                 <ui:SimpleStackPanel VerticalAlignment="Bottom" Height="Auto">

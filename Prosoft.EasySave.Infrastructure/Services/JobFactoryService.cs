@@ -148,8 +148,8 @@ namespace ProSoft.EasySave.Infrastructure.Services
         public async Task<IReadOnlyCollection<JobResult>> StartJobsAsync(List<JobContext> jobContexts, ExecutionType? executionType = null)
         {
             var processes = GetProcessInstances(_processes);
-            if (processes.Any())
-                return new List<JobResult>() { new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}") };
+            if (processes.Any()) 
+                return new List<JobResult>() { new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}" )};
 
             List<Func<Task<JobResult>>> taskList = new();
 
@@ -178,9 +178,10 @@ namespace ProSoft.EasySave.Infrastructure.Services
             var processes = GetProcessInstances(_processes);
             if (processes.Any())
                 return new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}");
-
+            
             // TODO : We can compare the object or create the comparison method.
             var jobContext = _jobContexts.FirstOrDefault(j => j.Name == jobCxt.Name);
+
             if (jobContext is null)
                 // TODO : handle this situation..
                 return null;

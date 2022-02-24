@@ -44,7 +44,19 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             var message = "This is a message that should be shown in the dialog.";
             _regionManager = regionManager;
             _jobFactoryService = jobFactoryService;
-            _jobFactoryService.OnJobListUpdated+=(sender, args) => JobContexts = args.JobContexts;
+
+            _jobFactoryService.OnJobListUpdated += (sender, args) => {
+                JobContexts = args.JobContexts;
+                foreach (var jobContext in JobContexts)
+                {
+                    jobContext.OnJobContextPropertyUpdated += (sender, args) =>
+                    {
+                        JobContexts.Remove(JobContexts.First(j => j.Id == args.JobContext.Id));
+                        JobContexts.Add(args.JobContext);
+                    };
+                } 
+            };
+
             _jobFactoryService.OnJobStarted+=(sender, args) =>
             {
                 JobContexts.Remove(JobContexts.First(j => j.Id == args.JobContext.Id));
@@ -78,7 +90,7 @@ namespace ProSoft.EasySave.Presentation.ViewModels
                 System.Collections.IList items = (System.Collections.IList)e;
                 List<JobContext> jobContexts = items.Cast<JobContext>().ToList();
                 if (items.Count == JobContexts.Count || items.Count == 0)
-            {
+                {
                     _jobFactoryService.PauseAllJobsAsync();
                     return;
                 }
@@ -88,14 +100,14 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             }, (a) => JobContexts.Any(j => j.StateType == Infrastructure.Enums.StateType.PROCESSING));
 
             ResumeSaves = new DelegateCommand<object>(e =>
-                {
+            {
                 System.Collections.IList items = (System.Collections.IList)e;
                 List<JobContext> jobContexts = items.Cast<JobContext>().ToList();
                 if (items.Count == JobContexts.Count || items.Count == 0)
-                    {
+                {
                     _jobFactoryService.ResumeAllJobsAsync();
                     return;
-                    }
+                }
                 foreach (JobContext _jobContext in jobContexts)
                     _jobFactoryService.ResumeJob(_jobContext);
 

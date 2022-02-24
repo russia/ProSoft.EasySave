@@ -38,7 +38,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
                 Console.WriteLine($"[{jobContext.Name}] has been cancelled because a directory doesn't exist.");
                 return new JobResult(false, "One of the directory doesn't exist.");
             }
-
+                
             var sourceDir = new DirectoryInfo(jobContext.SourcePath);
             var destinationDir = new DirectoryInfo(jobContext.DestinationPath);
 
@@ -68,6 +68,8 @@ namespace ProSoft.EasySave.Infrastructure.Services
             foreach (var sourceFile in sourceFiles)
             {
                 await Task.Delay(2000); // Simulating a heavy file transfer.
+
+                jobContext.Progression = (uint) (sourceFiles.IndexOf(sourceFile) * 100 / sourceFiles.Count);
 
                 if (jobContext.PauseRaised)
                     while (jobContext.PauseRaised)
