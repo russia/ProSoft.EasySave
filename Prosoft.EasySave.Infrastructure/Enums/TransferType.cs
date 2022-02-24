@@ -5,7 +5,7 @@
         /// <summary>
         ///     Copy and replace the files if they exist
         /// </summary>
-        FULL = 0,
+        COMPLETE = 0,
 
         /// <summary>
         ///     Copies only files that do not exist in the destination folder

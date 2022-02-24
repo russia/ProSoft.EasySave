@@ -20,7 +20,7 @@ namespace ProSoft.EasySave.Remote.Models.Network.Frames
         [PacketType(typeof(InitializeState))]
         public static void InitializeState(Client client, InitializeState packet)
         {
-            client.EasySaveContext.JobContexts = new ObservableCollection<JobContext>(packet.JobContexts);
+            client.EasySaveContext.JobContexts = packet.JobContexts;
         }
 
 

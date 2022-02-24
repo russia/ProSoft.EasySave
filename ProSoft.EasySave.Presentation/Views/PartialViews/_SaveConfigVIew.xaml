@@ -1,0 +1,104 @@
+<UserControl x:Class="ProSoft.EasySave.Presentation.Views.PartialViews._SaveConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="350">
+
+    <Grid Width="350" Height="450" Background="{StaticResource BackGroundGray}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderBrush="{StaticResource BackGroundGray}" BorderThickness="1" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
+            <ui:SimpleStackPanel  HorizontalAlignment="Center" x:Name="Header">
+                <TextBlock FontSize="30" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Saves configuration" />
+                </TextBlock>
+            </ui:SimpleStackPanel>
+        </Border>
+        
+        <StackPanel Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="0"  Width="175" Height="100" BorderBrush="{StaticResource BackGroundGray}" BorderThickness="1" HorizontalAlignment="Left">
+                    <ui:SimpleStackPanel  x:Name="Name" Background="{Binding StackPanelColor}">
+                        <TextBlock FontSize="15" Foreground="{StaticResource FontColor}" Margin="5" ><Run Language="en-gb" Text="Name" /></TextBlock>
+                    
+                        <DockPanel>
+                            <TextBox Width="160" Foreground="{StaticResource FontColor}" Text="{Binding Name}" x:Name="NameBox" Grid.Column="0"  />
+                        </DockPanel>
+                    
+                    </ui:SimpleStackPanel>
+                </Border>
+                <Border Grid.Column="1"  Width="175" Height="100" BorderBrush="{StaticResource BackGroundGray}" Style="{StaticResource BorderStyle}"  HorizontalAlignment="Left">
+                    <ui:SimpleStackPanel  x:Name="SaveTypes" Background="{Binding StackPanelColor}">
+                        <ui:SimpleStackPanel Height="Auto">
+                            <TextBlock Foreground="{StaticResource FontColor}" FontSize="15" Margin="5">Save type</TextBlock>
+                            <ComboBox
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Text="{Binding StrTransferType}"
+                    x:Name="ComboBoxType"
+                    ui:ControlHelper.PlaceholderText="Pick a save type"
+                    Width="160" Foreground="{StaticResource FontColor}">
+                                <sys:String>COMPLETE</sys:String>
+                                <sys:String>DIFFERENTIAL</sys:String>
+                            </ComboBox>
+                        </ui:SimpleStackPanel>
+                    </ui:SimpleStackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+        <Border Grid.Row="2" BorderBrush="{StaticResource BackGroundGray}" HorizontalAlignment="Left" Width="350" BorderThickness="1">
+            <ui:SimpleStackPanel  x:Name="Source"  Background="{Binding StackPanelColor}">
+                <TextBlock FontSize="15" Foreground="{StaticResource FontColor}" Margin="5" ><Run Language="en-gb" Text="Source path" /></TextBlock>
+                
+                <DockPanel>
+                    <TextBox Text="{Binding SourcePath}" Foreground="{StaticResource FontColor}" x:Name="SourcePathBox" Grid.Column="0" Margin="5" Width="263" />
+                    <StackPanel>
+                        <Button x:Name="SourceDialogButton" HorizontalAlignment="Right" Command="{Binding Path=SourceDialogCommand}">
+                            <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xe838;" FontSize="30" Margin="0,0,5,0"/>
+                        </Button>
+                    </StackPanel>
+                </DockPanel>
+                
+            </ui:SimpleStackPanel>
+        </Border>
+        <Border Grid.Row="3" BorderBrush="{StaticResource BackGroundGray}" BorderThickness="1" HorizontalAlignment="Left"  Width="350" >
+            <ui:SimpleStackPanel x:Name="Destination" Background="{Binding StackPanelColor}">
+                <TextBlock FontSize="15" Margin="5" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Destination path" /></TextBlock>
+                
+                <DockPanel>
+                    <StackPanel>
+                        <TextBox Text="{Binding DestinationPath}" Foreground="{StaticResource FontColor}" x:Name="DestPathBox" Grid.Column="0" Width="263" Margin="5"/>
+                    </StackPanel>
+                    <Button x:Name="DestDialogButton" HorizontalAlignment="Right" Command="{Binding Path=DestDialogCommand}" Margin="0,0,5,0">
+                        <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xe838;" FontSize="30" />
+                    </Button>
+                </DockPanel>
+                
+            </ui:SimpleStackPanel>
+        </Border>
+       
+        <Border Grid.Row="5" VerticalAlignment="Center">
+            <ui:SimpleStackPanel  Background="{Binding StackPanelColor}">
+                <ui:SimpleStackPanel VerticalAlignment="Bottom" Height="Auto">
+                    <Button HorizontalAlignment="Center" Command="{Binding Path=ValidSaveCommand}" BorderBrush="{StaticResource BackGroundDimGray}" BorderThickness="1"  Margin="0,0,5,0">
+                        <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xe74e;" FontSize="30" />
+                    </Button>
+                </ui:SimpleStackPanel>
+            </ui:SimpleStackPanel>
+        </Border>
+    </Grid>
+</UserControl>

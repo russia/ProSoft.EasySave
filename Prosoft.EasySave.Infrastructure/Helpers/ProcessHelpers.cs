@@ -13,6 +13,7 @@ namespace ProSoft.EasySave.Infrastructure.Helpers
         /// <param name="args">The arguments.</param>
         /// <returns>The process lifespan.</returns>
         /// <exception cref="Exception">Couldn't start the specified process.</exception>
+        /// <exception cref="FileNotFoundException">Couldn't start the specified process.</exception>
         public static TimeSpan UseProcess(string processPath, string args)
         {
             var processStartInfo = new ProcessStartInfo(processPath)
@@ -21,7 +22,8 @@ namespace ProSoft.EasySave.Infrastructure.Helpers
                 Arguments = args
             };
 
-            var test = File.Exists(processPath);
+            if(!File.Exists(processPath))
+                throw new FileNotFoundException("Couldn't start the specified process.", processPath);
 
             var process = Process.Start(processStartInfo);
 
