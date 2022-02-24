@@ -45,6 +45,8 @@ namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
 
         Task<IReadOnlyCollection<JobResult>> StartAllJobsAsync(ExecutionType? executionType = null);
 
+        Task<IReadOnlyCollection<JobResult>> StartJobsAsync(List<JobContext> jobContexts, ExecutionType? executionType = null);
+
         Task<JobResult> StartJobAsync(JobContext jobContext, ExecutionType? executionType = null);
     }
 }
