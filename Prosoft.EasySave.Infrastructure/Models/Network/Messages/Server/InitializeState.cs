@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
 
 namespace ProSoft.EasySave.Infrastructure.Models.Network.Messages.Server
@@ -7,9 +8,9 @@ namespace ProSoft.EasySave.Infrastructure.Models.Network.Messages.Server
     {
         public InitializeState(IReadOnlyCollection<JobContext> jobContexts)
         {
-            JobContexts = jobContexts;
+            JobContexts = new ObservableCollection<JobContext>(jobContexts);
         }
 
-        public IReadOnlyCollection<JobContext> JobContexts { get; set; }
+        public ObservableCollection<JobContext> JobContexts { get; set; }
     }
 }

@@ -50,15 +50,15 @@ namespace ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher
         private List<PacketData> Initialize(Assembly assembly)
         {
             var methods = new List<PacketData>();
-            var types = assembly.GetTypes().SelectMany(x => x.GetMethods())
+            var methodInfos = assembly.GetTypes().SelectMany(x => x.GetMethods())
                 .Where(m => m.GetCustomAttributes(typeof(PacketType), false).Length > 0);
-            foreach (var type in types)
+            foreach (var methodInfo in methodInfos)
             {
-                var attr = (PacketType) type.GetCustomAttributes(typeof(PacketType), true)[0];
+                var attr = (PacketType) methodInfo.GetCustomAttributes(typeof(PacketType), true)[0];
 
-                var instance = Activator.CreateInstance(type.DeclaringType);
+                var instance = Activator.CreateInstance(methodInfo.DeclaringType);
 
-                methods.Add(new PacketData(instance, attr.Value, type));
+                methods.Add(new PacketData(instance, attr.Value, methodInfo));
             }
 
             Console.WriteLine($"{methods.Count} packets registered!");

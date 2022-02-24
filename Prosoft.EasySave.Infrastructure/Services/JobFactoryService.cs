@@ -88,8 +88,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public void PauseJob(JobContext jobContext)
         {
-            // TODO : We can compare the object or create the comparison method.
-            var jobTask = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
+            var jobTask = _jobContexts.SingleOrDefault(j => j.Equals(jobContext));
 
             if (jobTask is null)
                 return;
@@ -100,8 +99,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public void ResumeJob(JobContext jobContext)
         {
-            // TODO : We can compare the object or create the comparison method.
-            var jobTask = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
+            var jobTask = _jobContexts.SingleOrDefault(j => j.Equals(jobContext));
 
             if (jobTask is null)
                 return;
@@ -112,8 +110,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public void CancelJob(JobContext jobContext)
         {
-            // TODO : We can compare the object or create the comparison method.
-            var jobTask = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
+            var jobTask = _jobContexts.SingleOrDefault(j => j.Equals(jobContext));
 
             if (jobTask is null)
                 return;
@@ -144,13 +141,17 @@ namespace ProSoft.EasySave.Infrastructure.Services
         }
 
         public async Task<IReadOnlyCollection<JobResult>> StartAllJobsAsync(ExecutionType? executionType = null)
+            => await StartJobsAsync(_jobContexts, executionType ?? _executionType);
+
+        public async Task<IReadOnlyCollection<JobResult>> StartJobsAsync(List<JobContext> jobContexts, ExecutionType? executionType = null)
         {
             var processes = GetProcessInstances(_processes);
-            if (processes.Any()) 
-                return new List<JobResult>() { new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}" )};
+            if (processes.Any())
+                return new List<JobResult>() { new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}") };
 
             List<Func<Task<JobResult>>> taskList = new();
-            // TODO : use select instead.
+
+            // we would have use Select in C#10.
             foreach (var jobContext in _jobContexts)
             {
                 Func<Task<JobResult>> task = async () =>
@@ -159,16 +160,15 @@ namespace ProSoft.EasySave.Infrastructure.Services
                         await Task.Delay(50);
                     OnJobStarted?.Invoke(this, new JobStartedEventArgs(jobContext));
                     var result = await _fileService.CopyFiles(jobContext);
+                    if (!result.Success)
+                        return result; // TODO : create a event?
                     OnJobCompleted?.Invoke(this, new JobCompletedEventArgs(jobContext));
                     return result;
                 };
                 taskList.Add(task);
             }
 
-            var jobResults = await taskList.StartAsync<IReadOnlyCollection<JobResult>>(executionType ?? _executionType);
-            _jobContexts.Clear();
-            OnJobListUpdated?.Invoke(this, new JobListUpdatedEventArgs(_jobContexts));
-            return jobResults;
+            return await taskList.StartAsync<IReadOnlyCollection<JobResult>>(executionType ?? _executionType);
         }
 
         public async Task<JobResult> StartJobAsync(JobContext jobCxt, ExecutionType? executionType = null)
@@ -176,7 +176,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
             var processes = GetProcessInstances(_processes);
             if (processes.Any())
                 return new JobResult(false, $"The following processes are running : {String.Join(", ", processes)}");
-            
+
             // TODO : We can compare the object or create the comparison method.
             var jobContext = _jobContexts.FirstOrDefault(j => j.Name == jobCxt.Name);
             if (jobContext is null)
@@ -187,24 +187,29 @@ namespace ProSoft.EasySave.Infrastructure.Services
             {
                 OnJobStarted?.Invoke(this, new JobStartedEventArgs(jobContext));
                 var result = await _fileService.CopyFiles(jobContext);
+                if (!result.Success)
+                    return result; // TODO : create a event?
                 OnJobCompleted?.Invoke(this, new JobCompletedEventArgs(jobContext));
                 return result;
             };
 
-            var jobResults = await task.StartAsync<JobResult>(executionType ?? _executionType);
-            return jobResults;
+            return await task.StartAsync<JobResult>(executionType ?? _executionType);
         }
 
         public void LoadConfiguration()
         {
             Console.WriteLine("Loading configuration..");
-            if (_configuration.Value.JobContexts.Count > 9999)
+            if (_configuration.Value.JobContexts?.Count > 9999)
             {
                 Console.Error.WriteLine("Job contexts limit reached!");
                 throw new NotImplementedException();
             }
 
             _executionType = _configuration.Value.ExecutionType;
+
+            if (_configuration.Value.JobContexts is null)
+                return;
+
             _jobContexts.AddRange(_configuration.Value.JobContexts);
             Console.WriteLine($"Successfully loaded {_configuration.Value.JobContexts.Count} job context(s):");
             Console.WriteLine(string.Join(Environment.NewLine,
@@ -212,9 +217,8 @@ namespace ProSoft.EasySave.Infrastructure.Services
         }
 
         public void RemoveJob(JobContext jobContext)
-        {
-            // TODO : We can compare the object or create the comparison method.
-            var item = _jobContexts.FirstOrDefault(j => j.Name == jobContext.Name);
+        {  
+            var item = _jobContexts.SingleOrDefault(j => j.Equals(jobContext));
 
             if (item is null)
                 return;
@@ -225,8 +229,8 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
         public IEnumerable<Process> GetProcessInstances(string[] processes)
         {
-            var results = processes.Select(p => new { Name = p, Process = Process.GetProcessesByName(p)});
-            return results.Where(r => r.Process is not null && r.Process.Any()).Select(p => p.Process.First());
-        } 
+            var results = processes.Select(p => new { Name = p, Process = Process.GetProcessesByName(p) });
+            return results.Where(r => r.Process.Any()).Select(p => p.Process.First());
+        }
     }
 }
