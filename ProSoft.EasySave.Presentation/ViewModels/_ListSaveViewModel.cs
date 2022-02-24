@@ -78,7 +78,7 @@ namespace ProSoft.EasySave.Presentation.ViewModels
                 System.Collections.IList items = (System.Collections.IList)e;
                 List<JobContext> jobContexts = items.Cast<JobContext>().ToList();
                 if (items.Count == JobContexts.Count || items.Count == 0)
-                {
+            {
                     _jobFactoryService.PauseAllJobsAsync();
                     return;
                 }
@@ -88,14 +88,14 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             }, (a) => JobContexts.Any(j => j.StateType == Infrastructure.Enums.StateType.PROCESSING));
 
             ResumeSaves = new DelegateCommand<object>(e =>
-            {
+                {
                 System.Collections.IList items = (System.Collections.IList)e;
                 List<JobContext> jobContexts = items.Cast<JobContext>().ToList();
                 if (items.Count == JobContexts.Count || items.Count == 0)
-                {
+                    {
                     _jobFactoryService.ResumeAllJobsAsync();
                     return;
-                }
+                    }
                 foreach (JobContext _jobContext in jobContexts)
                     _jobFactoryService.ResumeJob(_jobContext);
 

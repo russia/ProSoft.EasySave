@@ -9,125 +9,134 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"></RowDefinition>
-            <RowDefinition Height="1.2*"></RowDefinition>
-            <RowDefinition Height="1.2*"></RowDefinition>
-            <RowDefinition Height="1.3*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}">
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="Start all saves" FontSize="45"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+        </Border>
 
-        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-            <TextBlock FontSize="30" HorizontalAlignment="Left" Margin="5,0,0,0">Welcome</TextBlock>
-        </StackPanel>
-        
-        <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center">
-            <ComboBox Margin="15,5,5,15" >
-                <ComboBoxItem IsSelected="True">-- Select language --</ComboBoxItem>
-                <ComboBoxItem >FR</ComboBoxItem>
-                <ComboBoxItem>EN</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
-            <Border BorderBrush="Gray" BorderThickness="1">
+        <Border Grid.Column="2" Grid.Row="1" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnRed}">
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="Pause all saves" FontSize="45"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <Border Grid.Column="3" Grid.Row="1" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnBlue}">
+            <Button HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="45" />
+            </Button>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnBlue}">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" FontSize="45"><Run Language="en-us" Text="Statistics" />
+                </TextBlock>
+                <Line StrokeThickness="4" Stretch="Fill" Stroke="#FFFF" X2="1" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder" />
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234" />
+                    </TextBlock>
+                </Grid>
+                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder" />
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234" />
+                    </TextBlock>
+                </Grid>
+                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder" />
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234" />
+                    </TextBlock>
+                </Grid>
+                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250" />
+
+                <Button Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE710;" FontSize="30" />
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="2" Grid.Row="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnYellow}">
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=GoToSettingsCommand}">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Margin="20">
+                        <TextBlock Text="Go to ConfigScreen" FontSize="45"></TextBlock>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="30" />
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <Border Grid.Column="3" Grid.Row="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnBlue}">
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=GoToSaveList}">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="5 saves in progress" FontSize="45"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+        </Border>
+
+        <Border Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnYellow}">
+
+            <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel>
 
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">
-                    52
-                    </TextBlock>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center">
-                   Total number of log
-                    </TextBlock>
+                    <StackPanel HorizontalAlignment="Center" Grid.Column="0" Margin="5">
+                        <TextBlock Text="PlaceholderTitle" FontSize="45"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Right"  Margin="5">
+                        <TextBlock VerticalAlignment="Stretch" Height="150" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Aenean quis enim nec sem dapibus ullamcorper eu sed ligula. Nam ultricies lorem eu libero dapibus,
+                            aliquam mattis ante faucibus. Maecenas ipsum urna, condimentum id erat at, consectetur varius ipsum. Duis cursus lectus nisi,
+                            ut ultrices ex scelerisque eu. Quisque eros tellus, viverra nec luctus at, fermentum vitae metus. Vestibulum congue lobortis vulputate.
+                            In hac habitasse platea dictumst. Integer molestie libero ornare, placerat arcu sit amet, ultrices diam. Suspendisse potenti.
+                            Sed maximus quis nisi id suscipit. Curabitur blandit ante sit amet quam mattis semper vel eget eros. Nam nec ex nec leo posuere laoreet.
+                            Praesent iaculis tempor nulla, in bibendum justo mattis sed. Nunc ante tellus, congue ac nulla at, commodo imperdiet massa. Vestibulum ac urna dapibus,
+                            placerat nibh quis, tristique tortor. Nunc efficitur volutpat lorem, nec aliquet tellus pretium ac.
+                        </TextBlock>
+                    </StackPanel>
                 </StackPanel>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Center">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">
-                    26
-                    </TextBlock>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center">
-                   Number of saves
-                    </TextBlock>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="4" VerticalAlignment="Center">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">
-                    2
-                    </TextBlock>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center">
-                   Total saves  in progress
-                    </TextBlock>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">
-                    C:\User\User...
-                    </TextBlock>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center">
-                    Most used Repository
-                    </TextBlock>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">
-                        2.1 s
-                    </TextBlock>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center">
-                    Average transfert time
-                    </TextBlock>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="3" VerticalAlignment="Center">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">
-                        1.6 s
-                    </TextBlock>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center">
-                    Average crypt time
-                    </TextBlock>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="4" VerticalAlignment="Center">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <StackPanel>
-
-                    <TextBlock FontSize="30" FontWeight="Bold" HorizontalAlignment="Center">
-                        16
-                    </TextBlock>
-                    <TextBlock FontSize="20" HorizontalAlignment="Center">
-                    Average save/day
-                    </TextBlock>
-                </StackPanel>
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.RowSpan="4" Grid.Column="0">
-            
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" />
+            </Button>
+        </Border>
     </Grid>
 </UserControl>

@@ -11,19 +11,15 @@
         <ResourceDictionary>
             <Style  TargetType="Border"
                     x:Key="BorderStyle">
-                <Setter Property="CornerRadius" Value="15"/>
-                <Setter Property="Background" Value="{StaticResource NavColor}"/>
-                <Setter Property="Margin" Value="30"/>
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="Background" Value="{StaticResource NavColor}" />
+                <Setter Property="Margin" Value="30" />
             </Style>
             <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value ="Black"/>
+                <Setter Property="Foreground" Value ="Black" />
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-
-
-
-
 
     <Grid x:Name="sizeGrid" Background="{StaticResource BackgroundPage}">
         <Grid.ColumnDefinitions>
@@ -32,26 +28,26 @@
             <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*" />
+            <RowDefinition Height="10*" />
             <RowDefinition Height="46*" />
             <RowDefinition Height="46*" />
+            <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        
-        
+
         <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
             <ui:SimpleStackPanel x:Name="Header" Background="{StaticResource BackgroundPage}">
-                <TextBlock Margin="10,0,0,0" FontSize="50"><Run Language="en-gb" Text="Application settings" />
+                <TextBlock Margin="10,0,0,0" FontSize="50" Foreground="{StaticResource NavColor}"><Run Language="en-gb" Text="Application settings" />
                 </TextBlock>
             </ui:SimpleStackPanel>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="1" Margin="30,30,15,15" CornerRadius="20" Background="{StaticResource BackGroundGray}">
-            <ui:SimpleStackPanel VerticalAlignment="Center" x:Name="MaxAllowedFileWeight">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,0,0,30"><Run Language="en-gb" Text="Max allowed file weight" />
+        <Border Grid.Row="1" Grid.Column="1" Margin="30,30,15,5" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
+            <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="MaxAllowedFileWeight">
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,60" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Max allowed file weight" />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20"><Run Language="en-gb" Text="If two files exceed this weight (in kiloBytes),"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="If two files exceed this weight (in kiloBytes)," />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20"><Run Language="en-gb" Text="they will be saved one after the other and not simultaneously."/>
+                <TextBlock HorizontalAlignment="Center" FontSize="20"  Margin="0,0,0,5" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="they will be saved one after the other and not simultaneously." />
                 </TextBlock>
                 <StackPanel Margin="12">
                     <TextBox Text="{Binding MaxFileWeight}" x:Name="NameBox" Width="300" />
@@ -59,52 +55,85 @@
             </ui:SimpleStackPanel>
         </Border>
 
-        <Border Grid.Row="1" Grid.Column="2" Margin="15,30,30,15" CornerRadius="20" Background="{StaticResource BackGroundGray}">
-            <ui:SimpleStackPanel VerticalAlignment="Center" x:Name="StopApp">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,0,0,30"><Run Language="en-gb" Text="Business software detection"/>
+        <Border Grid.Row="1" Grid.Column="2" Margin="15,30,30,5" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
+            <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="StopApp">
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,70" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Business software detection" />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20"><Run Language="en-gb" Text="Select a business software executable."/>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,5"><Run Language="en-gb" Text="Select a business software executable." Foreground="{StaticResource FontColor}" />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20"><Run Language="en-gb" Text="When its use is detected, all ongoing saves will be stopped."/>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,5"><Run Language="en-gb" Text="When its use is detected, all ongoing saves will be stopped." Foreground="{StaticResource FontColor}" />
                 </TextBlock>
-                <Border Style="{StaticResource BorderStyle}" HorizontalAlignment="Center" Margin="0,10,0,10">
-                    <Button x:Name="btnOpenFile" Background="Transparent" Command="{Binding StopAppPathDialogCommand}">Click here to select file</Button>
+                <Border HorizontalAlignment="Center" Margin="0,10,0,10" BorderBrush="{StaticResource FontColor}" BorderThickness="1" CornerRadius="10">
+                    <Button x:Name="btnOpenFile" Background="Transparent" Command="{Binding StopAppFileDialogCommand}">Click here to select file</Button>
                 </Border>
-                <TextBox Text="{Binding StopAppPath}"  x:Name="PathTxt" Width="300"/>
-
+                <TextBox Text="{Binding StopAppPath}" x:Name="PathTxt" Width="300" />
             </ui:SimpleStackPanel>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="1" Margin="30,15,15,30" CornerRadius="20" Background="{StaticResource BackGroundGray}">
-            <ui:SimpleStackPanel VerticalAlignment="Center" x:Name="PrioritizedFiles">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,0,0,30"><Run Language="en-gb" Text="File priority selection"/>
+        <Border Grid.Row="2" Grid.Column="1" Margin="30,25,15,10" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
+            <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="PrioritizedFiles">
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,40" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="File priority selection" />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20"><Run Language="en-gb" Text="Type below the extensions of files that should be prioritized, separated by semicolons."/>
+                <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="20" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Choose below the extensions of files that should be prioritized." />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="15"><Run Language="en-gb" Text="Possible extensions : pdf, doc, docx, txt, xls, xlsx, json, iso, jpeg, png"/>
+                <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="20" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="The priority is set from left to right." />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="15"><Run Language="en-gb" Text="Example : pdf;docx;txt"/>
-                </TextBlock>
-                <DockPanel Margin="12">
-                    <TextBox Text="{Binding FilePriority}" x:Name="FilePriorityBox" Width="300" />
-                </DockPanel>
-
+                <Border>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <ComboBox Margin="5,5,5,2" Text="{Binding FilePriority}" x:Name="FilePriorityBox" Width="100">
+                            <sys:String>.pdf</sys:String>
+                            <sys:String>.json</sys:String>
+                            <sys:String>.xls</sys:String>
+                            <sys:String>.xlsx</sys:String>
+                            <sys:String>.doc</sys:String>
+                            <sys:String>.docx</sys:String>
+                            <sys:String>.png</sys:String>
+                            <sys:String>.jpeg</sys:String>
+                            <sys:String>.iso</sys:String>
+                        </ComboBox>
+                        <ComboBox Margin="5,5,5,2" Text="{Binding FilePriority2}" x:Name="FilePriorityBox2" Width="100">
+                            <sys:String>.pdf</sys:String>
+                            <sys:String>.json</sys:String>
+                            <sys:String>.xls</sys:String>
+                            <sys:String>.xlsx</sys:String>
+                            <sys:String>.doc</sys:String>
+                            <sys:String>.docx</sys:String>
+                            <sys:String>.png</sys:String>
+                            <sys:String>.jpeg</sys:String>
+                            <sys:String>.iso</sys:String>
+                        </ComboBox>
+                        <ComboBox Margin="5,5,5,2" Text="{Binding FilePriority3}" x:Name="FilePriorityBox3" Width="100">
+                            <sys:String>.pdf</sys:String>
+                            <sys:String>.json</sys:String>
+                            <sys:String>.xls</sys:String>
+                            <sys:String>.xlsx</sys:String>
+                            <sys:String>.doc</sys:String>
+                            <sys:String>.docx</sys:String>
+                            <sys:String>.png</sys:String>
+                            <sys:String>.jpeg</sys:String>
+                            <sys:String>.iso</sys:String>
+                        </ComboBox>
+                    </StackPanel>
+                </Border>
             </ui:SimpleStackPanel>
         </Border>
 
-        <Border Grid.Row="2" Grid.Column="2" Margin="15,15,30,30" CornerRadius="20" Background="{StaticResource BackGroundGray}">
-            <ui:SimpleStackPanel VerticalAlignment="Center" x:Name="LogFolder">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,0,0,30"><Run Language="en-gb" Text="Log folder"/>
+        <Border Grid.Row="2" Grid.Column="2" Margin="15,25,30,10" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
+            <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="LogFolder">
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,80" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Log folder" />
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,30"><Run Language="en-gb" Text="This button opens an explorer to the folder containing the logs"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,30" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="This button opens an explorer to the folder containing the logs" />
                 </TextBlock>
-                <Border Style="{StaticResource BorderStyle}" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <Border Style="{StaticResource BorderStyle}" BorderBrush="{StaticResource FontColor}" BorderThickness="1" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Button x:Name="LogFolderButton" Background="Transparent" HorizontalAlignment="Center" Command="{Binding OpenExplorerToLogsCommand}">
                         <TextBlock Foreground="White" FontFamily="Segoe MDL2 Assets" Text="&#xe838;" FontSize="60" />
                     </Button>
                 </Border>
             </ui:SimpleStackPanel>
         </Border>
-        
+
+        <Border Grid.Row="3" Grid.Column="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}" HorizontalAlignment="Right">
+            <Button Width="100" Command="{Binding SaveSettingsCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Apply</Button>
+        </Border>
     </Grid>
 </UserControl>

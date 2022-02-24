@@ -119,6 +119,8 @@ namespace ProSoft.EasySave.Infrastructure.Services
             OnJobCancelled?.Invoke(this, new JobCancelledEventArgs(jobTask));
         }
 
+        
+
         public void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath)
         {
             if (_jobContexts.Count > 9999)

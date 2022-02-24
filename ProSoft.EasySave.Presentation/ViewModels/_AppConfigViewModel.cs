@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Prism.Mvvm;
+using ProSoft.EasySave.Infrastructure.Helpers;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
@@ -19,33 +20,65 @@ namespace ProSoft.EasySave.Presentation.ViewModels
     internal class _AppConfigViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
-        private string _stopAppPath;
-        public string StopAppPath
+        private string _stopAppFilename;
+        private string _maxFileWeight;
+        private string _filePriority;
+        private string _filePriority2;
+        private string _filePriority3;
+        public ConfigHelpers configHelper;
+
+        public string StopAppFilename
         {
-            get { return _stopAppPath; }
-            set  { SetProperty(ref _stopAppPath, value); }
+            get { return _stopAppFilename; }
+            set  { SetProperty(ref _stopAppFilename, value); }
         }
+        public string MaxFileWeight
+        {
+            get { return _maxFileWeight; }
+            set { SetProperty(ref _maxFileWeight, value); }
+        }
+
+        public string FilePriority
+        {
+            get { return _filePriority; }
+            set { SetProperty(ref _filePriority, value); }
+        }
+
+        public string FilePriority2
+        {
+            get { return _filePriority2; }
+            set { SetProperty(ref _filePriority2, value); }
+        }
+
+        public string FilePriority3
+        {
+            get { return _filePriority3; }
+            set { SetProperty(ref _filePriority3, value); }
+        }
+
         public double screenHeight { get; set; }
         public double GridHeight { get; set; }
         public double buttonWidth { get; set; }
         public double buttonHeight { get; set; }
         public double GridWidth { get; set; }
-        public DelegateCommand StopAppPathDialogCommand { get; }
+        public DelegateCommand StopAppFileDialogCommand { get; }
         public DelegateCommand OpenExplorerToLogsCommand { get; }
+        public DelegateCommand SaveSettingsCommand { get; }
 
 
         public _AppConfigViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
             SetParameter();
-            StopAppPathDialogCommand = new DelegateCommand(() =>
+            StopAppFileDialogCommand = new DelegateCommand(() =>
             {
-                StopAppPathSelection();
+                StopAppFileSelection();
             });
 
             OpenExplorerToLogsCommand = new DelegateCommand(OpenExplorerToLogs);
+            SaveSettingsCommand = new DelegateCommand(SaveSettings);
 
-
+            ReadSettings();
         }
 
         protected void SetParameter()
@@ -57,13 +90,40 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             GridWidth = 1920 - (1920 * 0.1);
         }
 
-        private void StopAppPathSelection()
+        private void StopAppFileSelection()
         {
             Microsoft.Win32.OpenFileDialog pathDialog = new Microsoft.Win32.OpenFileDialog();
             pathDialog.DefaultExt = ".exe";
             pathDialog.Filter = "Application (*.exe)|*.exe";
             pathDialog.ShowDialog();
-            StopAppPath = pathDialog.SafeFileName;
+            StopAppFilename = pathDialog.SafeFileName.ToLower();
+        }
+
+        public void SaveSettings()
+        {
+            configHelper = new ConfigHelpers();
+
+            // Update business blocking app.
+            configHelper.UpdateSetting("BusinessApp", StopAppFilename);
+
+            // Update max file weight accepted.
+            configHelper.UpdateSetting("MaxWeight", MaxFileWeight);
+
+            //Update priority files
+            configHelper.UpdateSetting("PrioritaryExt1", FilePriority);
+            configHelper.UpdateSetting("PrioritaryExt2", FilePriority2);
+            configHelper.UpdateSetting("PrioritaryExt3", FilePriority3);
+        }
+
+        public void ReadSettings()
+        {
+            configHelper = new ConfigHelpers();
+
+            StopAppFilename = configHelper.ReadSetting("BusinessApp").ToString();
+            MaxFileWeight = configHelper.ReadSetting("MaxWeight").ToString();
+            FilePriority = configHelper.ReadSetting("PrioritaryExt1").ToString();
+            FilePriority2 = configHelper.ReadSetting("PrioritaryExt2").ToString();
+            FilePriority3 = configHelper.ReadSetting("PrioritaryExt3").ToString();
         }
 
         public static void OpenExplorerToLogs()

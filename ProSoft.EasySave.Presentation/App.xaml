@@ -15,7 +15,12 @@
                     <SolidColorBrush x:Key="BackGroundDimGray" Color="DimGray"/>
                     <SolidColorBrush x:Key="FontColor" Color="#FFFF"/>
                     <SolidColorBrush x:Key="NavColor" Color="#2a9df4"/>
+                    <SolidColorBrush x:Key="BtnBlue" Color="#8EC0F5"/>
+                    <SolidColorBrush x:Key="BtnGreen" Color="#5EDF62"/>
+                    <SolidColorBrush x:Key="BtnRed" Color="IndianRed"/>
+                    <SolidColorBrush x:Key="BtnYellow" Color="SandyBrown"/>
                     
+
                     <Style TargetType="Border" x:Key="BorderStyle">
                         <Setter Property="CornerRadius" Value="15"/>
                         <Setter Property="Margin" Value="30,30,30,30"/>
