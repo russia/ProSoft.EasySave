@@ -6,6 +6,10 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
 {
     public class JobContext
     {
+        public JobContext()
+        {
+        }
+
         public Guid Id { get; set; } = Guid.NewGuid();
 
         public string Name { get; set; }
@@ -13,6 +17,7 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
         public string DestinationPath { get; set; }
 
         private TransferType _transferType;
+
         public TransferType TransferType
         {
             get => _transferType;
@@ -24,6 +29,7 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
         }
 
         private StateType _stateType = StateType.WAITING;
+
         public StateType StateType
         {
             get => _stateType;
@@ -37,17 +43,20 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
         public bool IsCompleted => StateType.Equals(StateType.COMPLETED);
 
         private bool _pauseRaised;
+
         public bool PauseRaised
         {
             get => _pauseRaised;
             set
             {
                 _pauseRaised = value;
+                //StateType = value ? StateType.PAUSED : StateType.PROCESSING;
                 OnJobContextPropertyUpdated?.Invoke(this, new JobContextPropertyUpdatedEventArgs(this));
             }
         }
 
         private bool _cancellationRaised;
+
         public bool CancellationRaised
         {
             get => _cancellationRaised;
@@ -57,8 +66,12 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
                 OnJobContextPropertyUpdated?.Invoke(this, new JobContextPropertyUpdatedEventArgs(this));
             }
         }
+
         private uint _progression;
-        public uint Progression { get => _progression; 
+
+        public uint Progression
+        {
+            get => _progression;
             set
             {
                 _progression = value;
@@ -67,6 +80,7 @@ namespace ProSoft.EasySave.Infrastructure.Models.Contexts
         }
 
         public delegate void JobContextPropertyUpdated(object sender, JobContextPropertyUpdatedEventArgs e);
+
         public event JobContextPropertyUpdated OnJobContextPropertyUpdated;
 
         // As cancellation tokens (IntPtr) can't be serialized we need to use a native type.

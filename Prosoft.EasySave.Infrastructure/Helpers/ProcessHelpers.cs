@@ -19,10 +19,12 @@ namespace ProSoft.EasySave.Infrastructure.Helpers
             var processStartInfo = new ProcessStartInfo(processPath)
             {
                 UseShellExecute = false,
-                Arguments = args
+                Arguments = args,
+                WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true,
             };
 
-            if(!File.Exists(processPath))
+            if (!File.Exists(processPath))
                 throw new FileNotFoundException("Couldn't start the specified process.", processPath);
 
             var process = Process.Start(processStartInfo);

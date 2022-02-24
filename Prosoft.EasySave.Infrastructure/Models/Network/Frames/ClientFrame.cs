@@ -35,19 +35,19 @@ namespace ProSoft.EasySave.Infrastructure.Models.Network.Frames
         [PacketType(typeof(PauseAll))]
         public static void PauseAll(TcpClientSession tcpClientSession, PauseAll packet)
         {
-            tcpClientSession.JobFactoryService.PauseAllJobsAsync();
+            tcpClientSession.JobFactoryService.PauseAllJobs();
         }
 
         [PacketType(typeof(ResumeAll))]
         public static void ResumeAll(TcpClientSession tcpClientSession, ResumeAll packet)
         {
-            tcpClientSession.JobFactoryService.ResumeAllJobsAsync();
+            tcpClientSession.JobFactoryService.ResumeAllJobs();
         }
 
         [PacketType(typeof(CancelAll))]
         public static void CancelAll(TcpClientSession tcpClientSession, CancelAll packet)
         {
-            tcpClientSession.JobFactoryService.CancelAllJobsAsync();
+            tcpClientSession.JobFactoryService.CancelAllJobs();
         }
     }
 }

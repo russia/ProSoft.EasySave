@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.Reflection;
 using System.Security.Principal;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +13,8 @@ using Prism.Ioc;
 using Prism.Regions;
 using ProSoft.EasySave.Infrastructure.Interfaces.Services;
 using ProSoft.EasySave.Infrastructure.Models;
+using ProSoft.EasySave.Infrastructure.Models.Network.Dispatcher;
+using ProSoft.EasySave.Infrastructure.Models.Network.Frames;
 using ProSoft.EasySave.Infrastructure.Services;
 using ProSoft.EasySave.Presentation.ViewModels;
 using ProSoft.EasySave.Presentation.Views;
@@ -76,10 +80,26 @@ namespace ProSoft.EasySave.Presentation
                             shared: true))
                 .CreateLogger();
 
+            var assembly = Assembly.GetAssembly(typeof(ClientFrame));
+
+            if (assembly is null)
+            {
+                throw new ArgumentNullException("Assembly cannot be null.");
+            }
+
+            var packetReceiver = new PacketReceiver(assembly);
+            var remoteService = new RemoteService(packetReceiver);
+
+            containerRegistry.RegisterInstance(remoteService);
+            containerRegistry.RegisterInstance(packetReceiver);
             containerRegistry.RegisterInstance(Log.Logger);
             containerRegistry.RegisterSingleton<IGlobalizationService, GlobalizationService>();
             containerRegistry.RegisterSingleton<IFileService, FileService>();
             containerRegistry.RegisterSingleton<IJobFactoryService, JobFactoryService>();
+
+            // Workaround to avoid circular dependency injection
+            var jobFactoryService = Container.Resolve<IJobFactoryService>();
+            remoteService.SetJobFactoryService(jobFactoryService);
 
             var regionManager = Container.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(_HomeView));

@@ -22,7 +22,6 @@ namespace ProSoft.EasySave.Console.Services
         {
             _globalizationService = globalizationService;
             _factoryService = factoryService;
-            _factoryService.LoadConfiguration();
         }
 
         public void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath)

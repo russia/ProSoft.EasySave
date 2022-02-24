@@ -5,6 +5,7 @@
         COMPLETED,
         PROCESSING,
         PAUSED,
-        WAITING
+        WAITING,
+        CANCELLED
     }
 }
