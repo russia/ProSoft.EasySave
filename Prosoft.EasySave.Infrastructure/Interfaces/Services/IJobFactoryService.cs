@@ -25,11 +25,13 @@ namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
 
         IReadOnlyCollection<JobContext> GetJobs();
 
-        void PauseAllJobsAsync();
+        void PauseAllJobs();
 
-        void ResumeAllJobsAsync();
+        void ResumeAllJobs();
 
-        void CancelAllJobsAsync();
+        void RemoveAllJobs();
+
+        void CancelAllJobs();
 
         void PauseJob(JobContext jobContext);
 

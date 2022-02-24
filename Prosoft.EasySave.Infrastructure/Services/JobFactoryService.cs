@@ -30,7 +30,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
         private readonly IFileService _fileService;
         private readonly List<JobContext> _jobContexts;
         private ExecutionType _executionType;
-        private readonly string[] _processes = new string[] { "notepad", "calc"};
+        private readonly string[] _processes = new string[] { "notepad", "calc" };
 
         public JobFactoryService(IFileService fileService, IOptions<Configuration> configuration)
         {
@@ -57,31 +57,45 @@ namespace ProSoft.EasySave.Infrastructure.Services
             return _jobContexts;
         }
 
-        public void PauseAllJobsAsync()
+        public void PauseAllJobs()
         {
-            _jobContexts.ForEach(j =>
-            {
-                j.PauseRaised = true;
-                OnJobPaused?.Invoke(this, new JobPausedEventArgs(j));
-            });
+            _jobContexts.Where(j => j.StateType == StateType.PROCESSING)
+                .ToList()
+                .ForEach(j =>
+                {
+                    j.PauseRaised = true;
+                    j.StateType = StateType.PAUSED;
+                    OnJobPaused?.Invoke(this, new JobPausedEventArgs(j));
+                });
         }
 
-        public void ResumeAllJobsAsync()
+        public void ResumeAllJobs()
         {
-            _jobContexts.ForEach(j =>
-            {
-                j.PauseRaised = false;
-                OnJobResumed?.Invoke(this, new JobResumedEventArgs(j));
-            });
+            _jobContexts.Where(j => j.StateType == StateType.PAUSED)
+                .ToList()
+                .ForEach(j =>
+                {
+                    j.PauseRaised = false;
+                    j.StateType = StateType.PROCESSING;
+                    OnJobResumed?.Invoke(this, new JobResumedEventArgs(j));
+                });
         }
 
-        public void CancelAllJobsAsync()
+        public void RemoveAllJobs()
+        {
+            _jobContexts.Where(j => j.StateType != StateType.PROCESSING)
+                .ToList()
+                .ForEach(RemoveJob);
+        }
+
+        public void CancelAllJobs()
         {
             _jobContexts.Where(j => !j.IsCompleted)
                 .ToList()
                 .ForEach(j =>
                 {
                     j.CancellationRaised = true;
+                    j.StateType = StateType.CANCELLED;
                     OnJobCancelled?.Invoke(this, new JobCancelledEventArgs(j));
                 });
         }
@@ -119,8 +133,6 @@ namespace ProSoft.EasySave.Infrastructure.Services
             OnJobCancelled?.Invoke(this, new JobCancelledEventArgs(jobTask));
         }
 
-        
-
         public void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath)
         {
             if (_jobContexts.Count > 9999)
@@ -143,7 +155,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
         }
 
         public async Task<IReadOnlyCollection<JobResult>> StartAllJobsAsync(ExecutionType? executionType = null)
-            => await StartJobsAsync(_jobContexts, executionType ?? _executionType);
+            => await StartJobsAsync(_jobContexts.Where(j => j.StateType == StateType.WAITING).ToList(), executionType ?? _executionType);
 
         public async Task<IReadOnlyCollection<JobResult>> StartJobsAsync(List<JobContext> jobContexts, ExecutionType? executionType = null)
         {
@@ -154,7 +166,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
             List<Func<Task<JobResult>>> taskList = new();
 
             // we would have use Select in C#10.
-            foreach (var jobContext in _jobContexts)
+            foreach (var jobContext in jobContexts)
             {
                 Func<Task<JobResult>> task = async () =>
                 {
@@ -181,6 +193,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
 
             // TODO : We can compare the object or create the comparison method.
             var jobContext = _jobContexts.FirstOrDefault(j => j.Name == jobCxt.Name);
+
             if (jobContext is null)
                 // TODO : handle this situation..
                 return null;
@@ -219,7 +232,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
         }
 
         public void RemoveJob(JobContext jobContext)
-        {  
+        {
             var item = _jobContexts.SingleOrDefault(j => j.Equals(jobContext));
 
             if (item is null)

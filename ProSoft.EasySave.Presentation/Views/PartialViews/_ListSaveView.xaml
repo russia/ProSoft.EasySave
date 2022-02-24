@@ -1,12 +1,11 @@
 ﻿<UserControl x:Class="ProSoft.EasySave.Presentation.Views.PartialViews._ListSaveView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:muxc="http://schemas.modernwpf.com/2019"
              MaxHeight="1080" MaxWidth="1920" MinHeight="800" MinWidth="600"
-             mc:Ignorable="d"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:prism="http://prismlibrary.com/">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
@@ -113,6 +112,16 @@
                                                 HeaderStyle="{StaticResource TabHeader}"
                                                 IsReadOnly="True">
                             </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Progress" HeaderStyle="{StaticResource TabHeader}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <ItemContainerTemplate>
+                                        <Grid>
+                                            <muxc:ProgressBar Grid.Row="0" Grid.Column="0"  Minimum="0" Maximum="100" Value="{Binding Progression}">
+                                            </muxc:ProgressBar>
+                                        </Grid>
+                                    </ItemContainerTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -130,13 +139,14 @@
 
                 <Border Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}" Grid.Column="0">
 
-                    <Button Width="{Binding buttonWidth}" Height="{Binding buttonHeight}">
+                    <Button Width="{Binding buttonWidth}" Height="{Binding buttonHeight}"  Command="{Binding StartSaves}" CommandParameter="{Binding ElementName=JobContextList, Path=SelectedItems}">
                         <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE768;" FontSize="30" />
                     </Button>
                 </Border>
                 <Border Style="{StaticResource BorderStyle}" Background="{StaticResource BtnYellow}" Grid.Column="1">
 
                     <Button
+                        Command="{Binding PauseSaves}" CommandParameter="{Binding ElementName=JobContextList, Path=SelectedItems}"
                         Width="{Binding buttonWidth}" Height="{Binding buttonHeight}">
                         <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xEDB4;" FontSize="30" />
                     </Button>
@@ -144,13 +154,13 @@
 
                 <Border Style="{StaticResource BorderStyle}" Background="{StaticResource BtnRed}" Grid.Column="2">
                     <Button IsTabStop="True"
+                            Command="{Binding StopSaves}" CommandParameter="{Binding ElementName=JobContextList, Path=SelectedItems}"
                         Width="{Binding buttonWidth}" Height="{Binding buttonHeight}">
 
                         <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" FontSize="30" />
                     </Button>
                 </Border>
-                <Border Style="{StaticResource BorderStyle}" Background="{StaticResource BtnBlue}" Grid.Column="3">
-                </Border>
+
                 <Border Style="{StaticResource BorderStyle}" Background="IndianRed" Grid.Column="3">
                     <Button IsTabStop="True"
                         Width="{Binding buttonWidth}" Height="{Binding buttonHeight}" Command="{Binding RemoveSaves}" CommandParameter="{Binding ElementName=JobContextList, Path=SelectedItems}">

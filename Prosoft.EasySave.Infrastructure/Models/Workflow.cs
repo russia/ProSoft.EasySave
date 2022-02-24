@@ -50,8 +50,8 @@ namespace ProSoft.EasySave.Infrastructure.Models
             //        jobResults.Add(await x());
             //        //tasksList.Add(test);
             //    });
-
-            var jobResults = await Task.WhenAll(tasks.Select(async t => await t()));
+            var test = tasks.Select(async t => await t());
+            var jobResults = await Task.WhenAll(test);
             return jobResults.ToList();
         }
 
@@ -70,13 +70,13 @@ namespace ProSoft.EasySave.Infrastructure.Models
             CancellationToken cancellationToken = default)
         {
             var task = tasks.First(); // x => !x.IsCompleted
-            return new List<JobResult> {await task()};
+            return new List<JobResult> { await task() };
         }
 
         private static async Task<IReadOnlyCollection<JobResult>> StartSingleJobAsync(this Func<Task<JobResult>> task,
             CancellationToken cancellationToken = default)
         {
-            return new List<JobResult> {await task()};
+            return new List<JobResult> { await task() };
         }
     }
 }
