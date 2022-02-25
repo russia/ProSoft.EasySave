@@ -1,20 +1,10 @@
 using Prism.Commands;
 using Prism.Regions;
-using Prism.Navigation;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Forms;
 using System.Diagnostics;
 using Prism.Mvvm;
 using ProSoft.EasySave.Infrastructure.Helpers;
-using System.Configuration;
-using System.Reflection;
 
 namespace ProSoft.EasySave.Presentation.ViewModels
 {
@@ -27,11 +17,12 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         private string _filePriority;
         private string _filePriority2;
         private string _filePriority3;
+        private string _filePriorityTotal;
 
         public string StopAppFilename
         {
             get { return _stopAppFilename; }
-            set  { SetProperty(ref _stopAppFilename, value); }
+            set { SetProperty(ref _stopAppFilename, value); }
         }
         public string MaxFileWeight
         {
@@ -57,6 +48,12 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             set { SetProperty(ref _filePriority3, value); }
         }
 
+        public string FilePriorityTotal
+        {
+            get { return _filePriorityTotal; }
+            set { SetProperty(ref _filePriorityTotal, value); }
+        }
+
         public double screenHeight { get; set; }
         public double GridHeight { get; set; }
         public double buttonWidth { get; set; }
@@ -75,7 +72,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             {
                 StopAppFileSelection();
             });
-
             OpenExplorerToLogsCommand = new DelegateCommand(OpenExplorerToLogs);
             SaveSettingsCommand = new DelegateCommand(SaveSettings);
 
@@ -108,19 +104,22 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             // Update max file weight accepted.
             ConfigHelpers.UpdateSetting("MaxWeight", MaxFileWeight);
 
+
             //Update priority files
-            ConfigHelpers.UpdateSetting("PrioritaryExt1", FilePriority);
-            ConfigHelpers.UpdateSetting("PrioritaryExt2", FilePriority2);
-            ConfigHelpers.UpdateSetting("PrioritaryExt3", FilePriority3);
+            FilePriorityTotal = FilePriority + "|" + FilePriority2 + "|" + FilePriority3;
+            ConfigHelpers.UpdateSetting("PrioritaryExt", FilePriorityTotal);
         }
 
         public void ReadSettings()
         {
             StopAppFilename = ConfigHelpers.ReadSetting("BusinessApp").ToString();
+
             MaxFileWeight = ConfigHelpers.ReadSetting("MaxWeight").ToString();
-            FilePriority = ConfigHelpers.ReadSetting("PrioritaryExt1").ToString();
-            FilePriority2 = ConfigHelpers.ReadSetting("PrioritaryExt2").ToString();
-            FilePriority3 = ConfigHelpers.ReadSetting("PrioritaryExt3").ToString();
+
+            var extensions = ConfigHelpers.ReadSetting("PrioritaryExt").Split('|');
+            FilePriority = extensions[0];
+            FilePriority2 = extensions[1];
+            FilePriority3 = extensions[2];
         }
 
         public static void OpenExplorerToLogs()
@@ -140,5 +139,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             explorer.StartInfo.FileName = projectDirectory;
             explorer.Start();
         }
+
     }
 }
