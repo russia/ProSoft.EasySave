@@ -65,9 +65,10 @@ namespace ProSoft.EasySave.Infrastructure.Services
                     return new JobResult(false, "Files total weight is too large.");
                 }
 
-                sourceFiles = sourceFiles.OrderBy(s => s.Extension is ".exe" or ".pdf").ToList();
+            var extensions = ConfigHelpers.ReadSetting("PrioritaryExt").Split('|');
+            sourceFiles = sourceFiles.OrderBy(s => extensions.Contains(s.Extension)).ToList();
 
-                foreach (var sourceFile in sourceFiles)
+            foreach (var sourceFile in sourceFiles)
                 {
                     await Task.Delay(1000); // Simulating a heavy file transfer.
 
