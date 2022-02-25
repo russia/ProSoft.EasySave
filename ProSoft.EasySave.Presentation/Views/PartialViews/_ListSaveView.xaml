@@ -45,9 +45,10 @@
 
                     <Button
                         Width="100" Height="45"
-                        Command="{Binding OpenDialogCommand}">
-                        <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xE738;" FontSize="30" />
+                        Command="{Binding RemoveSaves}" CommandParameter="{Binding ElementName=JobContextList, Path=SelectedItems}">
+                        <TextBlock Foreground="{StaticResource FontColor}" FontFamily="Segoe MDL2 Assets" Text="&#xE738;" FontSize="30"/>
                     </Button>
+
                 </Border>
 
                 <Border Style="{StaticResource BorderStyle}" Background="{StaticResource BtnBlue}" HorizontalAlignment="Right"
@@ -133,8 +134,6 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Border Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}" Grid.Column="0">
@@ -160,20 +159,10 @@
                         <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE71A;" FontSize="30" />
                     </Button>
                 </Border>
+                
+             
 
-                <Border Style="{StaticResource BorderStyle}" Background="IndianRed" Grid.Column="3">
-                    <Button IsTabStop="True"
-                        Width="{Binding buttonWidth}" Height="{Binding buttonHeight}" Command="{Binding RemoveSaves}" CommandParameter="{Binding ElementName=JobContextList, Path=SelectedItems}">
 
-                        <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE711;" FontSize="30" />
-                    </Button>
-                </Border>
-                <Border Style="{StaticResource BorderStyle}" Background="#2a9df4" Grid.Column="4">
-                    <Button
-                        Width="{Binding buttonWidth}" Height="{Binding buttonHeight}">
-                        <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xF8B0;" FontSize="30" />
-                    </Button>
-                </Border>
             </Grid>
         </StackPanel>
     </Grid>

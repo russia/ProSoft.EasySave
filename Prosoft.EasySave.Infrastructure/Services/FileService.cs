@@ -93,7 +93,7 @@ namespace ProSoft.EasySave.Infrastructure.Services
                     var encryptedFileSourcePath =
                         Path.Combine(sourceFile.Directory.FullName, sourceFile.ComputeEncryptedName());
                     var encryptionTime = ProcessHelpers.UseProcess(
-                        @"C:\Users\user\source\repos\ProSoft.EasySave\ProSoft.CryptoSoft\bin\Debug\net5.0\ProSoft.CryptoSoft.exe",
+                        @"C:\Users\Yanis\source\repos\ProSoft.EasySave\ProSoft.CryptoSoft\bin\Debug\net5.0\ProSoft.CryptoSoft.exe",
                         $"{_configuration.Value.XorKey} {StringsHelpers.Base64Encode(sourceFile.FullName)} {StringsHelpers.Base64Encode(encryptedFileSourcePath)}");
                     var encryptedFile = new FileInfo(encryptedFileSourcePath);
                     encryptedFile.CopyTo(destinationPath, true);
