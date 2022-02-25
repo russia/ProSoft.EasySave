@@ -5,6 +5,7 @@
              xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:lang="clr-namespace:ProSoft.EasySave.Presentation.Properties.Langs"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -36,18 +37,18 @@
 
         <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
             <ui:SimpleStackPanel x:Name="Header" Background="{StaticResource BackgroundPage}">
-                <TextBlock Margin="10,0,0,0" FontSize="50" Foreground="{StaticResource NavColor}"><Run Language="en-gb" Text="Application settings" />
+                <TextBlock Margin="10,0,0,0" FontSize="50" Foreground="{StaticResource NavColor}" Text="{x:Static lang:Lang.APPS_TITLE}">
                 </TextBlock>
             </ui:SimpleStackPanel>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="1" Margin="30,30,15,5" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
             <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="MaxAllowedFileWeight">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,60" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Max allowed file weight" />
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,60" Foreground="{StaticResource FontColor}"  Text="{x:Static lang:Lang.APPS_WEIGHT_TITLE}">
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="If two files exceed this weight (in kiloBytes)," />
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,10" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_WEIGHT1}">
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20"  Margin="0,0,0,5" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="they will be saved one after the other and not simultaneously." />
+                <TextBlock HorizontalAlignment="Center" FontSize="20"  Margin="0,0,0,5" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_WEIGHT2}">
                 </TextBlock>
                 <StackPanel Margin="12">
                     <TextBox Text="{Binding MaxFileWeight}" x:Name="NameBox" Width="300" />
@@ -57,11 +58,11 @@
 
         <Border Grid.Row="1" Grid.Column="2" Margin="15,30,30,5" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
             <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="StopApp">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,70" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Business software detection" />
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,70" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_BUIS_TITLE}">
+                    </TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,5" Text="{x:Static lang:Lang.APP_BUIS1}">
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,5"><Run Language="en-gb" Text="Select a business software executable." Foreground="{StaticResource FontColor}" />
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,5"><Run Language="en-gb" Text="When its use is detected, all ongoing saves will be stopped." Foreground="{StaticResource FontColor}" />
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,5" Text="{x:Static lang:Lang.APP_BUIS1}">
                 </TextBlock>
                 <TextBox Text="{Binding StopAppFilename}"  x:Name="PathTxt" Width="300" />
                 <Border HorizontalAlignment="Center" Margin="0,10,0,10" BorderBrush="{StaticResource FontColor}" BorderThickness="1" CornerRadius="10">
@@ -72,11 +73,11 @@
 
         <Border Grid.Row="2" Grid.Column="1" Margin="30,25,15,10" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
             <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="PrioritizedFiles">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,40" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="File priority selection" />
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,40" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_FILE_TITLE}">
                 </TextBlock>
-                <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="20" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Choose below the extensions of files that should be prioritized." />
+                <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="20" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_FILE1}">
                 </TextBlock>
-                <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="20" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="The priority is set from left to right." />
+                <TextBlock Margin="20" HorizontalAlignment="Center" FontSize="20" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_FILE2}">
                 </TextBlock>
                 <Border>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -115,19 +116,19 @@
                         </ComboBox>
                     </StackPanel>
                 </Border>
-                <TextBlock Margin="5" HorizontalAlignment="Center" FontSize="15" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Possible extensions : pdf, doc, docx, txt, xls, xlsx, json, iso, jpeg, png" />
+                <TextBlock Margin="5" HorizontalAlignment="Center" FontSize="15" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_FILE3}">
                 </TextBlock>
-                <TextBlock  HorizontalAlignment="Center" FontSize="15" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Example : pdf;docx;txt" />
+                <TextBlock  HorizontalAlignment="Center" FontSize="15" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_FILE4}">
                 </TextBlock>
             </ui:SimpleStackPanel>
         </Border>
 
         <Border Grid.Row="2" Grid.Column="2" Margin="15,25,30,10" CornerRadius="20" Style="{StaticResource BorderStyle}" Background="{StaticResource BackGroundGray}">
             <ui:SimpleStackPanel VerticalAlignment="Top" x:Name="LogFolder">
-                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,80" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="Log folder" />
+                <TextBlock HorizontalAlignment="Center" FontSize="35" Margin="0,20,0,80" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_LOG_TITLE}">
                 </TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,30" Foreground="{StaticResource FontColor}"><Run Language="en-gb" Text="This button opens an explorer to the folder containing the logs" />
-                </TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,30" Foreground="{StaticResource FontColor}" Text="{x:Static lang:Lang.APPS_LOG1}">
+                </TextBlock> 
                 <Border Style="{StaticResource BorderStyle}" BorderBrush="{StaticResource FontColor}" BorderThickness="1" HorizontalAlignment="Center" Margin="0,0,0,10">
                     <Button x:Name="LogFolderButton" Background="Transparent" HorizontalAlignment="Center" Command="{Binding OpenExplorerToLogsCommand}">
                         <TextBlock Foreground="White" FontFamily="Segoe MDL2 Assets" Text="&#xe838;" FontSize="60" />

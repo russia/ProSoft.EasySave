@@ -22,23 +22,23 @@ namespace ProSoft.EasySave.Presentation.Views
         private void NavigationView_SelectionChanged5(NavigationView sender,
             NavigationViewSelectionChangedEventArgs args)
         {
-            var selectItemTag = args.SelectedItemContainer.Content;
+            var selectItemTag = args.SelectedItemContainer.Tag;
 
             switch (selectItemTag)
             {
-                case "Home":
+                case "_HomeView":
                     _regionManager.RequestNavigate("ContentRegion", nameof(_HomeView));
                     break;
 
-                case "Save in Progress":
+                case "_SaveView":
                     _regionManager.RequestNavigate("ContentRegion", nameof(_SaveConfigView));
                     break;
 
-                case "Save selection":
+                case "_ActiView":
                     _regionManager.RequestNavigate("ContentRegion", nameof(_ListSaveView));
                     break;
 
-                case "Configuration":
+                case "_ConfigView":
                     _regionManager.RequestNavigate("ContentRegion", nameof(_AppConfigView));
                     break;
 

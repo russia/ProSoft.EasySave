@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="START_ALL_SAVE" xml:space="preserve">
+    <value>Start all backup</value>
+  </data>
+  <data name="HOME" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="PAUSE_ALL_SAVE" xml:space="preserve">
+    <value>Pause all backup</value>
+  </data>
+  <data name="SAMPLE_BIG_TEXT" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Aenean quis enim nec sem dapibus ullamcorper eu sed ligula. Nam ultricies lorem eu libero dapibus, aliquam mattis ante faucibus. Maecenas ipsum urna, condimentum id erat at, consectetur varius ipsum. Duis cursus lectus nisi,  ut ultrices ex scelerisque eu. Quisque eros tellus, viverra nec luctus at, fermentum vitae metus. Vestibulum congue lobortis vulputate. n hac habitasse platea dictumst. Integer molestie libero ornare, placerat arcu sit amet, ultrices diam. Suspendisse potenti.  Sed maximus quis nisi id suscipit. Curabitur blandit ante sit amet quam mattis semper vel eget eros. Nam nec ex nec leo posuere laoreet.  Praesent iaculis tempor nulla, in bibendum justo mattis sed. Nunc ante tellus, congue ac nulla at, commodo imperdiet massa. Vestibulum ac urna dapibus,  placerat nibh quis, tristique tortor. Nunc efficitur volutpat lorem, nec aliquet tellus pretium ac.</value>
+  </data>
+  <data name="SAMPLE_CONFIG_TEXT" xml:space="preserve">
+    <value>5 saves in progress</value>
+  </data>
+  <data name="SAMPLE_NUMBER1" xml:space="preserve">
+    <value>1234</value>
+  </data>
+  <data name="SAMPLE_TITLE" xml:space="preserve">
+    <value>Sample title</value>
+  </data>
+  <data name="SAMPLE_TITLE_CONFIG" xml:space="preserve">
+    <value>Go to ConfigScreen</value>
+  </data>
+  <data name="SAMPLE_TITLE_STAT" xml:space="preserve">
+    <value>StatPlaceholder</value>
+  </data>
+  <data name="APPS_BUIS2" xml:space="preserve">
+    <value>When its use is detected, all ongoing saves will be stopped.</value>
+  </data>
+  <data name="APPS_BUIS_TITLE" xml:space="preserve">
+    <value>Business software detection</value>
+  </data>
+  <data name="APPS_FILE1" xml:space="preserve">
+    <value>Choose below the extensions of files that should be prioritized.</value>
+  </data>
+  <data name="APPS_FILE2" xml:space="preserve">
+    <value>The priority is set from left to right.</value>
+  </data>
+  <data name="APPS_FILE3" xml:space="preserve">
+    <value>Possible extensions : pdf, doc, docx, txt, xls, xlsx, json, iso, jpeg, png</value>
+  </data>
+  <data name="APPS_FILE4" xml:space="preserve">
+    <value>Example : pdf;docx;txt</value>
+  </data>
+  <data name="APPS_FILE_TITLE" xml:space="preserve">
+    <value>File priority selection</value>
+  </data>
+  <data name="APPS_LOG1" xml:space="preserve">
+    <value>This button opens an explorer to the folder containing the logs</value>
+  </data>
+  <data name="APPS_LOG_TITLE" xml:space="preserve">
+    <value>Log folder</value>
+  </data>
+  <data name="APPS_TITLE" xml:space="preserve">
+    <value>Application settings</value>
+  </data>
+  <data name="APPS_WEIGHT1" xml:space="preserve">
+    <value>If two files exceed this weight (in kiloBytes),</value>
+  </data>
+  <data name="APPS_WEIGHT2" xml:space="preserve">
+    <value>they will be saved one after the other and not simultaneously.</value>
+  </data>
+  <data name="APPS_WEIGHT_TITLE" xml:space="preserve">
+    <value>Max allowed file weight</value>
+  </data>
+  <data name="APP_BUIS1" xml:space="preserve">
+    <value>Select a business software executable.</value>
+  </data>
+  <data name="NAV_CONFIG" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="NAV_HOME" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="NAV_SAVE_SELECTION" xml:space="preserve">
+    <value>Save Selection</value>
+  </data>
+  <data name="SAVEC_DEST" xml:space="preserve">
+    <value>Destiantion path</value>
+  </data>
+  <data name="SAVEC_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SAVEC_SAVE_TYPE" xml:space="preserve">
+    <value>Save type</value>
+  </data>
+  <data name="SAVEC_SOURCE" xml:space="preserve">
+    <value>Source paths</value>
+  </data>
+  <data name="SAVEC_TITLE" xml:space="preserve">
+    <value>Saves configuration</value>
+  </data>
+  <data name="TAB_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TAB_PROGRESS" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="TAB_SOURCE" xml:space="preserve">
+    <value>Source file</value>
+  </data>
+  <data name="TAB_STATUS" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="TAB_TARGET" xml:space="preserve">
+    <value>Target file</value>
+  </data>
+  <data name="TAB_TITLE" xml:space="preserve">
+    <value>Save/Backup in progress</value>
+  </data>
+  <data name="TAB_TRANSFERT" xml:space="preserve">
+    <value>Transfert Type</value>
+  </data>
+</root>

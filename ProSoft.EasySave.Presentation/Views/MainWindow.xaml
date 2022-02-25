@@ -12,7 +12,9 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         MaxHeight="1080" MaxWidth="1920" MinHeight="800" MinWidth="600"
         WindowState="Maximized" ResizeMode="CanResizeWithGrip"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        
+             xmlns:lang="clr-namespace:ProSoft.EasySave.Presentation.Properties.Langs">
     <Grid x:Name="sizeGrid"  Background="{StaticResource BackgroundPage}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -31,16 +33,16 @@
                              IsSettingsVisible="False"
                              IsBackButtonVisible="Collapsed">
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Content="Home" Tag="_HomeView" Icon="Home" />
-                <!--
+                <muxc:NavigationViewItem Content="{x:Static lang:Lang.NAV_HOME}" Tag="_HomeView" Icon="Home" />
+                
                 <muxc:NavigationViewItem Content="Save in Progress" Tag="_SaveView" Icon="Save" />
-                -->
-                <muxc:NavigationViewItem Content="Save selection" Tag="_ActiView">
+                
+                <muxc:NavigationViewItem Content="{x:Static lang:Lang.NAV_SAVE_SELECTION}" Tag="_ActiView">
                     <muxc:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xF0E3;" />
                     </muxc:NavigationViewItem.Icon>
                 </muxc:NavigationViewItem>
-                <muxc:NavigationViewItem Content="Configuration" Tag="_ConfigView">
+                <muxc:NavigationViewItem Content="{x:Static lang:Lang.NAV_CONFIG}" Tag="_ConfigView">
                     <muxc:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xE713;" />
                         </muxc:NavigationViewItem.Icon>

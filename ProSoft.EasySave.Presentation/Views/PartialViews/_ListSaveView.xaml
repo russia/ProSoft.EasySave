@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:muxc="http://schemas.modernwpf.com/2019"
              MaxHeight="1080" MaxWidth="1920" MinHeight="800" MinWidth="600"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             xmlns:lang="clr-namespace:ProSoft.EasySave.Presentation.Properties.Langs">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}"
@@ -34,7 +35,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
-            <TextBlock FontSize="60" Text="Save/Backup in progress" FontWeight="Bold"
+            <TextBlock FontSize="60" Text="{x:Static lang:Lang.TAB_TITLE}" FontWeight="Bold"
                        VerticalAlignment="Center"
                        Margin="70,20,0,0"
                        Foreground="{StaticResource BackGroundGray}" />
@@ -82,38 +83,38 @@
                             </Style>
                         </DataGrid.ColumnHeaderStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" FontStyle="Italic" FontSize="15" Foreground="{StaticResource FontColor}"
+                            <DataGridTextColumn Header="{x:Static lang:Lang.TAB_NAME}" FontStyle="Italic" FontSize="15" Foreground="{StaticResource FontColor}"
                                                 Binding="{Binding Name}"
                                                 HeaderStyle="{StaticResource TabHeader}"
                                                 Width="1*"
                                                 IsReadOnly="True">
                             </DataGridTextColumn>
 
-                            <DataGridTextColumn Header="FileSource"  FontSize="20" Foreground="{StaticResource FontColor}"
+                            <DataGridTextColumn Header="{x:Static lang:Lang.TAB_SOURCE}"  FontSize="20" Foreground="{StaticResource FontColor}"
                                                 Binding="{Binding SourcePath}"
                                                 Width="2*"
                                                 HeaderStyle="{StaticResource TabHeader}"
                                                 IsReadOnly="True">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="FileTarget" FontSize="20" Foreground="{StaticResource FontColor}"
+                            <DataGridTextColumn Header="{x:Static lang:Lang.TAB_TARGET}" FontSize="20" Foreground="{StaticResource FontColor}"
                                                 Binding="{Binding DestinationPath}"
                                                 Width="2*"
                                                 HeaderStyle="{StaticResource TabHeader}"
                                                 IsReadOnly="True">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Transfert Type" FontSize="20" Foreground="{StaticResource FontColor}"
+                            <DataGridTextColumn Header="{x:Static lang:Lang.TAB_TRANSFERT}" FontSize="20" Foreground="{StaticResource FontColor}"
                                                 Binding="{Binding TransferType}"
                                                 Width="2*"
                                                 HeaderStyle="{StaticResource TabHeader}"
                                                 IsReadOnly="True">
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Status" FontSize="20" Foreground="{StaticResource FontColor}"
+                            <DataGridTextColumn Header="{x:Static lang:Lang.TAB_STATUS}" FontSize="20" Foreground="{StaticResource FontColor}"
                                                 Binding="{Binding StateType}"
                                                 Width="2*"
                                                 HeaderStyle="{StaticResource TabHeader}"
                                                 IsReadOnly="True">
                             </DataGridTextColumn>
-                            <DataGridTemplateColumn Header="Progress" HeaderStyle="{StaticResource TabHeader}">
+                            <DataGridTemplateColumn Header="{x:Static lang:Lang.TAB_PROGRESS}" HeaderStyle="{StaticResource TabHeader}">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <ItemContainerTemplate>
                                         <Grid>

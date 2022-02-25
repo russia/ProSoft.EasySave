@@ -21,6 +21,7 @@ using ProSoft.EasySave.Presentation.Views;
 using ProSoft.EasySave.Presentation.Views.PartialViews;
 using Serilog;
 using Serilog.Events;
+using System.Threading;
 
 namespace ProSoft.EasySave.Presentation
 {
@@ -164,6 +165,24 @@ namespace ProSoft.EasySave.Presentation
 
                 return registryValue > 0 ? WindowsTheme.Light : WindowsTheme.Dark;
             }
+        }
+
+        private void SetLanguageDictionary()
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+            switch (Thread.CurrentThread.CurrentCulture.ToString())
+            {
+                case "en-US":
+                    dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
+                    break;
+                case "fr-CA":
+                    dict.Source = new Uri("..\\Resources\\StringResources.fr-CA.xaml", UriKind.Relative);
+                    break;
+                default:
+                    dict.Source = new Uri("..\\Resources\\StringResources.xaml", UriKind.Relative);
+                    break;
+            }
+            this.Resources.MergedDictionaries.Add(dict);
         }
     }
 }

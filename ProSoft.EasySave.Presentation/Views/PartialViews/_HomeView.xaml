@@ -4,8 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              MaxHeight="1080" MaxWidth="1920" MinHeight="800" MinWidth="600"
+             xmlns:lang="clr-namespace:ProSoft.EasySave.Presentation.Properties.Langs"
              mc:Ignorable="d">
+    
     <Grid>
+        
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.3*"></ColumnDefinition>
@@ -22,11 +25,13 @@
             <RowDefinition Height="0.2*"></RowDefinition>
         </Grid.RowDefinitions>
 
+        
+
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}">
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel >
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="Start all saves" FontSize="45"></TextBlock>
+                        <TextBlock Text="{x:Static lang:Lang.START_ALL_SAVE}" FontSize="45"></TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Button>
@@ -36,7 +41,7 @@
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel >
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="Pause all saves" FontSize="45"></TextBlock>
+                        <TextBlock Text="{x:Static lang:Lang.PAUSE_ALL_SAVE}" FontSize="45"></TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Button>
@@ -58,20 +63,9 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder"/>
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" Text="{x:Static lang:Lang.SAMPLE_TITLE_STAT}">
                     </TextBlock>
-                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234"/>
-                    </TextBlock>
-                </Grid>
-                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder"/>
-                    </TextBlock>
-                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234"/>
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30" Text="{x:Static lang:Lang.SAMPLE_NUMBER1}">
                     </TextBlock>
                 </Grid>
                 <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250"/>
@@ -80,9 +74,20 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="StatPlaceholder"/>
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" Text="{x:Static lang:Lang.SAMPLE_TITLE_STAT}">
                     </TextBlock>
-                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"><Run Language="en-us" Text="1234"/>
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30" Text="{x:Static lang:Lang.SAMPLE_NUMBER1}">
+                    </TextBlock>
+                </Grid>
+                <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Margin="10,23,0,23" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="30" Text="{x:Static lang:Lang.SAMPLE_TITLE_STAT}">
+                    </TextBlock>
+                    <TextBlock Grid.Column="1" Margin="0,23,10,23" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="30"  Text="{x:Static lang:Lang.SAMPLE_NUMBER1}">
                     </TextBlock>
                 </Grid>
                 <Line Stretch="Fill" Stroke="#FFFF" X2="1" StrokeThickness="3" MaxWidth="250"/>
@@ -98,7 +103,7 @@
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=GoToSettingsCommand}">
                 <StackPanel >
                     <StackPanel HorizontalAlignment="Center" Margin="20">
-                        <TextBlock Text="Go to ConfigScreen" FontSize="45"></TextBlock>
+                        <TextBlock Text="{x:Static lang:Lang.SAMPLE_TITLE_CONFIG}" FontSize="45"></TextBlock>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center">
                         <TextBlock Foreground="#FFFF" FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="30" />
@@ -111,7 +116,7 @@
             <Button HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Command="{Binding Path=GoToSaveList}">
                 <StackPanel >
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="5 saves in progress" FontSize="45"></TextBlock>
+                        <TextBlock Text="{x:Static lang:Lang.SAMPLE_CONFIG_TEXT}" FontSize="45"></TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Button>
@@ -123,21 +128,21 @@
                 <StackPanel>
                     
                     <StackPanel HorizontalAlignment="Center" Grid.Column="0" Margin="5">
-                        <TextBlock Text="PlaceholderTitle" FontSize="45"></TextBlock>
+                        <TextBlock Text="{x:Static lang:Lang.SAMPLE_TITLE}" FontSize="45"></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="1" HorizontalAlignment="Right"  Margin="5">
-                        <TextBlock VerticalAlignment="Stretch" Height="150" TextWrapping="Wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Aenean quis enim nec sem dapibus ullamcorper eu sed ligula. Nam ultricies lorem eu libero dapibus, 
-                            aliquam mattis ante faucibus. Maecenas ipsum urna, condimentum id erat at, consectetur varius ipsum. Duis cursus lectus nisi, 
-                            ut ultrices ex scelerisque eu. Quisque eros tellus, viverra nec luctus at, fermentum vitae metus. Vestibulum congue lobortis vulputate. 
-                            In hac habitasse platea dictumst. Integer molestie libero ornare, placerat arcu sit amet, ultrices diam. Suspendisse potenti. 
-                            Sed maximus quis nisi id suscipit. Curabitur blandit ante sit amet quam mattis semper vel eget eros. Nam nec ex nec leo posuere laoreet.
-                            Praesent iaculis tempor nulla, in bibendum justo mattis sed. Nunc ante tellus, congue ac nulla at, commodo imperdiet massa. Vestibulum ac urna dapibus, 
-                            placerat nibh quis, tristique tortor. Nunc efficitur volutpat lorem, nec aliquet tellus pretium ac.
+                        <TextBlock VerticalAlignment="Stretch" Height="150" TextWrapping="Wrap" Text="{x:Static lang:Lang.SAMPLE_BIG_TEXT}">
                         </TextBlock>
                     </StackPanel>
                 </StackPanel>
             </Button>         
+        </Border>
+
+        <Border  Height="40" Width="70" Grid.Column="4" Grid.Row="0" >
+            <ComboBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="cmb" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBoxItem Content="EN"></ComboBoxItem>
+                <ComboBoxItem Content="FR"></ComboBoxItem>
+            </ComboBox>
         </Border>
     </Grid>
 </UserControl>
