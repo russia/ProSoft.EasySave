@@ -43,7 +43,7 @@ namespace ProSoft.EasySave.Infrastructure.Interfaces.Services
 
         void AddJob(string name, TransferType transferType, string sourcePath, string destinationPath);
 
-        IEnumerable<Process> GetProcessInstances(string[] processes);
+        IEnumerable<Process> GetProcessInstances(string processes);
 
         Task<IReadOnlyCollection<JobResult>> StartAllJobsAsync(ExecutionType? executionType = null);
 
