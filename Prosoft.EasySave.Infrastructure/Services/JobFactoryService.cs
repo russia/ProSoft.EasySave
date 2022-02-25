@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using ProSoft.EasySave.Infrastructure.Enums;
+using ProSoft.EasySave.Infrastructure.Helpers;
 using ProSoft.EasySave.Infrastructure.Interfaces.Services;
 using ProSoft.EasySave.Infrastructure.Models;
 using ProSoft.EasySave.Infrastructure.Models.Contexts;
@@ -30,13 +31,14 @@ namespace ProSoft.EasySave.Infrastructure.Services
         private readonly IFileService _fileService;
         private readonly List<JobContext> _jobContexts;
         private ExecutionType _executionType;
-        private readonly string[] _processes = new string[] { "notepad", "calc" };
+        private readonly string _processes;
 
         public JobFactoryService(IFileService fileService, IOptions<Configuration> configuration)
         {
             _jobContexts = new List<JobContext>();
             _fileService = fileService;
             _configuration = configuration;
+            _processes = ConfigHelpers.ReadSetting("BusinessApp");
             LoadConfiguration();
         }
 
@@ -242,10 +244,10 @@ namespace ProSoft.EasySave.Infrastructure.Services
             OnJobListUpdated?.Invoke(this, new JobListUpdatedEventArgs(_jobContexts));
         }
 
-        public IEnumerable<Process> GetProcessInstances(string[] processes)
+        public IEnumerable<Process> GetProcessInstances(string processes)
         {
-            var results = processes.Select(p => new { Name = p, Process = Process.GetProcessesByName(p) });
-            return results.Where(r => r.Process.Any()).Select(p => p.Process.First());
+            var results = Process.GetProcessesByName(processes);
+            return results;
         }
     }
 }

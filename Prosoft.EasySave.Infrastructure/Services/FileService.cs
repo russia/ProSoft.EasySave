@@ -55,18 +55,20 @@ namespace ProSoft.EasySave.Infrastructure.Services
                         destinationFiles.Any(destFile => srcFile.Length == destFile.Length && Task.Run(() =>
                             destFile.Compare(srcFile)).Result));
 
+                var MaxWeight = long.Parse(ConfigHelpers.ReadSetting("MaxWeight").ToString());
                 var totalWeight = sourceFiles.Sum(sourceFile => sourceFile.Length);
 
                 if (totalWeight > 9999999999)
                 {
                     Console.WriteLine(
-                        $"[{jobContext.Name}] Skipping save job, as total files weight is to large ({totalWeight} bytes).");
+                        $"[{jobContext.Name}] Skipping save job, as total files weight is too large ({totalWeight} bytes).");
                     return new JobResult(false, "Files total weight is too large.");
                 }
 
-                sourceFiles = sourceFiles.OrderBy(s => s.Extension is ".exe" or ".pdf").ToList();
+            var extensions = ConfigHelpers.ReadSetting("PrioritaryExt").Split('|');
+            sourceFiles = sourceFiles.OrderBy(s => extensions.Contains(s.Extension)).ToList();
 
-                foreach (var sourceFile in sourceFiles)
+            foreach (var sourceFile in sourceFiles)
                 {
                     await Task.Delay(1000); // Simulating a heavy file transfer.
 
