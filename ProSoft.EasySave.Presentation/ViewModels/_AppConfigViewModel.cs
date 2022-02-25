@@ -27,7 +27,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         private string _filePriority;
         private string _filePriority2;
         private string _filePriority3;
-        public ConfigHelpers configHelper;
 
         public string StopAppFilename
         {
@@ -103,29 +102,25 @@ namespace ProSoft.EasySave.Presentation.ViewModels
 
         public void SaveSettings()
         {
-            configHelper = new ConfigHelpers();
-
             // Update business blocking app.
-            configHelper.UpdateSetting("BusinessApp", StopAppFilename);
+            ConfigHelpers.UpdateSetting("BusinessApp", StopAppFilename);
 
             // Update max file weight accepted.
-            configHelper.UpdateSetting("MaxWeight", MaxFileWeight);
+            ConfigHelpers.UpdateSetting("MaxWeight", MaxFileWeight);
 
             //Update priority files
-            configHelper.UpdateSetting("PrioritaryExt1", FilePriority);
-            configHelper.UpdateSetting("PrioritaryExt2", FilePriority2);
-            configHelper.UpdateSetting("PrioritaryExt3", FilePriority3);
+            ConfigHelpers.UpdateSetting("PrioritaryExt1", FilePriority);
+            ConfigHelpers.UpdateSetting("PrioritaryExt2", FilePriority2);
+            ConfigHelpers.UpdateSetting("PrioritaryExt3", FilePriority3);
         }
 
         public void ReadSettings()
         {
-            configHelper = new ConfigHelpers();
-
-            StopAppFilename = configHelper.ReadSetting("BusinessApp").ToString();
-            MaxFileWeight = configHelper.ReadSetting("MaxWeight").ToString();
-            FilePriority = configHelper.ReadSetting("PrioritaryExt1").ToString();
-            FilePriority2 = configHelper.ReadSetting("PrioritaryExt2").ToString();
-            FilePriority3 = configHelper.ReadSetting("PrioritaryExt3").ToString();
+            StopAppFilename = ConfigHelpers.ReadSetting("BusinessApp").ToString();
+            MaxFileWeight = ConfigHelpers.ReadSetting("MaxWeight").ToString();
+            FilePriority = ConfigHelpers.ReadSetting("PrioritaryExt1").ToString();
+            FilePriority2 = ConfigHelpers.ReadSetting("PrioritaryExt2").ToString();
+            FilePriority3 = ConfigHelpers.ReadSetting("PrioritaryExt3").ToString();
         }
 
         public static void OpenExplorerToLogs()
@@ -145,24 +140,5 @@ namespace ProSoft.EasySave.Presentation.ViewModels
             explorer.StartInfo.FileName = projectDirectory;
             explorer.Start();
         }
-
-        private static void UpdateSetting(string key, string value)
-        {
-            string configPath = Path.Combine(System.Environment.CurrentDirectory, "Prosoft.EasySave.Presentation.exe");
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            configuration.AppSettings.Settings[key].Value = value;
-            configuration.Save();
-
-            ConfigurationManager.RefreshSection("appSettings");
-        }
-
-        public static string ReadSetting(string key)
-        {
-            string configPath = Path.Combine(System.Environment.CurrentDirectory, "Prosoft.EasySave.Presentation.exe");
-            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            System.Configuration.AppSettingsSection appSettings = (System.Configuration.AppSettingsSection)configuration.GetSection("appSettings");
-            return appSettings.Settings[key].Value;
-        }
-
     }
 }

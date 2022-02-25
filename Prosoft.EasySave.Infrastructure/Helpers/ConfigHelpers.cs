@@ -4,15 +4,10 @@ using System.Configuration;
 
 namespace ProSoft.EasySave.Infrastructure.Helpers
 {
-    public class ConfigHelpers
+    public static class ConfigHelpers
     {
-        public ConfigHelpers()
-        {
 
-        }
-
-
-        public void UpdateSetting(string key, string value)
+        public static void UpdateSetting(string key, string value)
         {
             string configPath = Path.Combine(Environment.CurrentDirectory, "Prosoft.EasySave.Presentation.exe");
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
@@ -22,7 +17,7 @@ namespace ProSoft.EasySave.Infrastructure.Helpers
             ConfigurationManager.RefreshSection("appSettings");
         }
 
-        public string ReadSetting(string key)
+        public static string ReadSetting(string key)
         {
             string configPath = Path.Combine(Environment.CurrentDirectory, "Prosoft.EasySave.Presentation.exe");
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
