@@ -27,8 +27,6 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         private string _filePriority;
         private string _filePriority2;
         private string _filePriority3;
-        public ConfigHelpers configHelper;
-
         public string StopAppFilename
         {
             get { return _stopAppFilename; }
@@ -118,7 +116,11 @@ namespace ProSoft.EasySave.Presentation.ViewModels
         {
             StopAppFilename = ConfigHelpers.ReadSetting("BusinessApp").ToString();
             MaxFileWeight = ConfigHelpers.ReadSetting("MaxWeight").ToString();
-            FilePriority = ConfigHelpers.ReadSetting("PrioritaryExt").Split("|").ToString();
+            string[] Temp = ConfigHelpers.ReadSetting("PrioritaryExt").Split("|");
+            FilePriority = Temp[0];
+            FilePriority2 = Temp[1];
+            FilePriority3 = Temp[2];
+
         }
 
         public static void OpenExplorerToLogs()
