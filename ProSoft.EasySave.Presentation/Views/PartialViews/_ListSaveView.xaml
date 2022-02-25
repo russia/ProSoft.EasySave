@@ -117,7 +117,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <ItemContainerTemplate>
                                         <Grid>
-                                            <muxc:ProgressBar Grid.Row="0" Grid.Column="0"  Minimum="0" Maximum="100" Value="{Binding Progression}">
+                                            <muxc:ProgressBar Grid.Row="0" Grid.Column="0" Width="70"  Minimum="0" Maximum="100" Value="{Binding Progression}">
                                             </muxc:ProgressBar>
                                         </Grid>
                                     </ItemContainerTemplate>
