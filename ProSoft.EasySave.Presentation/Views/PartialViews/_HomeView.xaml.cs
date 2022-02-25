@@ -38,7 +38,6 @@ namespace ProSoft.EasySave.Presentation.Views.PartialViews
             if (cmb.SelectedIndex == 0)
             {
                 Properties.Settings.Default.languageCode = "en_US";
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             }
             else
             {

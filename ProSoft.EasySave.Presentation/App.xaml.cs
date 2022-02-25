@@ -36,6 +36,8 @@ namespace ProSoft.EasySave.Presentation
 
         protected override Window CreateShell()
         {
+
+
             return Container.Resolve<MainWindow>();
         }
 

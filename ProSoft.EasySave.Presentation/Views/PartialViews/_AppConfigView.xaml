@@ -137,7 +137,7 @@
             </ui:SimpleStackPanel>
         </Border>
 
-        <Border Grid.Row="3" Grid.Column="2" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}" HorizontalAlignment="Right">
+        <Border Grid.Row="3" Grid.Column="2" Height="30" Style="{StaticResource BorderStyle}" Background="{StaticResource BtnGreen}" HorizontalAlignment="Right">
             <Button Width="100" Command="{Binding SaveSettingsCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">Apply</Button>
         </Border>
     </Grid>
